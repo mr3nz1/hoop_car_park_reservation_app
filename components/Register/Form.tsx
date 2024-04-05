@@ -4,16 +4,16 @@ import Column from "../UI/Column";
 import Button from "../UI/Button";
 import { Link } from "expo-router";
 
-interface FormType {
-  usePhone?: boolean;
-}
+interface FormType {}
 
-export default function Form({ usePhone }: FormType) {
+export default function Form({}: FormType) {
   return (
     <View style={styles.container}>
       <Column gap={20} style={{ height: "100%" }}>
-        <Input placeholder={usePhone ? "+62 " : "Email"} />
+        <Input placeholder="Email" />
         <Input placeholder="Password" password={true} />
+        <Input placeholder="Password Authentication" />
+        <Input placeholder="Phone Number" />
         <Text style={{ alignSelf: "flex-end" }}>
           <Text style={{ color: "#2d2d2da0", opacity: 0.5 }}>
             Forgot Password?{" "}
@@ -30,10 +30,10 @@ export default function Form({ usePhone }: FormType) {
             <Text style={styles.text}>Login</Text>
           </Button>
           <Text style={{ alignSelf: "center" }}>
-            <Text style={{ color: "#2d2d2da0" }}>Don't have an account? </Text>
-            <Link href="/Auth/Register">
+            <Text style={{ color: "#2d2d2da0" }}>Have an account? </Text>
+            <Link href="/Auth/Login">
               <Text style={{ color: "#F43939", fontWeight: "bold" }}>
-                Sign Up
+                Sign In
               </Text>
             </Link>
           </Text>

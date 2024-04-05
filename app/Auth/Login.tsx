@@ -3,7 +3,11 @@ import Header from "../../components/UI/Header";
 import { StatusBar } from "expo-status-bar";
 import Form from "../../components/Login/Form";
 
-export default function Login() {
+interface LoginType {
+  usePhone?: boolean;
+}
+
+export default function Login({ usePhone = true }: LoginType) {
   return (
     <>
       <StatusBar
@@ -19,19 +23,19 @@ export default function Login() {
         <Header>
           <Text style={styles.text}>Glad to see you!</Text>
         </Header>
-        <Form />
+        <Form usePhone={usePhone} />
       </ScrollView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#F4F4FA",
+  },
   text: {
     color: "white",
     fontSize: 40,
     fontWeight: "200",
-  },
-  container: {
-    backgroundColor: "#F4F4FA",
   },
 });

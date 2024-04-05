@@ -24,6 +24,7 @@ export default function Header({ children }: Header) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#130F26",
+    flex: 0.5
   },
   childrenContainer: {
     padding: 40,

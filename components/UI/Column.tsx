@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 
 interface ColumnType {
-  children: ReactElement[];
+  children: ReactElement | ReactElement[];
   gap: number;
   style?: ViewStyle;
 }
