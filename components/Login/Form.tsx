@@ -13,7 +13,7 @@ export default function Form({ usePhone }: FormType) {
     <View style={styles.container}>
       <Column gap={20} style={{ height: "100%" }}>
         <Input placeholder={usePhone ? "+62 " : "Email"} />
-        <Input placeholder="Password" password={true} />
+        <Input placeholder="Password" password={true} hideContent={true} />
         <Text style={{ alignSelf: "flex-end" }}>
           <Text style={{ color: "#2d2d2da0", opacity: 0.5 }}>
             Forgot Password?{" "}

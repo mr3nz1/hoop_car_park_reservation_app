@@ -11,8 +11,8 @@ export default function Form({}: FormType) {
     <View style={styles.container}>
       <Column gap={20} style={{ height: "100%" }}>
         <Input placeholder="Email" />
-        <Input placeholder="Password" password={true} />
-        <Input placeholder="Password Authentication" />
+        <Input placeholder="Password" password={true} hideContent={true} />
+        <Input placeholder="Password Authentication" hideContent={true} />
         <Input placeholder="Phone Number" />
         <Text style={{ alignSelf: "flex-end" }}>
           <Text style={{ color: "#2d2d2da0", opacity: 0.5 }}>

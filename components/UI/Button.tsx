@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { Image, Pressable, StyleSheet, Text, ViewStyle } from "react-native";
 
 interface ButtonType {
@@ -14,6 +14,7 @@ export default function Button({
   children,
   style,
 }: ButtonType) {
+  const [isPressed, setIsPressed] = useState(false);
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
@@ -22,13 +23,26 @@ export default function Button({
       gap: 8,
       width: "100%",
       backgroundColor: backgroundColor,
-      padding: 20,
+      padding: 15,
       borderRadius: 15,
+      opacity: isPressed ? 0.7 : 1,
     },
   });
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsPressed(false);
+    }, 100);
+  }, [isPressed]);
+
   return (
-    <Pressable style={[styles.container, style]} onPress={onPress}>
+    <Pressable
+      style={[styles.container, style]}
+      onPress={(e) => {
+        setIsPressed(true);
+        onPress();
+      }}
+    >
       {children}
     </Pressable>
   );

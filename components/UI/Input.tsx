@@ -3,15 +3,21 @@ import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 interface InputType {
   placeholder: string;
   password?: boolean;
+  hideContent?: boolean;
 }
 
-export default function Input({ placeholder, password }: InputType) {
+export default function Input({
+  placeholder,
+  password,
+  hideContent,
+}: InputType) {
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.textInput}
         placeholder={placeholder}
         cursorColor="#2D2D2D"
+        secureTextEntry={hideContent}
       />
       {password && (
         <Image
