@@ -8,12 +8,15 @@ interface Header {
 export default function Header({ children }: Header) {
   return (
     <>
-      <ImageBackground
-        source={require("../../assets/images/pattern_img.png")}
-        style={styles.container}
-      >
-        {children}
-      </ImageBackground>
+      <View>
+        <ImageBackground
+          source={require("../../assets/images/pattern_img.png")}
+          style={styles.container}
+        >
+          <View style={styles.childrenContainer}>{children}</View>
+          <View style={styles.roundedBottom}></View>
+        </ImageBackground>
+      </View>
     </>
   );
 }
@@ -21,6 +24,15 @@ export default function Header({ children }: Header) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#130F26",
+  },
+  childrenContainer: {
     padding: 40,
+  },
+  roundedBottom: {
+    height: 40,
+    width: "100%",
+    backgroundColor: "#F4F4FA",
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
   },
 });
