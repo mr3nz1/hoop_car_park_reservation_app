@@ -6,7 +6,8 @@ import { StyleSheet, Text, View } from "react-native";
 export default function SplashScreen() {
 useEffect(() => {
     setTimeout(() => {
-        router.push("/Auth/Login")
+        router.push("/Onbording")
+       
     }, 2000)
 })
 
