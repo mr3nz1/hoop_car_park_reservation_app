@@ -2,6 +2,7 @@
   "expo": {
     "name": "hoop_car_park_reservation_app",
     "slug": "hoop_car_park_reservation_app",
+    "scheme": "hoop_car_park_reservation_app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +26,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
