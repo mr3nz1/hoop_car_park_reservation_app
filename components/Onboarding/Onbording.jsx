@@ -1,95 +1,121 @@
-import React from "react";
-import { Dimensions, StyleSheet, Text, View,Image } from "react-native";
+import React, { useState, useRef } from "react";
+import { Dimensions, StyleSheet, Text, View, Image, FlatList, Animated } from "react-native";
 import Button from '../UI/Button'; // Assuming the path is correct
+import OnbordingItems from '../Onboarding/OnbordingItems';
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import slides from "../slides";
+import Paginator from "./paginators";
 
 export default function Boarding(props) {
     const { width } = Dimensions.get('window');
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const scrollX = useRef(new Animated.Value(0)).current;
+    const slidesRef = useRef(null);
+
+    const onViewableItemsChanged = useRef(({ viewableItems }) => {
+        setCurrentIndex(viewableItems[0].index);
+    }).current;
+
+    const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
     return (
-        <View style={[styles.cardcontainer, { width }]}>
-            <Text style={styles.head}>skip</Text>
-            <Image source={require('../../assets/images/Asset.png')}/>
-            <View style={styles.pages}>
-            <Text style={styles.text}>Welcome</Text>
-            <Text style={styles.para}>Find a best possible way to park</Text>
-            <View style={styles.sliding}>
-            <Text style={styles.slider}>a</Text>
-         <Text style={styles.slide}>a</Text>
-         <Text style={styles.slid}>a</Text>
+        
+        <>
+         <View style={styles.flat} >
+            <Text style={styles.skip}>Skip</Text>
+            <FlatList
+                data={slides}
+                renderItem={({ item }) => <OnbordingItems item={item} />}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                pagingEnabled
+                bounces={false}
+                keyExtractor={(item) => item.id}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+                 
+                )}
+                scrollEventThrottle={16}
+                onViewableItemsChanged={onViewableItemsChanged}
+                viewabilityConfig={viewConfig}
+                ref={slidesRef}
+            />
+            <Paginator data = {slides} scrollX={scrollX}/>
             </View>
-      
-                <Button
-                    backgroundColor="#2D2D2D" 
-                    onPress={() => {
-                        // Handle button press
-                    }}
-                    style={styles.button}
-                >
-                    <Text style={{ color: 'white' }}>Login With Email</Text>
-                </Button>
+        
+            <View style={[styles.cardcontainer, { width }]}>
+           
+        
 
-                <Button
-                    backgroundColor="white" 
-                    onPress={() => {
-                        // Handle button press
-                    }}
-                    style={styles.button}
-                >
-                    <Text style={{ color: 'black' }}>Login With phone</Text>
-                </Button>
+           <View style={styles.pages}>
+               <Button
+                   backgroundColor="#2D2D2D"
+                   onPress={() => {
+                       // Handle button press
+                   }}
+                   style={styles.button}
+               >
+               
+                   <Text style={{ color: 'white', marginLeft: 10 }}>Login With Email</Text>
+               </Button>
 
-                <Text style={styles.bottom}>Don't have an account?<Text style={styles.link}>Signup</Text></Text>
-            </View>
-        </View>
+               <Button
+                   backgroundColor="white"
+                   onPress={() => {
+                       
+                   }}
+                   style={styles.button}
+               >
+                  
+                   <Text style={{ color: 'black', marginLeft: 10 }}>Login With Phone</Text>
+               </Button>
+               <Text>DON'T HAVE ACCOUNT ?SIGN UP</Text>
+           </View>
+       </View>
+        </>
     );
 }
 
 const styles = StyleSheet.create({
     pages: {
-        justifyContent:'center',
-    alignItems:'center',
-gap:20
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 20
     },
     cardcontainer: {
-        backgroundColor: '#ddd',
-        height: Dimensions.get('window').height,
-        padding: 30, // Use numbers instead of 'px'
-        lineHeight: 40 // Use numbers instead of 'px'
+        backgroundColor: '#EAEAF3',
+        padding: 10,
+        lineHeight: 20
     },
     text: {
         fontSize: 40,
         textAlign: 'center'
     },
-   para:{
-    fontWeight:'light',
-    color:'#aaa'
-   },
-   head:{
-    flex:0.3,
-fontSize:20,
+    para: {
+        fontWeight: 'light',
+        color: '#aaa'
+    },
+    head: {
+        flex: 0.3,
+        fontSize: 20,
+        textAlign: 'right',
+        padding: 10,
+        textTransform: 'capitalize',
+        fontWeight: '300'
+    },
+    link: {
+        color: '#F43939'
+    },
+    flat:{
+        backgroundColor: '#EAEAF3',
+        flex:1
+    },
+    skip:{
 textAlign:'right',
-padding:10,
-textTransform:'capitalize',
+
+padding:(20, 10),
+fontSize:18,
 fontWeight:'300'
-   },
-   link:{
-color:'red'
-   },
-   sliding:{
-display:'flex',
-gap:0,
-   },
-   slider:{
-backgroundColor:'green',
-borderRadius:50,
-padding:10
-   },
-   slide:{
-    backgroundColor:'yellow',
-    
-       },
-       slid:{
-        backgroundColor:'',
-        
-           }
+    }
+   
 });
