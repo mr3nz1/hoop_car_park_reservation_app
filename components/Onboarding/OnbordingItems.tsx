@@ -1,12 +1,11 @@
 import React from "react";
 import { Dimensions, StyleSheet, Text, View,Image, useWindowDimensions } from "react-native";
 import Button from '../UI/Button'; // Assuming the path is correct
-import Icons from "../icons/icons";
 import slides from "../slides";
 
 
 
-export default function BoardingItems({item}) {
+export default function BoardingItems({item}:any) {
     const { width } = useWindowDimensions();
 
     return (
