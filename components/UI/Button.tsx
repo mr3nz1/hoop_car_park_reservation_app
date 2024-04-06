@@ -30,9 +30,11 @@ export default function Button({
   });
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsPressed(false);
-    }, 100);
+    if (isPressed) {
+      setTimeout(() => {
+        setIsPressed(false);
+      }, 100);
+    }
   }, [isPressed]);
 
   return (

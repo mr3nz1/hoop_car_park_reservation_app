@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Header from "../../components/UI/Header";
 import { StatusBar } from "expo-status-bar";
 import Form from "../../components/Login/Form";
+import CustomText from "../../components/UI/CustomText";
 
 interface LoginType {
   usePhone?: boolean;
@@ -11,7 +12,7 @@ export default function Login({ usePhone = true }: LoginType) {
   return (
     <>
       <StatusBar
-        style="light"
+        style="dark"
         animated={true}
         backgroundColor="#130F26"
         hidden={true}
@@ -21,7 +22,7 @@ export default function Login({ usePhone = true }: LoginType) {
         contentContainerStyle={{ flexGrow: 1, justifyContent: "space-between" }}
       >
         <Header>
-          <Text style={styles.text}>Glad to see you!</Text>
+          <CustomText style={styles.text}>Glad to see you!</CustomText>
         </Header>
         <Form usePhone={usePhone} />
       </ScrollView>

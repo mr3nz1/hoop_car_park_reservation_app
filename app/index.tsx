@@ -2,19 +2,20 @@ import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import CustomText from "../components/UI/CustomText";
 
 export default function SplashScreen() {
-useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
-        router.push("/Auth/Login")
-    }, 2000)
-})
+      router.push("/Auth/Login");
+    }, 2000);
+  });
 
   return (
     <>
       <StatusBar hidden={true} />
       <View style={styles.container}>
-        <Text style={styles.text}>Hoop</Text>
+        <CustomText style={styles.text}>Hoop</CustomText>
       </View>
     </>
   );
