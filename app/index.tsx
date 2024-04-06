@@ -1,13 +1,23 @@
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import CustomText from "../components/UI/CustomText";
+import { useFonts } from "expo-font";
 
 export default function SplashScreen() {
+  const [fontsLoaded, fontError] = useFonts({
+    "Avenir-Black": require("../assets/fonts/Avenir/Avenir-Black.ttf"),
+    "Avenir-Light": require("../assets/fonts/Avenir/Avenir-Light.ttf"),
+    "Avenir-Medium": require("../assets/fonts/Avenir/Avenir-Medium.ttf"),
+    "Avenir-Heavy": require("../assets/fonts/Avenir/Avenir-Heavy.ttf"),
+  });
+
   useEffect(() => {
     setTimeout(() => {
-      router.push("/Auth/Login");
+      if (fontsLoaded || fontError) {
+        router.push("/Auth/Login");
+      }
     }, 2000);
   });
 
@@ -15,7 +25,7 @@ export default function SplashScreen() {
     <>
       <StatusBar hidden={true} />
       <View style={styles.container}>
-        <CustomText style={styles.text}>Hoop</CustomText>
+        <Image source={require("../assets/images/splash_logo.png")} />
       </View>
     </>
   );

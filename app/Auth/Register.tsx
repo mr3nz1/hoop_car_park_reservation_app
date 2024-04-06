@@ -20,7 +20,7 @@ export default function Register({ usePhone = true }: RegisterType) {
         style={styles.container}
         contentContainerStyle={{ flexGrow: 1, justifyContent: "space-between" }}
       >
-        <Header>
+        <Header backgroundColor="#130F26">
           <Text style={styles.text}>Glad to see you!</Text>
         </Header>
         <Form />

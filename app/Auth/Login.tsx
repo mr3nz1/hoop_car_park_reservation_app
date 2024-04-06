@@ -21,7 +21,7 @@ export default function Login({ usePhone = true }: LoginType) {
         style={styles.container}
         contentContainerStyle={{ flexGrow: 1, justifyContent: "space-between" }}
       >
-        <Header>
+        <Header backgroundColor="#130F26">
           <CustomText style={styles.text}>Glad to see you!</CustomText>
         </Header>
         <Form usePhone={usePhone} />

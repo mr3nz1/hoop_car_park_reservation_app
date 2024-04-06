@@ -4,6 +4,7 @@ import Input from "../../components/UI/Input";
 import Column from "../../components/UI/Column";
 import Button from "../../components/UI/Button";
 import CustomText from "../../components/UI/CustomText";
+import { Link } from "expo-router";
 
 interface ForgotPasswordType {}
 
@@ -35,7 +36,9 @@ export default function ForgotPassword({}: ForgotPasswordType) {
             onPress={() => {}}
             style={{ marginTop: "auto" }}
           >
-            <Text style={{ color: "white", fontSize: 17 }}>Send</Text>
+            <Link href="/Auth/OpenEmailScreen">
+              <Text style={{ color: "white", fontSize: 17 }}>Send</Text>
+            </Link>
           </Button>
         </Column>
       </ScrollView>
