@@ -2,11 +2,10 @@ import React, { useState, useRef } from "react";
 import { Dimensions, StyleSheet, Text, View, Image, FlatList, Animated } from "react-native";
 import Button from '../UI/Button'; // Assuming the path is correct
 import OnbordingItems from '../Onboarding/OnbordingItems';
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome/dist/components/FontAwesomeIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import slides from "../slides";
 import MyLink from "../links/links";
 import Paginator from "./paginators";
-import image1 from '../../assets/images/Message.png'
 
 export default function Boarding(props) {
     const { width } = Dimensions.get('window');
@@ -71,6 +70,7 @@ export default function Boarding(props) {
                    style={styles.button}
                >
                   <Image source={require("../../assets/images/Call.png")}/>
+                  
                    <Text style={{ color: 'black', marginLeft: 10 }}>Login With Phone</Text>
                </Button>
                <Text style={styles.bottom}>DON'T HAVE ACCOUNT ?<Text style={styles.sign}>SIGN UP</Text></Text>
@@ -85,8 +85,7 @@ const styles = StyleSheet.create({
     pages: {
         justifyContent: 'center',
         alignItems: 'center',
-       gap:10,
-    
+       gap:10
     },
     cardcontainer: {
         backgroundColor: '#EAEAF3',
@@ -115,7 +114,7 @@ const styles = StyleSheet.create({
     flat:{
         backgroundColor: '#EAEAF3',
         flex:3,
-        
+       
     },
     skip:{
 textAlign:'right',
