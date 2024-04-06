@@ -4,6 +4,7 @@ import Button from '../UI/Button'; // Assuming the path is correct
 import OnbordingItems from '../Onboarding/OnbordingItems';
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import slides from "../slides";
+import MyLink from "../links/links";
 import Paginator from "./paginators";
 
 export default function Boarding(props) {
@@ -16,7 +17,7 @@ export default function Boarding(props) {
         setCurrentIndex(viewableItems[0].index);
     }).current;
 
-    const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
+    const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 30 }).current;
 
     return (
         
@@ -41,7 +42,7 @@ export default function Boarding(props) {
                 ref={slidesRef}
             />
             <Paginator data = {slides} scrollX={scrollX}/>
-            </View>
+           
         
             <View style={[styles.cardcontainer, { width }]}>
            
@@ -69,8 +70,9 @@ export default function Boarding(props) {
                   
                    <Text style={{ color: 'black', marginLeft: 10 }}>Login With Phone</Text>
                </Button>
-               <Text>DON'T HAVE ACCOUNT ?SIGN UP</Text>
+               <Text style={styles.bottom}>DON'T HAVE ACCOUNT ?<Text style={styles.sign}>SIGN UP</Text></Text>
            </View>
+       </View>
        </View>
         </>
     );
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     pages: {
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 20
+       gap:10
     },
     cardcontainer: {
         backgroundColor: '#EAEAF3',
@@ -108,14 +110,19 @@ const styles = StyleSheet.create({
     },
     flat:{
         backgroundColor: '#EAEAF3',
-        flex:1
+        flex:3,
+       
     },
     skip:{
 textAlign:'right',
-
-padding:(20, 10),
 fontSize:18,
+padding:(30 , 10),
 fontWeight:'300'
-    }
-   
+    },
+    sign:{
+color:'#F43939' ,
+    },
+   bottom:{
+gap:20
+   }
 });

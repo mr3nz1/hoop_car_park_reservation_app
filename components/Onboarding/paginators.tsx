@@ -1,6 +1,6 @@
 import React from "react";
 import { Dimensions, StyleSheet, Text, View,Image, useWindowDimensions,Animated } from "react-native";
-import slides from "../slides";
+import slides from "../slides.js";
 
 
 
@@ -20,7 +20,7 @@ const {width} = useWindowDimensions()
 
             const opacity = scrollX.interpolate({
                 inputRange,
-                outputRange: [0.3, 1, 0.3],
+                outputRange: [0.1, 1, 0.3],
                 extrapolate: 'clamp', 
             });
 
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 height:10,
 borderRadius:5,
 backgroundColor:'red',
-marginHorizontal:8,
+marginHorizontal:4,
 textAlign:'center'
 
   }
