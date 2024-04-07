@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Animated, useWindowDimensions } from "react-native";
 
-export default function Paginator({ data, scrollX }:any) {
+export default function Paginator({ data = [], scrollX }: any) {
   const { width } = useWindowDimensions();
 
   return (
@@ -17,7 +17,7 @@ export default function Paginator({ data, scrollX }:any) {
 
         const dotWidth = scrollX.interpolate({
           inputRange,
-          outputRange: [10, 10, 10],
+          outputRange: [7, 7, 7],
           extrapolate: "clamp",
         });
 
@@ -36,12 +36,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "center",
+    position:"absolute",
+    paddingBottom:30,
+    bottom:90,
+ width:'100%',
     height: 64,
     backgroundColor: "#EAEAF3",
- 
   },
   dot: {
-    height: 10,
+    height: 7,
     borderRadius: 5,
     marginHorizontal: 4,
   },

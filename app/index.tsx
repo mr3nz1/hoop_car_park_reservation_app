@@ -7,6 +7,7 @@ export default function SplashScreen() {
 useEffect(() => {
     setTimeout(() => {
         router.push("/Onbording")
+        // router.push("./CardProps")
        
     }, 2000)
 })
