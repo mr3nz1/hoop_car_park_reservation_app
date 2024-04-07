@@ -12,10 +12,10 @@ export default function Login({ usePhone = true }: LoginType) {
   return (
     <>
       <StatusBar
-        style="dark"
+        style="light"
         animated={true}
-        backgroundColor="#130F26"
-        hidden={true}
+        // backgroundColor="#130F26"
+        // hidden={true}
       />
       <ScrollView
         style={styles.container}

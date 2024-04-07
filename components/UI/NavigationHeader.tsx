@@ -4,9 +4,13 @@ import CustomText from "./CustomText";
 
 interface NavigationHeader {
   navigation: any;
+  title: string;
 }
 
-export default function NavigationHeader({ navigation }: NavigationHeader) {
+export default function NavigationHeader({
+  navigation,
+  title,
+}: NavigationHeader) {
   const styles = StyleSheet.create({
     container: {
       backgroundColor: "#F4F4FA",
@@ -58,7 +62,9 @@ export default function NavigationHeader({ navigation }: NavigationHeader) {
           />
         </Pressable>
 
-        <CustomText size={3} style={styles.text}>Forgot Password</CustomText>
+        <CustomText size={3} style={styles.text}>
+          {title}
+        </CustomText>
       </View>
     </>
   );

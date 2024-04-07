@@ -8,12 +8,12 @@ export default function OpenEmailScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Column style={styles.rowContainer} gap={20}>
-        <Column gap={20} style={styles.rowContainer}>
+        <Column gap={30} style={styles.rowContainer}>
           <Image source={require("../../assets/images/email_otp_bg.png")} />
 
           <Column
             style={{ justifyContent: "center", alignItems: "center" }}
-            gap={1}
+            gap={15}
           >
             <CustomText style={styles.textCenter} fontWeight="medium" size={4}>
               Check your Email
@@ -35,7 +35,7 @@ export default function OpenEmailScreen() {
                 <CustomText
                   style={{ color: "white", width: "100%", textAlign: "center" }}
                 >
-                  <Link href="/Auth/Login">Login With Phone</Link>
+                  <Link href="/Auth/RequestCode">Open Email</Link>
                 </CustomText>
               </Button>
             </View>
