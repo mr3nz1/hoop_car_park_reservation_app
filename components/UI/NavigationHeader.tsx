@@ -15,7 +15,7 @@ export default function NavigationHeader({
     container: {
       backgroundColor: "#F4F4FA",
       flexDirection: "row",
-      justifyContent: "flex-start",
+      justifyContent: "space-between",
       gap: 30,
       alignItems: "center",
       paddingTop: 60,
@@ -35,6 +35,7 @@ export default function NavigationHeader({
     text: {
       fontSize: 25,
       textAlign: "center",
+      flex: 1,
     },
   });
   const [isBackPressed, setIsBackPressed] = useState(false);
@@ -65,6 +66,9 @@ export default function NavigationHeader({
         <CustomText size={3} style={styles.text}>
           {title}
         </CustomText>
+
+        <View></View>
+        <View></View>
       </View>
     </>
   );

@@ -108,13 +108,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#F4F4FA",
     padding: 15,
-    height: "100%",
+    // height: "100%",
     flexDirection: "row",
   },
   rowContainer: {
     // justifyContent: "center",
     alignItems: "center",
-    paddingTop: 15,
+    // paddingTop: 15,
   },
   gray: { color: "#919193" },
   red: { color: "#F43939" },

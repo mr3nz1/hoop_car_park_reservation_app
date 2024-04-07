@@ -38,6 +38,24 @@ export default function RootLayout() {
           },
         }}
       />
+      <Stack.Screen
+        name="Parking/ParkingDetails"
+        options={{
+          header: ({ navigation }) => {
+            return <NavigationHeader title="Details" navigation={navigation} />;
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Parking/BookDetails"
+        options={{
+          header: ({ navigation }) => {
+            return (
+              <NavigationHeader title="Book Details" navigation={navigation} />
+            );
+          },
+        }}
+      />
     </Stack>
   );
 }

@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
   rowContainer: {
     justifyContent: "center",
     alignItems: "center",
-    height: "100%",
+    // height: "100%",
+    flex: 1
   },
   gray: { color: "#919193" },
   red: { color: "#F43939" },

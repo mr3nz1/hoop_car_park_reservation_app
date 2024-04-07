@@ -32,7 +32,9 @@ export default function Form({ usePhone }: FormType) {
             }}
             backgroundColor="#130F26"
           >
-            <CustomText style={styles.text}>Login</CustomText>
+            <Link href="/Parking/ParkingDetails">
+              <CustomText style={styles.text}>Login</CustomText>
+            </Link>
           </Button>
           <CustomText style={{ alignSelf: "center" }}>
             <CustomText style={{ color: "#2d2d2da0" }}>
