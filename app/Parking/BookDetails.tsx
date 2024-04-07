@@ -5,6 +5,7 @@ import CustomText from "../../components/UI/CustomText";
 import TagWrapper from "../../components/UI/TagWrapper";
 import { LinearGradient } from "expo-linear-gradient";
 import Button from "../../components/UI/Button";
+import { Link } from "expo-router";
 
 interface BookDetailsType {}
 
@@ -139,7 +140,7 @@ export default function BookDetails() {
               alignItems: "center",
               justifyContent: "space-between",
               gap: 30,
-              paddingBottom: 40
+              paddingBottom: 40,
             }}
           >
             <CustomText fontWeight="bold" size={2}>
@@ -151,7 +152,9 @@ export default function BookDetails() {
               backgroundColor="#130F26"
               style={{ flex: 1 }}
             >
-              <CustomText style={{ color: "white" }}>Pay</CustomText>
+              <Link href="/Payment/Payment">
+                <CustomText style={{ color: "white" }}>Pay</CustomText>
+              </Link>
             </Button>
           </View>
         </Column>

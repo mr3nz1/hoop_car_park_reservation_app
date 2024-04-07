@@ -56,6 +56,22 @@ export default function RootLayout() {
           },
         }}
       />
+      <Stack.Screen
+        name="Payment/Payment"
+        options={{
+          header: ({ navigation }) => {
+            return <NavigationHeader title="Payment" navigation={navigation} />;
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Payment/PaymentDetails"
+        options={{
+          header: ({ navigation }) => {
+            return <NavigationHeader title="Payment Details" navigation={navigation} />;
+          },
+        }}
+      />
     </Stack>
   );
 }

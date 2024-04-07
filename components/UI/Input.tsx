@@ -1,15 +1,18 @@
+import React, { ReactElement } from "react";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 
 interface InputType {
   placeholder: string;
   password?: boolean;
   hideContent?: boolean;
+  btn?: React.JSX.Element;
 }
 
 export default function Input({
   placeholder,
   password,
   hideContent,
+  btn,
 }: InputType) {
   return (
     <View style={styles.container}>
@@ -25,6 +28,7 @@ export default function Input({
           source={require("../../assets/images/fluent_eye-off-16-filled.png")}
         />
       )}
+      {btn}
     </View>
   );
 }
@@ -36,12 +40,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "white",
-    padding: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     borderRadius: 15,
   },
   textInput: {
     flex: 1,
-    fontSize: 17
+    fontSize: 17,
+    fontFamily: "Avenir-Medium",
   },
   icon: {
     // position: "absolute",

@@ -7,6 +7,7 @@ import TagWrapper from "../../components/UI/TagWrapper";
 import Button from "../../components/UI/Button";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
+import ParkingDetails from "../../components/UI/ParkingDetails";
 
 export default function ParkingDetail() {
   return (
@@ -15,49 +16,12 @@ export default function ParkingDetail() {
         <Column gap={40}>
           <ParkingImageShowcase showLocationBtn={true} />
 
-          <View>
-            <CustomText style={styles.textCenter} size={3}>
-              Graha Mall
-            </CustomText>
-            <CustomText
-              style={[
-                styles.textCenter,
-                {
-                  color: "#7D7D7F",
-                },
-              ]}
-            >
-              123 Dhaka Street
-            </CustomText>
-          </View>
-
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignContent: "center",
-              gap: 20,
-            }}
-          >
-            <TagWrapper>
-              <View
-                style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
-              >
-                <Image source={require("../../assets/images/Location.png")} />
-                <CustomText style={styles.red}>500 m away</CustomText>
-              </View>
-            </TagWrapper>
-            <TagWrapper>
-              <View
-                style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
-              >
-                <Image
-                  source={require("../../assets/images/Time Circle.png")}
-                />
-                <CustomText style={styles.red}>7 mins</CustomText>
-              </View>
-            </TagWrapper>
-          </View>
+          <ParkingDetails
+            name="Graha Mall"
+            location="123 Dhaka Street"
+            distanceAway="500 m away"
+            timeAway="7 mins"
+          />
 
           <Column gap={2} style={{ paddingHorizontal: 30, paddingBottom: 100 }}>
             <CustomText size={2}>Information</CustomText>
@@ -84,7 +48,7 @@ export default function ParkingDetail() {
         end={{ x: 0, y: 1 }}
       >
         <Button onPress={() => {}} backgroundColor="#130F26">
-          <CustomText style={[styles.gray, { paddingHorizontal: 20 }]}>
+          <CustomText style={{ color: "white", paddingHorizontal: 20 }}>
             <Link href="/Parking/BookDetails">Book Now</Link>
           </CustomText>
         </Button>
