@@ -23,19 +23,27 @@ export default function Boarding(props: any) {
     return (
       <>
       <View style={styles.container}>
+        
            </View>
       <View style = {styles.cardcontainer}>
         <View style ={styles.cards}>
 <View style={styles.imagex}>
-<Image 
-source={require(`../assets/images/Asset.png`)}
+{/* <Image 
+source={require(props.image)}
 style={{width:100, height:100, objectFit:'cover', borderRadius:30 }}
-/>
+/> */}
 </View>
-<View>
-  <Text>Graha Mall</Text>
-  <Text>123 Dhaka Street</Text>
-  <Text>$7/hour</Text>
+
+<View style={styles.card}>
+  <View>
+  <Text style={styles.head}>{props.head}</Text>
+  <Text style={styles.hello}>{props.hello}</Text>
+  <Text style={styles.money}>{props.dollar}<Text style={styles.hr}>{props.hr}</Text></Text>
+  </View>
+
+  <View>
+    <Text style={styles.min}>{props.time}</Text>
+  </View>
 </View>
        
       </View>
@@ -50,8 +58,34 @@ const styles = StyleSheet.create({
   cardcontainer:{
     flex:1,
 backgroundColor:'#F4F4FA',
-flexDirection:'row',
-padding:10
+flexDirection:'column',
+padding:20,
+gap:30,
+position:'relative',
+
+
+
+   },
+   head:{
+color:'#2D2D2D',
+fontSize:18,
+fontWeight:'400'
+   },
+   hello:{
+color:'#2D2D2D80',
+fontSize:14
+   },
+   money:{
+position:'absolute',
+bottom:0,
+fontSize:20,
+fontWeight:'900',
+color:'#F43939'
+   },
+   hr:{
+    fontWeight:'300',
+    fontSize:15
+
    },
    container:{
 
@@ -59,7 +93,30 @@ padding:10
    cards:{
     flexDirection:'row',
     backgroundColor:'#FFFFFF',
-    padding:10
+    padding:15,
+    // flex:1,
+    height:100,
+    borderRadius:20,
+    width:'100%',
+    gap: 20
+
+   },
+   card:{
+    flexDirection:'row',
+    flex: 1, 
+    // marginHorizontal:2,
+    gap:44,
+    
+   },
+   newst:{
+fontSize:20,
+fontWeight:'500'
+   },
+   min:{
+    backgroundColor:'#FFF3F3',
+    padding:5,
+    borderRadius:50,
+    color:'#F43939'
    },
    skip:{
 
