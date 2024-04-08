@@ -20,7 +20,7 @@ export default function Boarding(props: any) {
     const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 30 }).current;
 
     return (
-        <SafeAreaView style={{padding:20, backgroundColor:'#EAEAF3',}}>
+        <SafeAreaView style={{padding:20, backgroundColor:'#EAEAF3'}}>
             <View style = {styles.container}>
             <ScrollView contentContainerStyle={{width:'100%', height:'100%'}}>
                 <Text style = {styles.skip}>skip</Text>
@@ -75,7 +75,10 @@ export default function Boarding(props: any) {
 
                             <Text style={{ color: 'black', marginLeft: 10 }}>Login With Phone</Text>
                         </Button>
-                        <Text>DON'T HAVE ACCOUNT ?<Text style={styles.sign}>SIGN UP</Text></Text>
+                        <View>
+                        <Text >DON'T HAVE ACCOUNT ?    <Text style={styles.sign}>SIGN UP</Text></Text>
+                        </View>
+                        
                         </View>
             </ScrollView>
             
@@ -87,10 +90,8 @@ export default function Boarding(props: any) {
 
 const styles = StyleSheet.create({
 container:{
-   
     backgroundColor:'#EAEAF3',
-    gap:20
-
+    gap:39
 },
 skip: {
     textAlign: 'right',
@@ -105,7 +106,8 @@ gap:10
 },
 sign:{
     height:5,
-    color:'#F43939'
+    color:'#F43939',
+  
 }
 
    
