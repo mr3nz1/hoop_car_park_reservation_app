@@ -5,17 +5,42 @@ interface InputType {
   placeholder: string;
   password?: boolean;
   hideContent?: boolean;
-  btn?: React.JSX.Element;
+  btnLeft?: React.JSX.Element;
+  btnRight?: React.JSX.Element;
 }
 
 export default function Input({
   placeholder,
   password,
   hideContent,
-  btn,
+  btnRight,
+  btnLeft,
 }: InputType) {
+  const styles = StyleSheet.create({
+    container: {
+      flexDirection: "row",
+      width: "100%",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      backgroundColor: "white",
+      paddingVertical: 15,
+      paddingLeft: btnLeft ? 0 : 20,
+      paddingRight: 20,
+      borderRadius: 15,
+    },
+    textInput: {
+      flex: 1,
+      fontSize: 17,
+      fontFamily: "Avenir-Medium",
+      marginLeft: btnLeft ? 10 : 0,
+    },
+    icon: {
+      // position: "absolute",
+    },
+  });
   return (
     <View style={styles.container}>
+      {btnLeft}
       <TextInput
         style={styles.textInput}
         placeholder={placeholder}
@@ -28,28 +53,7 @@ export default function Input({
           source={require("../../assets/images/fluent_eye-off-16-filled.png")}
         />
       )}
-      {btn}
+      {btnRight}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "white",
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    borderRadius: 15,
-  },
-  textInput: {
-    flex: 1,
-    fontSize: 17,
-    fontFamily: "Avenir-Medium",
-  },
-  icon: {
-    // position: "absolute",
-  },
-});
