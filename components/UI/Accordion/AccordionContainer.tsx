@@ -10,7 +10,7 @@ import Input from "../Input";
 
 export default function AccordionContainer() {
   const [paymentMethod, setPaymentMethod] = useState("ABC Bank **** 6189");
-  const [openItem, setOpenItem] = useState(0);
+  const [openItem, setOpenItem] = useState(1);
 
   return (
     <>
@@ -155,6 +155,11 @@ export default function AccordionContainer() {
 
 const styles = StyleSheet.create({
   container: { paddingBottom: 60 },
+  gray: { color: "#919193" },
+  red: { color: "#F43939" },
+  textCenter: {
+    textAlign: "center",
+  },
   item: { backgroundColor: "white", padding: 20, borderRadius: 20 },
   itemHeader: {
     flexDirection: "row",
@@ -162,11 +167,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   itemBody: {},
-  gray: { color: "#919193" },
-  red: { color: "#F43939" },
-  textCenter: {
-    textAlign: "center",
-  },
   paymentCardContainer: {
     flexDirection: "row",
     alignItems: "center",

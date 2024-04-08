@@ -68,7 +68,32 @@ export default function RootLayout() {
         name="Payment/PaymentDetails"
         options={{
           header: ({ navigation }) => {
-            return <NavigationHeader title="Payment Details" navigation={navigation} />;
+            return (
+              <NavigationHeader
+                title="Payment Details"
+                navigation={navigation}
+              />
+            );
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Payment/PaymentSuccess"
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Parking/TrackingPark"
+        options={{
+          header: ({ navigation }) => {
+            return (
+              <NavigationHeader
+                title="Tracking Park"
+                navigation={navigation}
+                absolute={true}
+              />
+            );
           },
         }}
       />

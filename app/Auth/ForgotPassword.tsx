@@ -37,7 +37,9 @@ export default function ForgotPassword({}: ForgotPasswordType) {
             style={{ marginTop: "auto" }}
           >
             <Link href="/Auth/OpenEmailScreen">
-              <Text style={{ color: "white", fontSize: 17 }}>Send</Text>
+              <CustomText style={{ color: "white", fontSize: 17 }}>
+                Send
+              </CustomText>
             </Link>
           </Button>
         </Column>

@@ -5,7 +5,7 @@ import { RightChevron, UpChevron } from "../Icons/Icons";
 
 interface AccordionItemType {
   title: string;
-  children: React.JSX.Element;
+  children?: React.JSX.Element;
   isOpen?: boolean;
   index: number;
   onPress: () => void;
@@ -25,7 +25,7 @@ export default function AccordionItem({
           <CustomText size={2}>{title}</CustomText>
           {isOpen ? <UpChevron /> : <RightChevron />}
         </Pressable>
-        {isOpen && <View style={styles.itemBody}>{children}</View>}
+        <View>{isOpen && <View style={styles.itemBody}>{children}</View>}</View>
       </Column>
     </>
   );

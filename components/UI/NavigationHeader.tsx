@@ -5,15 +5,19 @@ import CustomText from "./CustomText";
 interface NavigationHeader {
   navigation: any;
   title: string;
+  absolute?: boolean;
 }
 
 export default function NavigationHeader({
   navigation,
   title,
+  absolute,
 }: NavigationHeader) {
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: "#F4F4FA",
+      backgroundColor: absolute ? "rgba(0,0,0,0)" : "#F4F4FA",
+      position: "absolute",
+      top: 0,
       flexDirection: "row",
       justifyContent: "space-between",
       gap: 30,
@@ -24,7 +28,7 @@ export default function NavigationHeader({
       paddingRight: 30,
     },
     button: {
-      backgroundColor: "#2d2d2d14",
+      backgroundColor: "#EAEAF3",
       padding: 10,
       borderRadius: 10,
     },
@@ -63,9 +67,11 @@ export default function NavigationHeader({
           />
         </Pressable>
 
-        <CustomText size={3} style={styles.text}>
-          {title}
-        </CustomText>
+        {!absolute && (
+          <CustomText size={3} style={styles.text}>
+            {title}
+          </CustomText>
+        )}
 
         <View></View>
         <View></View>
