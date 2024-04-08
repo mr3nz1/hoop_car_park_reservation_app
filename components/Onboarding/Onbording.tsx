@@ -20,7 +20,7 @@ export default function Boarding(props: any) {
     const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 30 }).current;
 
     return (
-        <SafeAreaView style={{padding:20, backgroundColor:'#EAEAF3'}}>
+        <SafeAreaView style={{padding:20, backgroundColor:'#EAEAF3',}}>
             <View style = {styles.container}>
             <ScrollView contentContainerStyle={{width:'100%', height:'100%'}}>
                 <Text style = {styles.skip}>skip</Text>
@@ -45,7 +45,10 @@ export default function Boarding(props: any) {
                 viewabilityConfig={viewConfig}
                 ref={slidesRef}
             />
-             <Paginator data={slides} scrollX={scrollX} />
+           
+            <Paginator data={slides} scrollX={scrollX} />
+          
+            
              <View style={styles.pages}>
              <Button
                             backgroundColor="#2D2D2D"
@@ -84,8 +87,10 @@ export default function Boarding(props: any) {
 
 const styles = StyleSheet.create({
 container:{
-    backgroundColor:'#EAEAF3'
-  
+   
+    backgroundColor:'#EAEAF3',
+    gap:20
+
 },
 skip: {
     textAlign: 'right',
@@ -96,7 +101,7 @@ skip: {
 pages: {
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 10
+gap:10
 },
 sign:{
     height:5,

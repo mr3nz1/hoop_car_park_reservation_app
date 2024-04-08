@@ -11,7 +11,7 @@ export default function BoardingItems({item}:any) {
     return (
         <View style={[styles.container, {width, height}]}>
           <View style= {styles.image}>
-          <Image source={item.image}/>
+          <Image source={item.image} style={styles.imag}/>
           </View>
           <View style = {styles.content}>
           <Text style={styles.title}>{item.title}</Text>
@@ -24,10 +24,11 @@ export default function BoardingItems({item}:any) {
 
 const styles = StyleSheet.create({
   container:{
-flex :1,
+
 alignItems:'center',
 backgroundColor:'#EAEAF3',
-padding: 10
+padding: 10,
+
   },
   title:{
     fontSize:30,
@@ -36,17 +37,21 @@ padding: 10
   },
   greating:{
     fontSize:20,
-   paddingBottom:40,
+   paddingBottom:110,
     textAlign:'center',
     color:'#2D2D2D80'
   },
   image:{
 width:'100%',
-height:60,
-flex:0.6
+height:30,
+flex:0.6,
+alignItems:'center'
+  },
+  imag:{
+
   },
   content:{
-     
+  
   },
   skip:{
 textAlign: 'right'

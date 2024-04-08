@@ -37,15 +37,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     position:"absolute",
-    paddingBottom:30,
-    bottom:90,
+    bottom:110,
  width:'100%',
     height: 64,
+    paddingBottom:8,
     backgroundColor: "#EAEAF3",
   },
   dot: {
     height: 7,
     borderRadius: 5,
     marginHorizontal: 4,
+   
+   
   },
 });
