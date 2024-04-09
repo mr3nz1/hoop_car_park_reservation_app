@@ -1,20 +1,29 @@
 export default [
     {
 id:1,
-title:"Welcome",
-greating:"Find a best possible way to park",
-image:require('../assets/images/Asset.png')
+title:"Graha Mall",
+greating:"123 Dhaka Street",
+image:require('../assets/parking.png'),
+hr:'/hr',
+time:'7min',
+money:'7$'
     },
     {
-        id:2,
-        title:"Hollaaa",
-        greating:"Find the best possible parking space nearby your desired destination",
-        image:require('../assets/images/Asset8.png')
-    },
-    {
-        id:3,
-        title:"Find Parking",
-        greating:"Find your perfect parking space wherever and whenever you need",
-        image:require('../assets/Asset1.png')
-    },
+        id:1,
+        title:"Graha Mall",
+        greating:"123 Dhaka Street",
+        image:require('../assets/road.png'),
+        hr:'/hr',
+        time:'7min',
+        money:'7$'
+            },
+            {
+                id:1,
+                title:"Graha Mall",
+                greating:"123 Dhaka Street",
+                image:require('../assets/parking.png'),
+                hr:'/hr',
+                time:'7min',
+                money:'7$'
+                    },
 ]
