@@ -3,6 +3,7 @@ import Input from "../UI/Input";
 import Column from "../UI/Column";
 import Button from "../UI/Button";
 import { Link } from "expo-router";
+import CustomText from "../UI/CustomText";
 
 interface FormType {
   usePhone?: boolean;
@@ -14,12 +15,16 @@ export default function Form({ usePhone }: FormType) {
       <Column gap={20} style={{ height: "100%" }}>
         <Input placeholder={usePhone ? "+62 " : "Email"} />
         <Input placeholder="Password" password={true} hideContent={true} />
-        <Text style={{ alignSelf: "flex-end" }}>
-          <Text style={{ color: "#2d2d2da0", opacity: 0.5 }}>
+        <CustomText style={{ alignSelf: "flex-end" }}>
+          <CustomText style={{ color: "#2d2d2da0", opacity: 0.5 }}>
             Forgot Password?{" "}
-          </Text>
-          <Text style={{ color: "#F43939", fontWeight: "bold" }}>Retrieve</Text>
-        </Text>
+          </CustomText>
+          <Link href="/Auth/ForgotPassword">
+            <CustomText style={{ color: "#F43939", fontWeight: "bold" }}>
+              Retrieve
+            </CustomText>
+          </Link>
+        </CustomText>
         <Column gap={15} style={{ marginTop: "auto" }}>
           <Button
             onPress={() => {
@@ -27,16 +32,20 @@ export default function Form({ usePhone }: FormType) {
             }}
             backgroundColor="#130F26"
           >
-            <Text style={styles.text}>Login</Text>
-          </Button>
-          <Text style={{ alignSelf: "center" }}>
-            <Text style={{ color: "#2d2d2da0" }}>Don't have an account? </Text>
-            <Link href="/Auth/Register">
-              <Text style={{ color: "#F43939", fontWeight: "bold" }}>
-                Sign Up
-              </Text>
+            <Link href="/Parking/ParkingDetails">
+              <CustomText style={styles.text}>Login</CustomText>
             </Link>
-          </Text>
+          </Button>
+          <CustomText style={{ alignSelf: "center" }}>
+            <CustomText style={{ color: "#2d2d2da0" }}>
+              Don't have an account?{" "}
+            </CustomText>
+            <Link href="/Auth/Register">
+              <CustomText style={{ color: "#F43939", fontWeight: "bold" }}>
+                Sign Up
+              </CustomText>
+            </Link>
+          </CustomText>
         </Column>
       </Column>
     </View>

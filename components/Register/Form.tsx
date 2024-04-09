@@ -3,6 +3,7 @@ import Input from "../UI/Input";
 import Column from "../UI/Column";
 import Button from "../UI/Button";
 import { Link } from "expo-router";
+import CustomText from "../UI/CustomText";
 
 interface FormType {}
 
@@ -14,12 +15,6 @@ export default function Form({}: FormType) {
         <Input placeholder="Password" password={true} hideContent={true} />
         <Input placeholder="Password Authentication" hideContent={true} />
         <Input placeholder="Phone Number" />
-        <Text style={{ alignSelf: "flex-end" }}>
-          <Text style={{ color: "#2d2d2da0", opacity: 0.5 }}>
-            Forgot Password?{" "}
-          </Text>
-          <Text style={{ color: "#F43939", fontWeight: "bold" }}>Retrieve</Text>
-        </Text>
         <Column gap={15} style={{ marginTop: "auto" }}>
           <Button
             onPress={() => {

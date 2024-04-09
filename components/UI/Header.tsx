@@ -2,10 +2,28 @@ import { ReactElement } from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
 
 interface Header {
-  children: ReactElement;
+  children: ReactElement | ReactElement[];
+  backgroundColor: string;
 }
 
-export default function Header({ children }: Header) {
+export default function Header({ children, backgroundColor }: Header) {
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: backgroundColor,
+      flex: 0.5,
+    },
+    childrenContainer: {
+      padding: 40,
+    },
+    roundedBottom: {
+      height: 40,
+      width: "100%",
+      backgroundColor: "#F4F4FA",
+      borderTopLeftRadius: 40,
+      borderTopRightRadius: 40,
+    },
+  });
+
   return (
     <>
       <View>
@@ -20,20 +38,3 @@ export default function Header({ children }: Header) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#130F26",
-    flex: 0.5
-  },
-  childrenContainer: {
-    padding: 40,
-  },
-  roundedBottom: {
-    height: 40,
-    width: "100%",
-    backgroundColor: "#F4F4FA",
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
-  },
-});

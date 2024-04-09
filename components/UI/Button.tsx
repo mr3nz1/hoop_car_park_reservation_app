@@ -21,7 +21,7 @@ export default function Button({
       justifyContent: "center",
       alignContent: "center",
       gap: 8,
-      width: "100%",
+      // width: "100%",
       backgroundColor: backgroundColor,
       padding: 15,
       borderRadius: 15,
@@ -30,9 +30,11 @@ export default function Button({
   });
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsPressed(false);
-    }, 100);
+    if (isPressed) {
+      setTimeout(() => {
+        setIsPressed(false);
+      }, 100);
+    }
   }, [isPressed]);
 
   return (
