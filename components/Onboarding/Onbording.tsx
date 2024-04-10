@@ -25,7 +25,8 @@ export default function Boarding(props: any) {
         <SafeAreaView style={{padding:20, backgroundColor:'#EAEAF3'}}>
             <ScrollView style = {styles.container}>
             <ScrollView contentContainerStyle={{width:'100%', height:'100%'}}>
-                <CustomText style = {styles.skip}>skip</CustomText>
+                <Link href={'/HomeScreen'}style = {styles.skip}>Skip</Link>
+                
             <FlatList
                
                 data={slides}
@@ -81,7 +82,7 @@ export default function Boarding(props: any) {
                       
                         <View style={styles.upin}>
                         <CustomText style={{textAlign:'center'}}>DON'T HAVE ACCOUNT ? </CustomText>
-                        <Link href={'/HomeScreen'} style={styles.sign}>Sign Up</Link>
+                        <Link href={'/Explore'} style={styles.sign}>Sign Up</Link>
                         </View>
                         
                         </View>

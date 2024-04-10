@@ -73,6 +73,7 @@ export default function RootLayout() {
         }}
       />
       <Stack.Screen name="HomeScreen"  options={{ headerShown: false }} />
+      <Stack.Screen name="Explore" />
     </Stack>
   );
 }
