@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import slides from "../slides";
 import MyLink from "../links/links";
 import Paginator from "./paginators";
+import { Link } from "expo-router";
+import CustomText from "../UI/CustomText";
 
 export default function Boarding(props: any) {
     const { width } = Dimensions.get('window');
@@ -21,9 +23,9 @@ export default function Boarding(props: any) {
 
     return (
         <SafeAreaView style={{padding:20, backgroundColor:'#EAEAF3'}}>
-            <View style = {styles.container}>
+            <ScrollView style = {styles.container}>
             <ScrollView contentContainerStyle={{width:'100%', height:'100%'}}>
-                <Text style = {styles.skip}>skip</Text>
+                <CustomText style = {styles.skip}>skip</CustomText>
             <FlatList
                
                 data={slides}
@@ -60,7 +62,7 @@ export default function Boarding(props: any) {
                             <Image source={require("../../assets/images/Message.png")} />
 
 
-                            <Text style={{ color: 'white', marginLeft: 10 }}>Login With Email</Text>
+                            <CustomText style={{ color: 'white', marginLeft: 10 }}>Login With Email</CustomText>
                         </Button>
 
                         <Button
@@ -73,16 +75,19 @@ export default function Boarding(props: any) {
                         >
                             <Image source={require("../../assets/images/Call.png")} />
 
-                            <Text style={{ color: 'black', marginLeft: 10 }}>Login With Phone</Text>
+                            <CustomText style={{ color: 'black', marginLeft: 10 }}>Login With Phone</CustomText>
+                           
                         </Button>
-                        <View>
-                        <Text >DON'T HAVE ACCOUNT ?    <Text style={styles.sign}>SIGN UP</Text></Text>
+                      
+                        <View style={styles.upin}>
+                        <CustomText style={{textAlign:'center'}}>DON'T HAVE ACCOUNT ? </CustomText>
+                        <Link href={'/HomeScreen'} style={styles.sign}>Sign Up</Link>
                         </View>
                         
                         </View>
             </ScrollView>
             
-            </View>
+            </ScrollView>
            
         </SafeAreaView>
     );
@@ -90,8 +95,8 @@ export default function Boarding(props: any) {
 
 const styles = StyleSheet.create({
 container:{
-    backgroundColor:'#EAEAF3',
-    gap:39
+    backgroundColor:'#EAEAF5',
+
 },
 skip: {
     textAlign: 'right',
@@ -100,15 +105,21 @@ skip: {
     fontWeight: '300'
 },
 pages: {
-    justifyContent: 'center',
-    alignItems: 'center',
-gap:10
+    flex:0.6,
+    gap:20
 },
 sign:{
-    height:5,
+   fontSize:18,
     color:'#F43939',
   
-}
+},
+upin:{
+flex:1,
+flexDirection:'row',
+alignItems:'center',
+justifyContent:'center',
+gap:10
 
+}
    
 });

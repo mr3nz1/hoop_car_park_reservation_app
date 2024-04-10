@@ -3,17 +3,18 @@ import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
 import CardsProps from '../components/UI/cardsprops';
 import cardData from "../components/cards"; // Assuming the array is exported as 'cardData'
 import Header from "../components/UI/Header";
+import CustomText from "../components/UI/CustomText";
 
 export default function HomeScreen() {
     const [cards, setCards] = useState(cardData);
 
     return (
         <ScrollView style={{ backgroundColor: '#F4F4FA', flex: 1 }}>
-            <Header backgroundColor="">
+            <Header backgroundColor="#081024">
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     <View>
-                        <Text style={styles.noti}>Hola, Diane</Text>
-                        <Text style={styles.easy}>Find an easy parking spot</Text>
+                        <CustomText style={styles.noti}>Hola, Diane</CustomText>
+                        <CustomText style={styles.easy}>Find an easy parking spot</CustomText>
                     </View>
 
                     <View style={styles.not}>
@@ -21,28 +22,28 @@ export default function HomeScreen() {
                     </View>
                 </View>
             </Header>
-            <Text style={styles.texta}>Categories</Text>
+            <CustomText style={styles.texta}>Categories</CustomText>
             <View style={styles.carding}>
                 <View style={styles.cardx}>
                     <View style={styles.card1}>
                         <Image source={require("../assets/car.png")} />
-                        <Text>Car</Text>
+                        <CustomText>Car</CustomText>
                     </View>
                     <View style={styles.card}>
                         <Image source={require("../assets/bike.png")} />
-                        <Text>Bike</Text>
+                        <CustomText>Bike</CustomText>
                     </View>
                     <View style={styles.card1}>
                         <Image source={require("../assets/bus.png")} />
-                        <Text>Bus</Text>
+                        <CustomText>Bus</CustomText>
                     </View>
                     <View style={styles.card}>
                         <Image source={require("../assets/van.png")} />
-                        <Text>Van</Text>
+                        <CustomText>Van</CustomText>
                     </View>
                 </View>
             </View>
-            <Text style={styles.text}>Nearest Parking Spaces</Text>
+            <CustomText style={styles.text}>Nearest Parking Spaces</CustomText>
             {cards.map((card) => (
                 <CardsProps
                     key={card.id}

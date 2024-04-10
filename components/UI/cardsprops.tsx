@@ -1,5 +1,6 @@
 import React from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
+import CustomText from "./CustomText";
 
 interface BoardingProps {
   head: string;
@@ -22,12 +23,12 @@ export default function Boarding(props: React.PropsWithChildren<BoardingProps>) 
         <View style={styles.card}>
           <View style={styles.word}>
             <View>
-              <Text style={styles.head}>{props.head}</Text>
-              <Text style={styles.hello}>{props.hello}</Text>
+              <CustomText style={styles.head}>{props.head}</CustomText>
+              <CustomText style={styles.hello}>{props.hello}</CustomText>
             </View>
             <View>
               <Text style={styles.money}>
-                {props.dollar}<Text style={styles.hr}>{props.hr}</Text>
+                {props.dollar}<CustomText style={styles.hr}>{props.hr}</CustomText>
               </Text>
             </View>
           </View>
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
   cards: {
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
-    padding: 15,
+    padding: 10,
     borderRadius: 20,
     width: '100%',
     gap: 20,
