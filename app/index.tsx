@@ -16,7 +16,7 @@ export default function SplashScreen() {
   useEffect(() => {
     setTimeout(() => {
       if (fontsLoaded || fontError) {
-        router.push("/Auth/Login");
+        router.push("/Onboarding")
       }
     }, 2000);
   });
