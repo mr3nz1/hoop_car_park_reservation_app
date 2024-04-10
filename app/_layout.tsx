@@ -72,7 +72,7 @@ export default function RootLayout() {
           },
         }}
       />
-      <Stack.Screen name="HomeScreen"  />
+      <Stack.Screen name="HomeScreen"  options={{ headerShown: false }} />
     </Stack>
   );
 }
