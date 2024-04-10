@@ -23,7 +23,7 @@ export default function Boarding(props: any) {
 
     return (
         <SafeAreaView style={{padding:20, backgroundColor:'#EAEAF3'}}>
-            <ScrollView style = {styles.container}>
+            <View style = {styles.container}>
             <ScrollView contentContainerStyle={{width:'100%', height:'100%'}}>
                 <Link href={'/HomeScreen'}style = {styles.skip}>Skip</Link>
                 
@@ -88,7 +88,7 @@ export default function Boarding(props: any) {
                         </View>
             </ScrollView>
             
-            </ScrollView>
+           </View>
            
         </SafeAreaView>
     );
@@ -96,8 +96,8 @@ export default function Boarding(props: any) {
 
 const styles = StyleSheet.create({
 container:{
-    backgroundColor:'#EAEAF5',
-
+    backgroundColor:'#EAEAF3',
+    gap:39
 },
 skip: {
     textAlign: 'right',
@@ -119,8 +119,12 @@ flex:1,
 flexDirection:'row',
 alignItems:'center',
 justifyContent:'center',
-gap:10
-
+gap:10,
+    height:5,
+    color:'#F43939',
+  
 }
+
+
    
 });
