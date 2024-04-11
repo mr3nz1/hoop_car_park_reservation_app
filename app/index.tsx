@@ -13,9 +13,9 @@ export default function SplashScreen() {
     "Avenir-Heavy": require("../assets/fonts/Avenir/Avenir-Heavy.ttf"),
   });
 
-  const fade = useRef(new Animated.Value(0)).current;
-  const scale = useRef(new Animated.Value(1)).current;
-  
+  // const fade = useRef(new Animated.Value(0)).current;
+  // const scale = useRef(new Animated.Value(1)).current;
+
   useEffect(() => {
     // Animated.timing(fade, { toValue: 1, useNativeDriver: true }).start();
     // Animated.timing(scale, { toValue: 1.4, useNativeDriver: true }).start();
@@ -23,10 +23,10 @@ export default function SplashScreen() {
     // Animated.timing(fade, { toValue: 1, useNativeDriver: true }).stop();
     // Animated.timing(scale, { toValue: 1.4, useNativeDriver: true }).stop();
 
-
     setTimeout(() => {
+      console.log(fontsLoaded, fontError)
       if (fontsLoaded || fontError) {
-        router.push("/Onboarding")
+        router.push("/OnBoarding/OnBoarding");
       }
     }, 2000);
   }, []);
@@ -35,10 +35,11 @@ export default function SplashScreen() {
     <>
       <StatusBar hidden={true} />
       <View style={styles.container}>
-        <Animated.Image
+        {/* <Animated.Image
           style={{ opacity: fade, transform: [{ scale: scale }] }}
           source={require("../assets/images/splash_logo.png")}
-        />
+        /> */}
+        <Image source={require("../assets/images/splash_logo.png")} />
       </View>
     </>
   );

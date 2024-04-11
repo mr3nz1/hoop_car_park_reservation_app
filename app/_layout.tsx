@@ -6,7 +6,7 @@ export default function RootLayout() {
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="Auth/Register" options={{ headerShown: false }} />
-      <Stack.Screen name="Auth/Login" options={{ headerShown: false }} />
+      <Stack.Screen name="Auth/[loginType]" options={{ headerShown: false }} />
       <Stack.Screen name="Auth/RequestCode" options={{ headerShown: false }} />
       <Stack.Screen
         name="Auth/ForgotPassword"
@@ -121,9 +121,9 @@ export default function RootLayout() {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="HomeScreen"  options={{ headerShown: false }} />
-      <Stack.Screen name="Explore" options={{headerShown:false}}/>
-      <Stack.Screen name="Onboarding" options={{headerShown:false}}/>
+      {/* <Stack.Screen name="HomeScreen" options={{ headerShown: false }} />
+      <Stack.Screen name="Explore" options={{ headerShown: false }} /> */}
+      <Stack.Screen name="OnBoarding/OnBoarding" options={{ headerShown: false }} />
     </Stack>
   );
 }
