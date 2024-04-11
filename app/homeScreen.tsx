@@ -4,6 +4,7 @@ import CardsProps from '../components/UI/cardsprops';
 import cardData from "../components/cards"; // Assuming the array is exported as 'cardData'
 import Header from "../components/UI/Header";
 import CustomText from "../components/UI/CustomText";
+import { Link } from "expo-router";
 
 export default function HomeScreen() {
     const [cards, setCards] = useState(cardData);
@@ -21,6 +22,7 @@ export default function HomeScreen() {
                         <Image source={require("../assets/Notification.png")} />
                     </View>
                 </View>
+                <Link href={'/Upgrades'}  style={{color:'red'}}>Upgrades</Link>
             </Header>
             <CustomText style={styles.texta}>Categories</CustomText>
             <View style={styles.carding}>
