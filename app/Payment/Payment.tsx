@@ -32,7 +32,7 @@ export default function Payment() {
           <View style={{}}>
             <Input
               placeholder="Input voucher code"
-              btn={<CustomText style={styles.red}>Use</CustomText>}
+              btnRight={<CustomText style={styles.red}>Use</CustomText>}
             />
           </View>
 
