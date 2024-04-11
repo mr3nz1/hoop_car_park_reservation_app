@@ -26,7 +26,7 @@ export default function SplashScreen() {
 
     setTimeout(() => {
       if (fontsLoaded || fontError) {
-        router.push("/Parking/ParkingRoute");
+        router.push("/Onboarding")
       }
     }, 2000);
   }, []);
