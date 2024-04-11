@@ -30,7 +30,7 @@ export default function OnBoarding(props: any) {
     <>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-          <Link href={"/Explore"} style={styles.skip}>
+          <Link href={"/Auth/[loginType]"} style={styles.skip}>
             <CustomText>Skip</CustomText>
           </Link>
         </View>

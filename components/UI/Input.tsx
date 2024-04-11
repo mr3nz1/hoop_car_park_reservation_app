@@ -1,5 +1,13 @@
 import React, { ReactElement } from "react";
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TextStyle,
+  View,
+  ViewStyle,
+} from "react-native";
 
 interface InputType {
   placeholder: string;
@@ -7,6 +15,9 @@ interface InputType {
   hideContent?: boolean;
   btnLeft?: React.JSX.Element;
   btnRight?: React.JSX.Element;
+  backgroundColor?: string;
+  placeholderTextColor?: string;
+  textInputStyle: TextStyle;
 }
 
 export default function Input({
@@ -15,6 +26,9 @@ export default function Input({
   hideContent,
   btnRight,
   btnLeft,
+  backgroundColor,
+  placeholderTextColor,
+  textInputStyle,
 }: InputType) {
   const styles = StyleSheet.create({
     container: {
@@ -22,9 +36,9 @@ export default function Input({
       width: "100%",
       alignItems: "center",
       justifyContent: "flex-start",
-      backgroundColor: "white",
+      backgroundColor: backgroundColor ? backgroundColor : "white",
       paddingVertical: 15,
-      paddingLeft: btnLeft ? 0 : 20,
+      paddingLeft: 20,
       paddingRight: 20,
       borderRadius: 15,
     },
@@ -42,10 +56,11 @@ export default function Input({
     <View style={styles.container}>
       {btnLeft}
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, textInputStyle]}
         placeholder={placeholder}
         cursorColor="#2D2D2D"
         secureTextEntry={hideContent}
+        placeholderTextColor={placeholderTextColor}
       />
       {password && (
         <Image

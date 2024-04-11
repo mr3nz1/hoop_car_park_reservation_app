@@ -15,6 +15,6 @@ export default [
         id: 3,
         title: "Find Parking",
         greating: "Find your perfect parking space wherever and whenever you need",
-        image: require('../assets/Asset1.png')
+        image: require('../assets/images/Asset1.png')
     },
 ]

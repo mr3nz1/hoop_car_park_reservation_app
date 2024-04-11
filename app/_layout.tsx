@@ -121,9 +121,22 @@ export default function RootLayout() {
           headerShown: false,
         }}
       />
-      {/* <Stack.Screen name="HomeScreen" options={{ headerShown: false }} />
-      <Stack.Screen name="Explore" options={{ headerShown: false }} /> */}
-      <Stack.Screen name="OnBoarding/OnBoarding" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="Parking/HomeScreen"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Parking/Explore"
+        options={{
+          header: ({ navigation }) => {
+            return <NavigationHeader title="Explore" navigation={navigation} />;
+          },
+        }}
+      />
+      <Stack.Screen
+        name="OnBoarding/OnBoarding"
+        options={{ headerShown: false }}
+      />
     </Stack>
   );
 }

@@ -24,10 +24,10 @@ export default function SplashScreen() {
     // Animated.timing(scale, { toValue: 1.4, useNativeDriver: true }).stop();
 
     setTimeout(() => {
-      console.log(fontsLoaded, fontError)
-      if (fontsLoaded || fontError) {
+      // console.log(fontsLoaded, fontError)
+      // if (fontsLoaded || fontError) {
         router.push("/OnBoarding/OnBoarding");
-      }
+      // }
     }, 2000);
   }, []);
 
