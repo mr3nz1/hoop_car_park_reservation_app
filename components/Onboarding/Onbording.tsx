@@ -23,9 +23,9 @@ export default function Boarding(props: any) {
 
     return (
         <SafeAreaView style={{padding:20, backgroundColor:'#EAEAF3'}}>
-            <View style = {styles.container}>
+            <ScrollView style = {styles.container}>
             <ScrollView contentContainerStyle={{width:'100%', height:'100%'}}>
-                <Link href={'/HomeScreen'}style = {styles.skip}>Skip</Link>
+                <Link href={'/Explore'}style = {styles.skip}>Skip</Link>
                 
             <FlatList
                
@@ -82,13 +82,13 @@ export default function Boarding(props: any) {
                       
                         <View style={styles.upin}>
                         <CustomText style={{textAlign:'center'}}>DON'T HAVE ACCOUNT ? </CustomText>
-                        <Link href={'/Explore'} style={styles.sign}>Sign Up</Link>
+                        <Link href={'/HomeScreen'} style={styles.sign}>Sign Up</Link>
                         </View>
                         
                         </View>
             </ScrollView>
             
-           </View>
+           </ScrollView>
            
         </SafeAreaView>
     );
@@ -97,7 +97,8 @@ export default function Boarding(props: any) {
 const styles = StyleSheet.create({
 container:{
     backgroundColor:'#EAEAF3',
-    gap:39
+    gap:39,
+
 },
 skip: {
     textAlign: 'right',
@@ -120,8 +121,7 @@ flexDirection:'row',
 alignItems:'center',
 justifyContent:'center',
 gap:10,
-    height:5,
-    color:'#F43939',
+color:'#F43939',
   
 }
 
