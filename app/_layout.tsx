@@ -97,6 +97,30 @@ export default function RootLayout() {
           },
         }}
       />
+      <Stack.Screen
+        name="Parking/ChooseSpace"
+        options={{
+          header: ({ navigation }) => {
+            return (
+              <NavigationHeader title="Choose Space" navigation={navigation} />
+            );
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Parking/Booking"
+        options={{
+          header: ({ navigation }) => {
+            return <NavigationHeader title="Booking" navigation={navigation} />;
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Parking/ParkingRoute"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 }

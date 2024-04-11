@@ -10,20 +10,60 @@ import {
 } from "../../components/UI/Icons/Icons";
 import Column from "../../components/UI/Column";
 import Button from "../../components/UI/Button";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "expo-router";
+import {
+  Directions,
+  Gesture,
+  GestureDetector,
+  GestureHandlerRootView,
+} from "react-native-gesture-handler";
+import { Animated } from "react-native";
 
 export default function TrackingPark() {
+  const [showInfoBox, setShowInfoBox] = useState(false);
+  const slideUp = useRef(new Animated.Value(100)).current;
+
+  useEffect(() => {
+    Animated.spring(slideUp, { toValue: 0, useNativeDriver: true }).start();
+
+    console.log(slideUp, typeof slideUp);
+  }, []);
+
+  const fling = Gesture.Fling()
+    .direction(Directions.UP)
+    .onStart((e) => {});
   return (
-    <>
+    <GestureHandlerRootView>
       <View style={styles.container}>
         <Image source={require("../../assets/images/maps.png")} />
 
         <View style={styles.boxContainer}>
           <Column gap={15} style={styles.box}>
-            <View
+            <GestureDetector gesture={fling}>
+              <Pressable
+                style={{
+                  width: 30,
+                  height: 10,
+                  backgroundColor: "#C8C8C8",
+                  alignSelf: "center",
+                }}
+                onPress={() => {
+                  setShowInfoBox((prevVal) => !prevVal);
+                }}
+              ></Pressable>
+            </GestureDetector>
+            <Animated.View
               style={{
                 flexDirection: "row",
                 alignItems: "flex-start",
                 justifyContent: "space-between",
+                // display: showInfoBox ? "flex" : "none",
+                transform: [
+                  {
+                    translateY: slideUp,
+                  },
+                ],
               }}
             >
               <View style={{ gap: 4 }}>
@@ -67,13 +107,17 @@ export default function TrackingPark() {
               </View>
               <TagWrapper>
                 <View
-                  style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 8,
+                  }}
                 >
                   <Time />
                   <CustomText size={0.5}>7 minutes</CustomText>
                 </View>
               </TagWrapper>
-            </View>
+            </Animated.View>
             <View
               style={{
                 flexDirection: "row",
@@ -83,7 +127,7 @@ export default function TrackingPark() {
                 paddingVertical: 10,
                 paddingHorizontal: 15,
                 borderRadius: 20,
-                gap: 20
+                gap: 20,
               }}
             >
               <Pressable
@@ -102,13 +146,15 @@ export default function TrackingPark() {
                 onPress={() => {}}
                 style={{ flex: 1 }}
               >
-                <CustomText style={{ color: "white" }}>Start Now</CustomText>
+                <Link href="/Parking/ChooseSpace">
+                  <CustomText style={{ color: "white" }}>Start Now</CustomText>
+                </Link>
               </Button>
             </View>
           </Column>
         </View>
       </View>
-    </>
+    </GestureHandlerRootView>
   );
 }
 

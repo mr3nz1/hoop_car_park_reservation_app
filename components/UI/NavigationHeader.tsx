@@ -16,7 +16,6 @@ export default function NavigationHeader({
   const styles = StyleSheet.create({
     container: {
       backgroundColor: absolute ? "rgba(0,0,0,0)" : "#F4F4FA",
-      position: "absolute",
       top: 0,
       flexDirection: "row",
       justifyContent: "space-between",
@@ -59,7 +58,9 @@ export default function NavigationHeader({
 
   return (
     <>
-      <View style={styles.container}>
+      <View
+        style={[styles.container, absolute ? { position: "absolute" } : {}]}
+      >
         <Pressable style={styles.button} onPress={handleGoBack}>
           <Image
             style={styles.image}
