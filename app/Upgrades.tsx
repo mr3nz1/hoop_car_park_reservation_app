@@ -1,4 +1,4 @@
-import { Text, ScrollView, View, StyleSheet, Dimensions } from "react-native";
+import { Text, ScrollView, View, StyleSheet, Dimensions,FlatList } from "react-native";
 import Carousel from 'react-native-snap-carousel';
 import data from "../components/data";
 import CustomText from "../components/UI/CustomText";
@@ -6,6 +6,8 @@ import { useState } from "react";
 import Button from "../components/UI/Button";
 import { Checkbox } from 'react-native-paper'; 
 import NavigationHeader from "../components/UI/NavigationHeader";
+import { Link } from "expo-router";
+
 
 export default function Upgrades() {
     const [checked, setChecked] = useState(false);
@@ -66,16 +68,20 @@ export default function Upgrades() {
     return (
         <>
         <ScrollView style={styles.containerx}>
+            <Link href={'/Plan_payment'}>Plan_payment</Link>
         <NavigationHeader navigation={navigator} title="Upgrade" />
             <View>
                 <CustomText style={styles.topHead}>Get all the facilities by upgrading your account</CustomText>
             </View>
-            <Carousel
-                layout='default'
+            <FlatList
                 data={data}
                 renderItem={renderItem}
-                sliderWidth={sliderWidth}
-                itemWidth={items}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                pagingEnabled
+                snapToAlignment="center"
+                bounces={false}
+                keyExtractor={(item) => item.id.toString()} 
             />
             <View style={styles.buttoncontainer}>
             <Button
@@ -102,7 +108,7 @@ export default function Upgrades() {
 
 const styles = StyleSheet.create({
     itemsContainer: {
-
+padding:10
     },
     heads: {
         textAlign: 'center',
@@ -111,6 +117,7 @@ const styles = StyleSheet.create({
     },
     containerx:{
 flex:1,
+
     },
     container: {
         borderRadius: 20,
@@ -140,8 +147,10 @@ flex:1,
     },
     buttoncontainer:{
         paddingTop:35,
+        paddingBottom:30,
         paddingLeft:20,
         paddingRight:20
+
     },
     button:{
 backgroundColor:'#081024',

@@ -76,6 +76,7 @@ export default function RootLayout() {
       <Stack.Screen name="Explore" options={{headerShown:false}}/>
       <Stack.Screen name="Onboarding" options={{headerShown:false}}/>
       <Stack.Screen name="Upgrades" options={{ headerShown: false }}/>
+      <Stack.Screen name="Plan_payment" options={{headerShown:false}} />
     </Stack>
   );
 }
