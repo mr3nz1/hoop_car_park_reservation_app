@@ -32,7 +32,7 @@ export default function Form({ usePhone }: FormType) {
             }}
             backgroundColor="#130F26"
           >
-            <Link href="/Parking/Explore">
+            <Link href="/Parking/DetailCategory">
               <CustomText style={styles.text}>Login</CustomText>
             </Link>
           </Button>

@@ -1,4 +1,17 @@
-import { Svg, Path, Circle, Mask, G, Line } from "react-native-svg";
+import {
+  Svg,
+  Path,
+  Circle,
+  Mask,
+  G,
+  Line,
+  Ellipse,
+  Defs,
+  Rect,
+  Pattern,
+  Use,
+  Image,
+} from "react-native-svg";
 import CustomText from "../CustomText";
 import { View, ViewStyle } from "react-native";
 import React from "react";
@@ -273,6 +286,79 @@ export function TagBg({ children }: { children: React.JSX.Element }) {
       >
         {children}
       </View>
+    </Svg>
+  );
+}
+
+export function LocateIcon() {
+  return (
+    <Svg width="52" height="55" viewBox="0 0 52 55" fill="none">
+      <Ellipse
+        cx="26.8923"
+        cy="25.3134"
+        rx="25.1077"
+        ry="25.3134"
+        fill="#081024"
+      />
+      <Path
+        d="M26.8922 28.4777C28.6255 28.4777 30.0306 27.061 30.0306 25.3135C30.0306 23.5659 28.6255 22.1493 26.8922 22.1493C25.1588 22.1493 23.7537 23.5659 23.7537 25.3135C23.7537 27.061 25.1588 28.4777 26.8922 28.4777Z"
+        stroke="white"
+        stroke-width="1.58209"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M26.8927 33.7512C31.5149 33.7512 35.2619 29.9735 35.2619 25.3134C35.2619 20.6533 31.5149 16.8756 26.8927 16.8756C22.2705 16.8756 18.5234 20.6533 18.5234 25.3134C18.5234 29.9735 22.2705 33.7512 26.8927 33.7512Z"
+        stroke="white"
+        stroke-width="1.58209"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M26.8922 14.7662V16.8756"
+        stroke="white"
+        stroke-width="1.58209"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M26.8922 33.7512V35.8607"
+        stroke="white"
+        stroke-width="1.58209"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M35.2616 25.3135H37.354"
+        stroke="white"
+        stroke-width="1.58209"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M16.4309 25.3135H18.5232"
+        stroke="white"
+        stroke-width="1.58209"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function Filter() {
+  return (
+    <Svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <Path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M2.80431 1.5C2.08423 1.5 1.5 2.09405 1.5 2.82534V3.60537C1.5 4.14706 1.70599 4.66798 2.07446 5.05981L6.11258 9.3536L6.11436 9.3509C6.89393 10.149 7.33254 11.2279 7.33254 12.3528V16.1626C7.33254 16.4172 7.59891 16.5798 7.82 16.4597L10.1196 15.2066C10.4668 15.017 10.6834 14.6486 10.6834 14.2487V12.3428C10.6834 11.2242 11.1158 10.1499 11.8883 9.3536L15.9264 5.05981C16.294 4.66798 16.5 4.14706 16.5 3.60537V2.82534C16.5 2.09405 15.9167 1.5 15.1966 1.5H2.80431Z"
+        stroke="#2D2D2D"
+        stroke-opacity="0.4"
+        stroke-width="1.25"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </Svg>
   );
 }

@@ -8,7 +8,7 @@ import { View, StyleSheet } from "react-native";
 import Input from "../../components/UI/Input";
 import { LocateIcon, Search, TagBg } from "../../components/UI/Icons/Icons";
 
-export default function Explore() {
+export default function DetailCategory() {
   const [cards, setCards] = useState(cardData);
   return (
     <>

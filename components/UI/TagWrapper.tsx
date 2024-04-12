@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 
 interface TagWrapperType {
   children: ReactElement;
-  borderRadius: number;
+  borderRadius?: number;
   style?: ViewStyle;
 }
 

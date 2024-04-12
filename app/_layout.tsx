@@ -1,5 +1,7 @@
 import { Stack } from "expo-router";
 import NavigationHeader from "../components/UI/NavigationHeader";
+import { Pressable } from "react-native";
+import { Filter } from "../components/UI/Icons/Icons";
 
 export default function RootLayout() {
   return (
@@ -131,6 +133,44 @@ export default function RootLayout() {
           header: ({ navigation }) => {
             return <NavigationHeader title="Explore" navigation={navigation} />;
           },
+        }}
+      />
+      <Stack.Screen
+        name="Parking/History"
+        options={{
+          header: ({ navigation }) => {
+            return <NavigationHeader title="History" navigation={navigation} />;
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Parking/DetailCategory"
+        options={{
+          header: ({ navigation }) => {
+            return (
+              <NavigationHeader
+                title="Detail Category"
+                navigation={navigation}
+                rightBtn={
+                  <Pressable
+                    style={{
+                      backgroundColor: "#EAEAF3",
+                      padding: 20,
+                      borderRadius: 20,
+                    }}
+                  >
+                    <Filter />
+                  </Pressable>
+                }
+              />
+            );
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Parking/ShowMaps"
+        options={{
+          headerShown: false,
         }}
       />
       <Stack.Screen

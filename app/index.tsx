@@ -26,7 +26,8 @@ export default function SplashScreen() {
     setTimeout(() => {
       // console.log(fontsLoaded, fontError)
       // if (fontsLoaded || fontError) {
-        router.push("/OnBoarding/OnBoarding");
+        // router.push("/OnBoarding/OnBoarding");
+        router.push("/Parking/ShowMaps");
       // }
     }, 2000);
   }, []);

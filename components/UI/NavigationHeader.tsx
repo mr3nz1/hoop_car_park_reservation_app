@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import CustomText from "./CustomText";
+import { Filter, LocateIcon } from "./Icons/Icons";
 
 interface NavigationHeader {
   navigation: any;
   title: string;
   absolute?: boolean;
+  rightBtn?: React.JSX.Element;
 }
 
 export default function NavigationHeader({
   navigation,
   title,
   absolute,
+  rightBtn,
 }: NavigationHeader) {
   const styles = StyleSheet.create({
     container: {
@@ -61,17 +64,44 @@ export default function NavigationHeader({
       <View
         style={[styles.container, absolute ? { position: "absolute" } : {}]}
       >
-        <Pressable style={styles.button} onPress={handleGoBack}>
-          <Image
-            style={styles.image}
-            source={require("../../assets/images/Arrow - Left 2.png")}
-          />
-        </Pressable>
+        {!rightBtn && (
+          <Pressable style={[styles.button]} onPress={handleGoBack}>
+            <Image
+              style={styles.image}
+              source={require("../../assets/images/Arrow - Left 2.png")}
+            />
+          </Pressable>
+        )}
+        {!absolute ||
+          (!rightBtn && (
+            <CustomText size={3} style={styles.text}>
+              {title}
+            </CustomText>
+          ))}
 
-        {!absolute && (
-          <CustomText size={3} style={styles.text}>
-            {title}
-          </CustomText>
+        {rightBtn && (
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Pressable style={styles.button} onPress={handleGoBack}>
+              <Image
+                style={styles.image}
+                source={require("../../assets/images/Arrow - Left 2.png")}
+              />
+            </Pressable>
+
+            {!absolute && (
+              <CustomText size={3} style={styles.text}>
+                {title}
+              </CustomText>
+            )}
+
+            {rightBtn}
+          </View>
         )}
 
         <View></View>

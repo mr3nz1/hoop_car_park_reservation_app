@@ -17,7 +17,7 @@ interface InputType {
   btnRight?: React.JSX.Element;
   backgroundColor?: string;
   placeholderTextColor?: string;
-  textInputStyle: TextStyle;
+  textInputStyle?: TextStyle;
 }
 
 export default function Input({
@@ -33,7 +33,6 @@ export default function Input({
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
-      width: "100%",
       alignItems: "center",
       justifyContent: "flex-start",
       backgroundColor: backgroundColor ? backgroundColor : "white",
