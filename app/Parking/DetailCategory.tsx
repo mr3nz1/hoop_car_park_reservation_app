@@ -64,6 +64,7 @@ export default function DetailCategory() {
           ))}
         </View>
       </ScrollView>
+      
       <Pressable
         onPress={() => {}}
         style={{ position: "absolute", bottom: 0, right: 0, margin: 20 }}

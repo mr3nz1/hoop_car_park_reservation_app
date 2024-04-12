@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { Animated, Image, StyleSheet, Text, View } from "react-native";
 import CustomText from "../components/UI/CustomText";
 import { useFonts } from "expo-font";
+// import * as SplashScreen from "expo-router";
 
 export default function SplashScreen() {
   const [fontsLoaded, fontError] = useFonts({
@@ -23,14 +24,17 @@ export default function SplashScreen() {
     // Animated.timing(fade, { toValue: 1, useNativeDriver: true }).stop();
     // Animated.timing(scale, { toValue: 1.4, useNativeDriver: true }).stop();
 
-    setTimeout(() => {
-      // console.log(fontsLoaded, fontError)
-      // if (fontsLoaded || fontError) {
-        // router.push("/OnBoarding/OnBoarding");
-        router.push("/Parking/ShowMaps");
-      // }
+    console.log(fontsLoaded, fontError);
+    setTimeout(async () => {
+      if (fontsLoaded || fontError) {
+        try {
+          router.push("/Options/EditProfile");
+        } catch (err) {
+          console.log(err);
+        }
+      }
     }, 2000);
-  }, []);
+  }, [fontsLoaded]);
 
   return (
     <>

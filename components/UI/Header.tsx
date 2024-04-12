@@ -13,7 +13,8 @@ export default function Header({ children, backgroundColor }: Header) {
       flex: 0.5,
     },
     childrenContainer: {
-      padding: 40,
+      paddingVertical: 40,
+      paddingHorizontal: 20,
     },
     roundedBottom: {
       height: 40,

@@ -24,10 +24,10 @@ export default function NavigationHeader({
       justifyContent: "space-between",
       gap: 30,
       alignItems: "center",
-      paddingTop: 60,
+      paddingTop: 50,
       paddingBottom: 20,
-      paddingLeft: 30,
-      paddingRight: 30,
+      paddingLeft: 25,
+      paddingRight: 25,
     },
     button: {
       backgroundColor: "#EAEAF3",
@@ -72,7 +72,8 @@ export default function NavigationHeader({
             />
           </Pressable>
         )}
-        {!absolute ||
+
+        {!absolute &&
           (!rightBtn && (
             <CustomText size={3} style={styles.text}>
               {title}

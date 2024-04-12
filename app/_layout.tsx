@@ -155,8 +155,8 @@ export default function RootLayout() {
                   <Pressable
                     style={{
                       backgroundColor: "#EAEAF3",
-                      padding: 20,
-                      borderRadius: 20,
+                      padding: 15,
+                      borderRadius: 15,
                     }}
                   >
                     <Filter />
@@ -171,6 +171,28 @@ export default function RootLayout() {
         name="Parking/ShowMaps"
         options={{
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Options/Profile"
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Options/Notifications"
+        options={{
+          header: ({ navigation }) => (
+            <NavigationHeader title="Notification" navigation={navigation} />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Options/EditProfile"
+        options={{
+          header: ({ navigation }) => (
+            <NavigationHeader title="Notification" navigation={navigation} />
+          ),
         }}
       />
       <Stack.Screen
