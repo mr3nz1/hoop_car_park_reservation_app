@@ -92,7 +92,7 @@ export default function EditProfile() {
             style={{ flex: 0.5 }}
           >
             <CustomText size={1.5} style={{ color: "white" }}>
-              Cancel
+              Save
             </CustomText>
           </Button>
         </View>
