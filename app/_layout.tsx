@@ -62,8 +62,9 @@ export default function RootLayout() {
         name="Payment/Payment"
         options={{
           header: ({ navigation }) => {
-            return <NavigationHeader title="Payment" navigation={navigation} />;
+            return <NavigationHeader title="Payment" navigation={navigation}/>;
           },
+
         }}
       />
       <Stack.Screen
@@ -199,6 +200,7 @@ export default function RootLayout() {
         name="OnBoarding/OnBoarding"
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="Upgrades"   options={{ headerShown: false }}/>
     </Stack>
   );
 }
