@@ -2,7 +2,6 @@ import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useRef } from "react";
 import { Animated, Image, StyleSheet, Text, View } from "react-native";
-import CustomText from "../components/UI/CustomText";
 import { useFonts } from "expo-font";
 // import * as SplashScreen from "expo-router";
 

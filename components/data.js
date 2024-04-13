@@ -19,7 +19,5 @@ export default [
         include: 'All Include',
         unlimited: 'Unlimited Feature',
         discount: 'Discounts every reservation',
-
-
     }
 ];
