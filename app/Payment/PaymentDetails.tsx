@@ -4,6 +4,8 @@ import Column from "../../components/UI/Column";
 import CustomText from "../../components/UI/CustomText";
 import { useState } from "react";
 import Button from "../../components/UI/Button";
+import { Link } from "expo-router";
+import { EmailIcon } from "../../components/UI/Icons/Icons";
 
 export default function PaymentDetails() {
   const [isSwitchEnabled, setIsSwitchEnabled] = useState(false);
@@ -36,7 +38,9 @@ export default function PaymentDetails() {
           </View>
 
           <Button backgroundColor="#130F26" onPress={() => {}}>
-            <CustomText style={{ color: "white" }}>Pay Now</CustomText>
+            <Link href="/Payment/PaymentSuccess">
+              <CustomText size={1.5} style={{ color: "white" }}>Pay Now</CustomText>
+            </Link>
           </Button>
         </Column>
       </ScrollView>

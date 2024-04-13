@@ -3,20 +3,23 @@ import Header from "../../components/UI/Header";
 import { StatusBar } from "expo-status-bar";
 import Form from "../../components/Login/Form";
 import CustomText from "../../components/UI/CustomText";
+import { useLocalSearchParams } from "expo-router";
 
-interface LoginType {
-  usePhone?: boolean;
-}
+export default function Login() {
+  const { loginType } = useLocalSearchParams();
+  let usePhone;
 
-export default function Login({ usePhone = true }: LoginType) {
+  if (loginType === "phone") {
+    usePhone = true;
+  } else {
+    usePhone = false;
+  }
+
+  console.log(loginType, usePhone);
+
   return (
     <>
-      <StatusBar
-        style="light"
-        animated={true}
-        // backgroundColor="#130F26"
-        // hidden={true}
-      />
+      <StatusBar style="light" animated={true} />
       <ScrollView
         style={styles.container}
         contentContainerStyle={{ flexGrow: 1, justifyContent: "space-between" }}

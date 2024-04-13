@@ -26,7 +26,7 @@ export default function Form({}: FormType) {
           </Button>
           <Text style={{ alignSelf: "center" }}>
             <Text style={{ color: "#2d2d2da0" }}>Have an account? </Text>
-            <Link href="/Auth/Login">
+            <Link href="/Auth/email">
               <Text style={{ color: "#F43939", fontWeight: "bold" }}>
                 Sign In
               </Text>

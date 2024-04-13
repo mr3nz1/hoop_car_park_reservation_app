@@ -16,6 +16,7 @@ export default function CustomText({
   fontWeight,
 }: CustomTextType) {
   const fontSizes: { [key: number]: number } = {
+    0.5: 12,
     1: 15,
     1.5: 17,
     2: 20,
