@@ -91,17 +91,10 @@ export default function ChooseSpace() {
                   gap: 15,
                 }}
               >
-                {spaceCount.map(() => {
-                  return <Space />;
+                {spaceCount.map((currentIndex) => {
+                  return <Space key={currentIndex} />;
                 })}
               </View>
-            </Column>
-            <Column
-              gap={15}
-              style={{
-                padding: 15,
-              }}
-            >
               <View
                 style={{
                   flexDirection: "row",
@@ -110,18 +103,11 @@ export default function ChooseSpace() {
                   gap: 15,
                 }}
               >
-                {spaceCount.map(() => {
-                  return <Space />;
+                {spaceCount.map((currentIndex) => {
+                  return <Space key={currentIndex} />;
                 })}
               </View>
-            </Column>
 
-            <Column
-              gap={15}
-              style={{
-                padding: 15,
-              }}
-            >
               <View
                 style={{
                   flexDirection: "row",
@@ -130,8 +116,21 @@ export default function ChooseSpace() {
                   gap: 15,
                 }}
               >
-                {spaceCount.map(() => {
-                  return <Space />;
+                {spaceCount.map((currentIndex) => {
+                  return <Space key={currentIndex} />;
+                })}
+              </View>
+
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  gap: 15,
+                }}
+              >
+                {spaceCount.map((currentIndex) => {
+                  return <Space key={currentIndex} />;
                 })}
               </View>
             </Column>

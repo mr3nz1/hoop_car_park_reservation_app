@@ -27,7 +27,7 @@ export default function SplashScreen() {
     setTimeout(async () => {
       if (fontsLoaded || fontError) {
         try {
-          router.push("/Options/EditProfile");
+          router.push("/Parking/Booking");
         } catch (err) {
           console.log(err);
         }
