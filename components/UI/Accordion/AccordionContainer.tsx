@@ -14,7 +14,7 @@ export default function AccordionContainer() {
 
   return (
     <>
-      <Column gap={20} style={styles.container}>
+      <Column gap={10} style={styles.container}>
         <AccordionItem
           title="Mobile Banking"
           isOpen={openItem === 0}
@@ -154,7 +154,7 @@ export default function AccordionContainer() {
 }
 
 const styles = StyleSheet.create({
-  container: { paddingBottom: 60 },
+  container: { paddingBottom: 10 },
   gray: { color: "#919193" },
   red: { color: "#F43939" },
   textCenter: {
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "#f4f4f4",
-    padding: 10,
+    padding: 1,
     borderRadius: 10,
   },
 });

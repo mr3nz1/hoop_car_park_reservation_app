@@ -5,7 +5,9 @@ import { Filter } from "../components/UI/Icons/Icons";
 
 export default function RootLayout() {
   return (
-    <Stack>
+    <Stack
+      screenOptions={{ statusBarStyle: "auto", statusBarTranslucent: true }}
+    >
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="Auth/Register" options={{ headerShown: false }} />
       <Stack.Screen name="Auth/[loginType]" options={{ headerShown: false }} />
@@ -144,6 +146,20 @@ export default function RootLayout() {
         }}
       />
       <Stack.Screen
+        name="Parking/DetailHistory"
+        options={{
+          header: ({ navigation }) => {
+            return (
+              <NavigationHeader
+                title="Detail History"
+                navigation={navigation}
+              />
+            );
+          },
+        }}
+      />
+
+      <Stack.Screen
         name="Parking/DetailCategory"
         options={{
           header: ({ navigation }) => {
@@ -195,6 +211,23 @@ export default function RootLayout() {
           ),
         }}
       />
+      <Stack.Screen
+        name="Options/Upgrade"
+        options={{
+          header: ({ navigation }) => (
+            <NavigationHeader title="Upgrade" navigation={navigation} />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Options/PlanPayment"
+        options={{
+          header: ({ navigation }) => (
+            <NavigationHeader title="Upgrade" navigation={navigation} />
+          ),
+        }}
+      />
+
       <Stack.Screen
         name="OnBoarding/OnBoarding"
         options={{ headerShown: false }}

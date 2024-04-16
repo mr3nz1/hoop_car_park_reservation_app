@@ -5,7 +5,7 @@ import CustomText from "../../components/UI/CustomText";
 import TagWrapper from "../../components/UI/TagWrapper";
 import { LinearGradient } from "expo-linear-gradient";
 import Button from "../../components/UI/Button";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 
 interface BookDetailsType {}
 
@@ -113,9 +113,9 @@ export default function BookDetails() {
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
-              padding: 20,
+              padding: 15,
               backgroundColor: "white",
-              borderRadius: 20,
+              borderRadius: 15,
             }}
           >
             <View
@@ -126,7 +126,7 @@ export default function BookDetails() {
                 gap: 20,
               }}
             >
-              <TagWrapper>
+              <TagWrapper style={{paddingHorizontal: 8}}>
                 <Image source={require("../../assets/images/Activity.png")} />
               </TagWrapper>
               <CustomText size={1.5}>Include Insurance</CustomText>
@@ -148,13 +148,13 @@ export default function BookDetails() {
             </CustomText>
 
             <Button
-              onPress={() => {}}
+              onPress={() => {
+                router.push("/Payment/Payment");
+              }}
               backgroundColor="#130F26"
               style={{ flex: 1 }}
             >
-              <Link href="/Payment/Payment">
-                <CustomText style={{ color: "white" }}>Pay</CustomText>
-              </Link>
+              <CustomText style={{ color: "white" }}>Pay</CustomText>
             </Button>
           </View>
         </Column>

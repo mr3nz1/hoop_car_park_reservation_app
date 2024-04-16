@@ -4,6 +4,7 @@ import Column from "../../components/UI/Column";
 import CustomText from "../../components/UI/CustomText";
 import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";
+import { router } from "expo-router";
 
 export default function EditProfile() {
   return (
@@ -78,7 +79,9 @@ export default function EditProfile() {
           }}
         >
           <Button
-            onPress={() => {}}
+            onPress={() => {
+              router.back()
+            }}
             backgroundColor="#EAEAF3"
             style={{ flex: 0.5 }}
           >

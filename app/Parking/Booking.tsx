@@ -15,6 +15,7 @@ import {
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
 import Button from "../../components/UI/Button";
+import { router } from "expo-router";
 
 export default function Booking() {
   const rotation = useSharedValue(50);
@@ -24,9 +25,9 @@ export default function Booking() {
   const flingDownGesture = Gesture.Fling()
     .direction(Directions.DOWN)
     .onStart((e) => {
-      rotation.value = withTiming(0, { duration: 100 });
-      xPosition.value = withTiming(35, { duration: 100 });
-      yPosition.value = withTiming(210, { duration: 100 });
+      rotation.value = withTiming(0, { duration: 200 });
+      xPosition.value = withTiming(35, { duration: 200 });
+      yPosition.value = withTiming(210, { duration: 200 });
     });
 
   const positionAnimationstyle = useAnimatedStyle(() => ({
@@ -58,13 +59,14 @@ export default function Booking() {
                 <CustomText size={5}>Insurance?</CustomText>
               </Column>
               <ScrollView
+                nestedScrollEnabled={true}
                 scrollEnabled={true}
                 contentContainerStyle={styles.addInsuranceScrollView}
                 style={{
                   backgroundColor: "white",
                   padding: 10,
                   borderRadius: 20,
-                  height: 400,
+                  height: 300,
                 }}
                 showsVerticalScrollIndicator={false}
               >
@@ -111,6 +113,7 @@ export default function Booking() {
                         //   { translateX: 110 },
                         //   { translateY: -120 },
                         // ],
+                        transformOrigin: "center",
                       },
                       positionAnimationstyle,
                     ]}
@@ -127,7 +130,7 @@ export default function Booking() {
                     </CustomText>
                   </Animated.View>
 
-                  {/* <View
+                  <View
                     style={{
                       alignItems: "center",
 
@@ -145,7 +148,7 @@ export default function Booking() {
                     <CustomText size={2} style={{}}>
                       Hours
                     </CustomText>
-                  </View> */}
+                  </View>
 
                   <View
                     style={{
@@ -208,13 +211,16 @@ export default function Booking() {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-around",
+              marginTop: "auto"
             }}
           >
             <CustomText fontWeight="bold" size={3} style={{ flexGrow: 1 }}>
               $35,00
             </CustomText>
             <Button
-              onPress={() => {}}
+              onPress={() => {
+                router.push("/Parking/BookDetails")
+              }}
               backgroundColor="#130F26"
               style={{ flexGrow: 1 }}
             >
@@ -232,6 +238,7 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
     paddingHorizontal: 30,
     backgroundColor: "#F4F4F4",
+    height: "100%"
   },
   addInsuranceScrollView: {
     justifyContent: "flex-start",
@@ -241,7 +248,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   addInsuranceItemScrollView: {
-    padding: 30,
+    padding: 20,
     backgroundColor: "#F4F4F4",
     borderRadius: 20,
   },

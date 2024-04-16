@@ -9,7 +9,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import ParkingDetails from "../../components/UI/ParkingDetails";
 
-export default function ParkingDetail() {
+export default function DetailHistory() {
   return (
     <>
       <ScrollView style={styles.container}>

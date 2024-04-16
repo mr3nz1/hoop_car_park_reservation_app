@@ -1,6 +1,6 @@
 import React from "react";
 import CardsProps from "../../components/UI/ParkingCard";
-import cardData from "../../components/cards";
+import cardData from "../../cards";
 import { ScrollView, Image, Pressable } from "react-native";
 import CustomText from "../../components/UI/CustomText";
 import { useState } from "react";
@@ -12,6 +12,7 @@ import {
   Search,
   TagBg,
 } from "../../components/UI/Icons/Icons";
+import { router } from "expo-router";
 
 export default function History() {
   const [cards, setCards] = useState(cardData);
@@ -40,6 +41,9 @@ export default function History() {
               padding: 20,
               borderRadius: 20,
             }}
+            onPress={() => {
+              router.push("/Parking/ShowMaps");
+            }}
           >
             <Filter />
           </Pressable>
@@ -49,15 +53,24 @@ export default function History() {
           <CustomText size={2}>Recently</CustomText>
           <View style={{ gap: 15 }}>
             {cards.map((card) => (
-              <CardsProps
-                key={card.id}
-                children={<Image source={card.image} />}
-                head={card.title}
-                hello={card.greating}
-                hr={card.hr}
-                dollar={card.money}
-                time={card.time}
-              />
+              <Pressable
+                onPress={() => {
+                  router.push("/Parking/DetailHistory");
+                }}
+              >
+                <CardsProps
+                  key={card.id}
+                  children={<Image source={card.image} />}
+                  head={card.title}
+                  hello={card.greating}
+                  hr={card.hr}
+                  dollar={card.money}
+                  time={card.time}
+                  onprogress={() => {
+                    router.push("/Parking/DetailHistory");
+                  }}
+                />
+              </Pressable>
             ))}
           </View>
         </View>
