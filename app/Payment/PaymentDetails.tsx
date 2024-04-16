@@ -4,7 +4,7 @@ import Column from "../../components/UI/Column";
 import CustomText from "../../components/UI/CustomText";
 import { useState } from "react";
 import Button from "../../components/UI/Button";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { EmailIcon } from "../../components/UI/Icons/Icons";
 
 export default function PaymentDetails() {
@@ -14,7 +14,7 @@ export default function PaymentDetails() {
       <ScrollView style={styles.container}>
         <AccordionContainer />
         <Column
-          gap={20}
+          gap={0}
           style={{
             paddingBottom: 40,
           }}
@@ -37,10 +37,15 @@ export default function PaymentDetails() {
             />
           </View>
 
-          <Button backgroundColor="#130F26" onPress={() => {}}>
-            <Link href="/Payment/PaymentSuccess">
-              <CustomText size={1.5} style={{ color: "white" }}>Pay Now</CustomText>
-            </Link>
+          <Button
+            backgroundColor="#130F26"
+            onPress={() => {
+              router.push("/Payment/PaymentSuccess");
+            }}
+          >
+            <CustomText size={1.5} style={{ color: "white" }}>
+              Pay Now
+            </CustomText>
           </Button>
         </Column>
       </ScrollView>

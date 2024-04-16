@@ -4,7 +4,7 @@ import { Text, TextStyle } from "react-native";
 
 interface CustomTextType {
   children: string | string[] | ReactElement | ReactElement[];
-  size?: number;
+  size?: 0 | 1 | 1.5 | 2 | 3 | 4 | 5;
   style?: TextStyle | TextStyle[];
   fontWeight?: "light" | "medium" | "bold";
 }

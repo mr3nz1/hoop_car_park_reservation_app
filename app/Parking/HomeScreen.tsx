@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Image,
+  Pressable,
+} from "react-native";
 import ParkingCard from "../../components/UI/ParkingCard";
-import cardData from "../../components/cards"; // Assuming the array is exported as 'cardData'
+import cardData from "../../cards"; // Assuming the array is exported as 'cardData'
 import Header from "../../components/UI/Header";
 import CustomText from "../../components/UI/CustomText";
 import Input from "../../components/UI/Input";
 import { Search } from "../../components/UI/Icons/Icons";
+import { Link, router } from "expo-router";
 
 export default function HomeScreen() {
   const [cards, setCards] = useState(cardData);
@@ -23,17 +31,24 @@ export default function HomeScreen() {
             }}
           >
             <View>
-              <CustomText size={4} style={styles.greetings}>
-                Hola, Diane 👋🏻
-              </CustomText>
+              <Link href="/Options/Profile">
+                <CustomText size={4} style={styles.greetings}>
+                  Hola, Diane 👋🏻
+                </CustomText>
+              </Link>
               <CustomText style={styles.description}>
                 Find an easy parking spot
               </CustomText>
             </View>
 
-            <View style={styles.notificationIcon}>
+            <Pressable
+              onPress={() => {
+                router.push("/Options/Notifications");
+              }}
+              style={styles.notificationIcon}
+            >
               <Image source={require("../../assets/images/Notification.png")} />
-            </View>
+            </Pressable>
           </View>
           <Input
             placeholderTextColor="#B2B6BF"
@@ -48,14 +63,19 @@ export default function HomeScreen() {
         <CustomText size={3}>Categories</CustomText>
 
         <View style={styles.cardsContainer}>
-          <View style={styles.card}>
-            <Image source={require("../../assets/images/car.png")} />
+          <Pressable
+            onPress={() => {
+              router.push("/Parking/Explore");
+            }}
+            style={styles.card}
+          >
+            <Image source={require("../../assets/images/car_menu_icon.png")} />
             <CustomText>Car</CustomText>
-          </View>
-          <View style={styles.card}>
+          </Pressable>
+          <Pressable onPress={() => {}} style={styles.card}>
             <Image source={require("../../assets/images/bike.png")} />
             <CustomText>Bike</CustomText>
-          </View>
+          </Pressable>
           <View style={styles.card}>
             <Image source={require("../../assets/images/bus.png")} />
             <CustomText>Bus</CustomText>
@@ -78,6 +98,9 @@ export default function HomeScreen() {
             hr={card.hr}
             dollar={card.money}
             time={card.time}
+            onprogress={() => {
+              router.push("/Parking/ParkingDetails");
+            }}
           />
         ))}
       </View>

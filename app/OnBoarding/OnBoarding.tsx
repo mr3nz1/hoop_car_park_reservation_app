@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import Button from "../../components/UI/Button";
 import Item from "../../components/Onboarding/Item";
-import slides from "../../components/slides";
+import slides from "../../slides";
 import Paginator from "../../components/Onboarding/paginators";
 import { Link, router } from "expo-router";
 import CustomText from "../../components/UI/CustomText";

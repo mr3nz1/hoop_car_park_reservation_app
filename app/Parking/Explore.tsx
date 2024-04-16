@@ -1,12 +1,13 @@
 import React from "react";
 import CardsProps from "../../components/UI/ParkingCard";
-import cardData from "../../components/cards";
+import cardData from "../../cards";
 import { ScrollView, Image, Pressable } from "react-native";
 import CustomText from "../../components/UI/CustomText";
 import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import Input from "../../components/UI/Input";
 import { LocateIcon, Search, TagBg } from "../../components/UI/Icons/Icons";
+import { router } from "expo-router";
 
 export default function Explore() {
   const [cards, setCards] = useState(cardData);
@@ -65,7 +66,9 @@ export default function Explore() {
         </View>
       </ScrollView>
       <Pressable
-        onPress={() => {}}
+        onPress={() => {
+          router.push(" /Parking/History")
+        }}
         style={{ position: "absolute", bottom: 0, right: 0, margin: 20 }}
       >
         <LocateIcon />

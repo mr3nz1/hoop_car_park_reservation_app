@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Pressable, StyleSheet, Text, View } from "react-native";
 import CustomText from "./CustomText";
 import TagWrapper from "./TagWrapper";
 
@@ -9,29 +9,34 @@ interface ParkingCardProps {
   dollar?: string;
   hr: string;
   time: string;
+  onprogress?: () => void;
 }
 
-export default function ParkingCard(
-  props: React.PropsWithChildren<ParkingCardProps>
-) {
+export default function ParkingCard({
+  children,
+  head,
+  hello,
+  dollar,
+  hr,
+  time,
+  onprogress,
+}: React.PropsWithChildren<ParkingCardProps>) {
   const { width } = Dimensions.get("window");
 
   return (
-    <View style={styles.container}>
-      <View>{props.children}</View>
+    <Pressable onPress={onprogress} style={styles.container}>
+      <View>{children}</View>
 
       <View style={styles.textContainer}>
         <View style={{ gap: 20 }}>
           <View>
-            <CustomText size={2}>{props.head}</CustomText>
-            <CustomText style={{ color: "#2D2D2D80" }}>
-              {props.hello}
-            </CustomText>
+            <CustomText size={2}>{head}</CustomText>
+            <CustomText style={{ color: "#2D2D2D80" }}>{hello}</CustomText>
           </View>
           <View>
             <CustomText style={{ color: "#F43939" }}>
-              <CustomText size={2}>{`${props.dollar}`}</CustomText>
-              <CustomText size={0.5}>{props.hr}</CustomText>
+              <CustomText size={2}>{`${dollar}`}</CustomText>
+              <CustomText size={0.5}>{hr}</CustomText>
             </CustomText>
           </View>
         </View>
@@ -40,9 +45,9 @@ export default function ParkingCard(
         borderRadius={50}
         style={{ position: "absolute", top: 0, right: 0, margin: 10 }}
       >
-        <CustomText style={{ color: "#F43939" }}>{props.time}</CustomText>
+        <CustomText style={{ color: "#F43939" }}>{time}</CustomText>
       </TagWrapper>
-    </View>
+    </Pressable>
   );
 }
 

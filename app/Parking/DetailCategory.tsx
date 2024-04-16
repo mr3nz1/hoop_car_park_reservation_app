@@ -1,6 +1,6 @@
 import React from "react";
 import CardsProps from "../../components/UI/ParkingCard";
-import cardData from "../../components/cards";
+import cardData from "../../cards";
 import { ScrollView, Image, Pressable } from "react-native";
 import CustomText from "../../components/UI/CustomText";
 import { useState } from "react";

@@ -4,7 +4,7 @@ import Column from "../../components/UI/Column";
 import CustomText from "../../components/UI/CustomText";
 import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { EmailIcon, MessageIcon } from "../../components/UI/Icons/Icons";
 
 export default function PaymentSuccess() {
@@ -67,12 +67,12 @@ export default function PaymentSuccess() {
           </Column>
         </Column>
 
-        <Button onPress={() => {}} backgroundColor="#130F26" style={{ marginTop: "auto", width: "100%" }}>
-          <Link href="">
+        <Button onPress={() => {
+          router.push("/Parking/ParkingRoute")
+        }} backgroundColor="#130F26" style={{ marginTop: "auto", width: "100%" }}>
             <CustomText size={1.5} style={{ color: "white" }}>
               Back to Home
             </CustomText>
-          </Link>
         </Button>
       </Column>
     </ScrollView>

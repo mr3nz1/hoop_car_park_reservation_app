@@ -3,7 +3,7 @@ export default [
         id: 1,
         title: "Graha Mall",
         greating: "123 Dhaka Street",
-        image: require('../assets/images/parking.png'),
+        image: require('./assets/images/parking.png'),
         hr: '/hour',
         time: '7min',
         money: '$7'
@@ -12,7 +12,7 @@ export default [
         id: 2,
         title: "Graha Mall",
         greating: "123 Dhaka Street",
-        image: require('../assets/images/road.png'),
+        image: require('./assets/images/road.png'),
         hr: '/hour',
         time: '7min',
         money: '$7'
@@ -21,7 +21,7 @@ export default [
         id: 3,
         title: "Graha Mall",
         greating: "123 Dhaka Street",
-        image: require('../assets/images/parking.png'),
+        image: require('./assets/images/parking.png'),
         hr: '/hour',
         time: '7min',
         money: '$7'

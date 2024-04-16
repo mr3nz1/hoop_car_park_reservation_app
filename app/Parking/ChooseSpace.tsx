@@ -4,6 +4,8 @@ import { useState } from "react";
 import Column from "../../components/UI/Column";
 import { DraxProvider, DraxView } from "react-native-drax";
 import Space from "../../components/ChooseSpace/Space";
+import Button from "../../components/UI/Button";
+import { router } from "expo-router";
 
 export default function ChooseSpace() {
   const [currentTag, setCurrentTag] = useState(1);
@@ -75,7 +77,7 @@ export default function ChooseSpace() {
           </Pressable>
         </ScrollView>
 
-        <ScrollView showsVerticalScrollIndicator={false}>
+        {/* <ScrollView showsVerticalScrollIndicator={false}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <Column
               gap={15}
@@ -91,17 +93,10 @@ export default function ChooseSpace() {
                   gap: 15,
                 }}
               >
-                {spaceCount.map(() => {
-                  return <Space />;
+                {spaceCount.map((currentIndex) => {
+                  return <Space key={currentIndex} />;
                 })}
               </View>
-            </Column>
-            <Column
-              gap={15}
-              style={{
-                padding: 15,
-              }}
-            >
               <View
                 style={{
                   flexDirection: "row",
@@ -110,18 +105,11 @@ export default function ChooseSpace() {
                   gap: 15,
                 }}
               >
-                {spaceCount.map(() => {
-                  return <Space />;
+                {spaceCount.map((currentIndex) => {
+                  return <Space key={currentIndex} />;
                 })}
               </View>
-            </Column>
 
-            <Column
-              gap={15}
-              style={{
-                padding: 15,
-              }}
-            >
               <View
                 style={{
                   flexDirection: "row",
@@ -130,13 +118,41 @@ export default function ChooseSpace() {
                   gap: 15,
                 }}
               >
-                {spaceCount.map(() => {
-                  return <Space />;
+                {spaceCount.map((currentIndex) => {
+                  return <Space key={currentIndex} />;
+                })}
+              </View>
+
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  gap: 15,
+                }}
+              >
+                {spaceCount.map((currentIndex) => {
+                  return <Space key={currentIndex} />;
                 })}
               </View>
             </Column>
           </ScrollView>
-        </ScrollView>
+        </ScrollView> */}
+
+        <Image source={require("../../assets/images/chooseParking.png")} />
+
+        <View style={{ paddingHorizontal: 30, marginTop: "auto" }}>
+          <Button
+            backgroundColor="#130F26"
+            onPress={() => {
+              router.push("/Parking/Booking");
+            }}
+          >
+            <CustomText size={1.5} style={{ color: "white" }}>
+              Book Space
+            </CustomText>
+          </Button>
+        </View>
       </Column>
     </>
   );

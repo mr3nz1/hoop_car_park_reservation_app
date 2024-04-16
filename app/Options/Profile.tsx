@@ -13,6 +13,7 @@ import {
   HeadphonesIcon,
 } from "../../components/UI/Icons/Icons";
 import Button from "../../components/UI/Button";
+import { router } from "expo-router";
 
 export default function Profile() {
   return (
@@ -42,6 +43,9 @@ export default function Profile() {
                 </CustomText>
               </Column>
               <Pressable
+              onPress={() => {
+                router.push("/Auth/Login")
+              }}
                 style={{
                   backgroundColor: "#2A344E",
                   padding: 20,
@@ -56,8 +60,13 @@ export default function Profile() {
         </Header>
 
         <View style={{ flexGrow: 1 }}>
-          <Column gap={10} style={{ padding: 20 }}>
-            <Pressable onPress={() => {}} style={styles.listing}>
+          <Column gap={20} style={{ padding: 20 }}>
+            <Pressable
+              onPress={() => {
+                router.push("/Options/EditProfile");
+              }}
+              style={styles.listing}
+            >
               <UserIcon />
               <CustomText size={2} style={{ color: "#2D2D2D" }}>
                 Profile
@@ -66,7 +75,12 @@ export default function Profile() {
                 <RightChevron />
               </View>
             </Pressable>
-            <Pressable onPress={() => {}} style={styles.listing}>
+            <Pressable
+              onPress={() => {
+                router.push("/Options/Upgrade");
+              }}
+              style={styles.listing}
+            >
               <GoProIcon />
               <CustomText size={2} style={{ color: "#2D2D2D" }}>
                 Go Pro
