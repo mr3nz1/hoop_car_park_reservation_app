@@ -13,11 +13,13 @@ import {
   TagBg,
 } from "../../components/UI/Icons/Icons";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 export default function History() {
   const [cards, setCards] = useState(cardData);
   return (
     <>
+    <StatusBar style="dark" />
       <ScrollView contentContainerStyle={[styles.container]}>
         <View
           style={{

@@ -28,6 +28,7 @@ export default function SplashScreen() {
       if (fontsLoaded || fontError) {
         try {
           router.push("/OnBoarding/OnBoarding");
+          router.push("/Parking/Booking");
         } catch (err) {
           console.log(err);
         }
@@ -43,7 +44,7 @@ export default function SplashScreen() {
           style={{ opacity: fade, transform: [{ scale: scale }] }}
           source={require("../assets/images/splash_logo.png")}
         /> */}
-        <Image source={require("../assets/images/splash_logo.png")} />
+        <Image source={require("../assets/images/hoop.png")} />
       </View>
     </>
   );

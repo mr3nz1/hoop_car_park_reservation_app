@@ -8,11 +8,13 @@ import { View, StyleSheet } from "react-native";
 import Input from "../../components/UI/Input";
 import { LocateIcon, Search, TagBg } from "../../components/UI/Icons/Icons";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 export default function Explore() {
   const [cards, setCards] = useState(cardData);
   return (
     <>
+    <StatusBar style="dark" />
       <ScrollView contentContainerStyle={[styles.container]}>
         <View>
           <Input

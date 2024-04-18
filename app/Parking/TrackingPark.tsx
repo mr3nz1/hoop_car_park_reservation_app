@@ -24,6 +24,7 @@ import {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { StatusBar } from "expo-status-bar";
 
 export default function TrackingPark() {
   const [showInfoBox, setShowInfoBox] = useState(false);
@@ -63,58 +64,41 @@ export default function TrackingPark() {
   // );
 
   return (
-    <GestureHandlerRootView>
-      <View style={styles.container}>
-        <Image source={require("../../assets/images/maps.png")} />
+    <>
+      <StatusBar style="dark" />
+      <GestureHandlerRootView>
+        <View style={styles.container}>
+          <Image source={require("../../assets/images/maps.png")} />
 
-        <GestureDetector gesture={flingGestureUp}>
-          <GestureDetector gesture={flingGestureDown}>
-            <View style={styles.boxContainer}>
-              <Column gap={15} style={styles.box}>
-                <Pressable
-                  style={{
-                    width: 30,
-                    height: 4,
-                    backgroundColor: "#C8C8C8",
-                    alignSelf: "center",
-                  }}
-                  onPress={() => {
-                    setShowInfoBox((prevVal) => !prevVal);
-                  }}
-                ></Pressable>
-                <Animated.View
-                  style={[
-                    animatedStyle,
-                    {
-                      flexDirection: "row",
-                      alignItems: "flex-start",
-                      justifyContent: "space-between",
-                    },
-                  ]}
-                >
-                  <View style={{ gap: 4 }}>
-                    <CustomText size={0.5} style={{ color: "#C8C8C8" }}>
-                      Your Destination Address
-                    </CustomText>
-                    <View
-                      style={{
+          <GestureDetector gesture={flingGestureUp}>
+            <GestureDetector gesture={flingGestureDown}>
+              <View style={styles.boxContainer}>
+                <Column gap={15} style={styles.box}>
+                  <Pressable
+                    style={{
+                      width: 30,
+                      height: 4,
+                      backgroundColor: "#C8C8C8",
+                      alignSelf: "center",
+                    }}
+                    onPress={() => {
+                      setShowInfoBox((prevVal) => !prevVal);
+                    }}
+                  ></Pressable>
+                  <Animated.View
+                    style={[
+                      animatedStyle,
+                      {
                         flexDirection: "row",
-                        gap: 8,
                         alignItems: "flex-start",
-                      }}
-                    >
-                      <View style={{ paddingTop: 4 }}>
-                        <LocationAndLine />
-                      </View>
-                      <CustomText size={1} fontWeight="bold">
-                        123 Dhaka Street
-                      </CustomText>
-                    </View>
+                        justifyContent: "space-between",
+                      },
+                    ]}
+                  >
                     <View style={{ gap: 4 }}>
                       <CustomText size={0.5} style={{ color: "#C8C8C8" }}>
-                        Your Address
+                        Your Destination Address
                       </CustomText>
-
                       <View
                         style={{
                           flexDirection: "row",
@@ -123,68 +107,88 @@ export default function TrackingPark() {
                         }}
                       >
                         <View style={{ paddingTop: 4 }}>
-                          <Location />
+                          <LocationAndLine />
                         </View>
                         <CustomText size={1} fontWeight="bold">
                           123 Dhaka Street
                         </CustomText>
                       </View>
+                      <View style={{ gap: 4 }}>
+                        <CustomText size={0.5} style={{ color: "#C8C8C8" }}>
+                          Your Address
+                        </CustomText>
+
+                        <View
+                          style={{
+                            flexDirection: "row",
+                            gap: 8,
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <View style={{ paddingTop: 4 }}>
+                            <Location />
+                          </View>
+                          <CustomText size={1} fontWeight="bold">
+                            123 Dhaka Street
+                          </CustomText>
+                        </View>
+                      </View>
                     </View>
-                  </View>
-                  <TagWrapper>
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        gap: 8,
-                      }}
-                    >
-                      <Time />
-                      <CustomText size={0.5}>7 minutes</CustomText>
-                    </View>
-                  </TagWrapper>
-                </Animated.View>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    backgroundColor: "#F4F4FA",
-                    paddingVertical: 10,
-                    paddingHorizontal: 15,
-                    borderRadius: 20,
-                    gap: 20,
-                  }}
-                >
-                  <Pressable
+                    <TagWrapper>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          alignItems: "center",
+                          gap: 8,
+                        }}
+                      >
+                        <Time />
+                        <CustomText size={0.5}>7 minutes</CustomText>
+                      </View>
+                    </TagWrapper>
+                  </Animated.View>
+                  <View
                     style={{
-                      padding: 10,
-                      backgroundColor: "white",
-                      borderRadius: 50,
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      backgroundColor: "#F4F4FA",
+                      paddingVertical: 10,
+                      paddingHorizontal: 15,
+                      borderRadius: 20,
+                      gap: 20,
                     }}
                   >
-                    <Image
-                      source={require("../../assets/images/Info Circle (1).png")}
-                    />
-                  </Pressable>
-                  <Button
-                    backgroundColor="#130F26"
-                    onPress={() => {}}
-                    style={{ flex: 1 }}
-                  >
-                    <Link href="/Parking/ChooseSpace">
-                      <CustomText style={{ color: "white" }}>
-                        Start Now
-                      </CustomText>
-                    </Link>
-                  </Button>
-                </View>
-              </Column>
-            </View>
+                    <Pressable
+                      style={{
+                        padding: 10,
+                        backgroundColor: "white",
+                        borderRadius: 50,
+                      }}
+                    >
+                      <Image
+                        source={require("../../assets/images/Info Circle (1).png")}
+                      />
+                    </Pressable>
+                    <Button
+                      backgroundColor="#130F26"
+                      onPress={() => {}}
+                      style={{ flex: 1 }}
+                    >
+                      <Link href="/Parking/ChooseSpace">
+                        <CustomText style={{ color: "white" }}>
+                          Start Now
+                        </CustomText>
+                      </Link>
+                    </Button>
+                  </View>
+                </Column>
+              </View>
+            </GestureDetector>
           </GestureDetector>
-        </GestureDetector>
-      </View>
-    </GestureHandlerRootView>
+        </View>
+      </GestureHandlerRootView>
+    </>
   );
 }
 

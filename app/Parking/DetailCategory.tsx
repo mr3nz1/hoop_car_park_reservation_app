@@ -7,11 +7,13 @@ import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import Input from "../../components/UI/Input";
 import { LocateIcon, Search, TagBg } from "../../components/UI/Icons/Icons";
+import { StatusBar } from "expo-status-bar";
 
 export default function DetailCategory() {
   const [cards, setCards] = useState(cardData);
   return (
     <>
+      <StatusBar style="dark" />
       <ScrollView contentContainerStyle={[styles.container]}>
         <View>
           <Input
@@ -64,7 +66,7 @@ export default function DetailCategory() {
           ))}
         </View>
       </ScrollView>
-      
+
       <Pressable
         onPress={() => {}}
         style={{ position: "absolute", bottom: 0, right: 0, margin: 20 }}
