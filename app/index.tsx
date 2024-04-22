@@ -28,7 +28,7 @@ export default function SplashScreen() {
       if (fontsLoaded || fontError) {
         try {
           router.push("/OnBoarding/OnBoarding");
-          router.push("/Parking/Booking");
+          // router.push("/Parking/Booking");
         } catch (err) {
           console.log(err);
         }

@@ -81,15 +81,14 @@ export default function ChooseSpace() {
 
         <ScrollView style={{ flexGrow: 1, padding: 20 }}>
           <View style={{ flexDirection: "row", gap: 30 }}>
-            <Space />
+            {/* <Space /> */}
             {/* <View
               style={{ height: 180, width: 1, backgroundColor: "red" }}
             ></View>
-            <Space /> */}
+          <Space /> */}
+            <Image source={require("../../assets/images/chooseParking.png")} />
           </View>
         </ScrollView>
-
-        {/* <Image source={require("../../assets/images/chooseParking.png")} /> */}
 
         <View style={{ paddingHorizontal: 30, marginTop: "auto" }}>
           <Button
@@ -112,6 +111,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#F4F4F4",
     paddingTop: 10,
+    paddingBottom: 20
   },
   tagsContainer: {
     justifyContent: "flex-start",

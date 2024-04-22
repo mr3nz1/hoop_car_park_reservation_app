@@ -13,7 +13,7 @@ import { StatusBar } from "expo-status-bar";
 export default function ParkingDetail() {
   return (
     <>
-    <StatusBar style="dark" />
+      <StatusBar style="dark" translucent={true} />
       <ScrollView style={styles.container}>
         <Column gap={40}>
           <ParkingImageShowcase showLocationBtn={true} />

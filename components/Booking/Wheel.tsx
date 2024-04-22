@@ -9,59 +9,64 @@ import {
   TextBlob,
   useSVG,
   ImageSVG,
+  useFonts,
+  matchFont,
 } from "@shopify/react-native-skia";
 import { rotate } from "react-native-redash";
 
-export default function Wheel() {
+interface Props {
+  currentValue: number;
+}
+
+export default function Wheel({ currentValue }: Props) {
   const outerCircleRadius = 250;
-  const innerCircleRadius = outerCircleRadius / 2.5;
+  const innerCircleRadius = outerCircleRadius / 2.3;
   const middleCircleRadius = outerCircleRadius / 1.4;
 
   const numSquares = 6;
 
   const angleIncrement = (2 * Math.PI) / numSquares;
 
-  const font = useFont(
-    require("../../assets/fonts/Avenir/Avenir-Black.ttf"),
-    14
-  );
-  if (font === null) {
+  const fontMgr = useFonts({
+    Avenir: [
+      require("../../assets/fonts/Avenir/Avenir-Light.ttf"),
+      require("../../assets/fonts/Avenir/Avenir-Medium.ttf"),
+      require("../../assets/fonts/Avenir/Avenir-Heavy.ttf"),
+    ],
+  });
+
+  if (!fontMgr) {
     return null;
   }
-  const blob = Skia.TextBlob.MakeFromText("Hello World!", font);
+
+  const boldFontStyle = {
+    fontFamily: "Avenir",
+    fontWeight: "bold",
+    fontSize: 25,
+  } as const;
+
+  const mediumFontStyle = {
+    fontFamily: "Avenir",
+    fontWeight: "bold",
+    fontSize: 20,
+  } as const;
+
+  const font1 = matchFont(boldFontStyle, fontMgr);
+  const font2 = matchFont(mediumFontStyle, fontMgr);
+
+  const hours: {
+    id: number;
+    hours: number;
+  }[] = [
+    { id: 1, hours: 1 },
+    { id: 2, hours: 2 },
+    { id: 3, hours: 3 },
+    { id: 4, hours: 4 },
+    { id: 5, hours: 5 },
+    { id: 6, hours: 6 },
+  ];
 
   let content: React.JSX.Element[] = [];
-
-  for (let i = 0; i < numSquares; i++) {
-    const angle = i * angleIncrement;
-    const x = outerCircleRadius + middleCircleRadius * Math.cos(angle);
-    const y = outerCircleRadius + middleCircleRadius * Math.sin(angle);
-
-    content.push(
-      <>
-        <Group key={i} origin={{ x: x, y: y }}>
-          <TextBlob
-            blob={Skia.TextBlob.MakeFromText("1", font)}
-            color="black"
-            x={x}
-            y={y}
-            transform={[{ rotate: 0 }]}
-          />
-          <TextBlob
-            blob={Skia.TextBlob.MakeFromText("Hours", font)}
-            color="black"
-            x={x - 13}
-            y={y + 20}
-            transform={[{ rotate: 0 }]}
-          />
-        </Group>
-      </>
-    );
-  }
-
-  // const trianglePointer = useSVG(
-  //   require("../../assets/images/trianglePointer.svg")
-  // );
 
   return (
     <>
@@ -96,19 +101,38 @@ export default function Wheel() {
           color={"white"}
           style={"stroke"}
         />
-        {/* {trianglePointer && (
-          <ImageSVG
-            svg={trianglePointer}
-            width={256}
-            height={256}
-            x={outerCircleRadius}
-            y={outerCircleRadius}
-          />
-        )} */}
-        {content}
-      </Canvas>
+        {hours.map((currentIndex) => {
+          const angle = currentIndex.id * angleIncrement;
+          const x = outerCircleRadius + middleCircleRadius * Math.cos(angle);
+          const y = outerCircleRadius + middleCircleRadius * Math.sin(angle);
 
-      {/* <SkiaText /> */}
+          return (
+            <Group key={currentIndex.id} origin={{ x: x, y: y }} transform={[{rotate: 95}]}>
+              <Text
+                text={`${currentIndex.id}`}
+                y={y}
+                x={x}
+                color={
+                  currentValue !== currentIndex.hours ? "black" : "#ABABAB"
+                }
+                font={font1}
+                // transformOrigin
+                // transform={[{rotate}]}
+              />
+              <Text
+                text={`Hours`}
+                y={y + 20}
+                x={x - 18}
+                color={
+                  currentValue !== currentIndex.hours ? "black" : "#ABABAB"
+                }
+                font={font2}
+              />
+            </Group>
+          );
+        })}
+        {/* {content} */}
+      </Canvas>
     </>
   );
 }

@@ -4,7 +4,9 @@ import { StyleSheet } from "react-native";
 import Column from "../../components/UI/Column";
 import { WheelTrianglePointer } from "../../components/UI/Icons/Icons";
 import Animated, {
+  useAnimatedReaction,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
@@ -17,74 +19,65 @@ import {
 import Button from "../../components/UI/Button";
 import { router } from "expo-router";
 import Wheel from "../../components/Booking/Wheel";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StatusBar } from "expo-status-bar";
+import { useValueEffect } from "@shopify/react-native-skia";
 
 export default function Booking() {
   const rotation = useSharedValue(0);
+  const [selectedHours, setSelectedHours] = useState(1);
+  const up = useSharedValue(1);
+  const down = useSharedValue(1);
+  let x = 0;
 
   const flingDownGesture = Gesture.Fling()
     .direction(Directions.DOWN)
     .onStart((e) => {
       rotation.value = withTiming(rotation.value - 60, { duration: 200 });
+      down.value = withTiming(down.value + 1, { duration: 0 });
     });
+  // .onEnd(() => {
+  // });
 
   const flingUpGesture = Gesture.Fling()
     .direction(Directions.UP)
     .onStart((e) => {
       rotation.value = withTiming(rotation.value + 60, { duration: 200 });
+      up.value = withTiming(up.value + 1, { duration: 0 });
+      x = 2;
     });
+  // .onEnd(() => {
+  //   setSelectedHours(20);
+  // });
+
+  useEffect(() => {
+    console.log();
+  }, [down, up, rotation, flingDownGesture, flingUpGesture]);
 
   const positionAnimationstyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotation.value}deg` }],
   }));
 
-  const hours: {
-    id: number;
-    hours: number;
-  }[] = [
-    { id: 1, hours: 1 },
-    { id: 2, hours: 2 },
-    { id: 3, hours: 3 },
-    { id: 4, hours: 4 },
-    { id: 5, hours: 5 },
-    { id: 6, hours: 6 },
-    { id: 7, hours: 7 },
-    { id: 8, hours: 8 },
-    { id: 9, hours: 9 },
-    { id: 10, hours: 10 },
+  useEffect(() => {
+    console.log("Flinged");
+  }, [selectedHours]);
+
+  const hours = [
+    { title: "1", label: "Hour" },
+    { title: "2", label: "Hours" },
+    { title: "3", label: "Hours" },
+    { title: "4", label: "Hours" },
+    { title: "5", label: "Hours" },
+    { title: "6", label: "Hours" },
+    { title: "7", label: "Hours" },
+    { title: "8", label: "Hours" },
+    { title: "9", label: "Hours" },
+    { title: "10", label: "Hours" },
   ];
 
-  // const rotateAnim = useRef(new Animated.Value(0)).current;
-
-  // useEffect(() => {
-  //   Animated.loop(
-  //     Animated.timing(rotateAnim, {
-  //       toValue: 1,
-  //       duration: 10000,
-  //       easing: Easing.linear,
-  //       useNativeDriver: true,
-  //     })
-  //   ).start();
-  // }, [rotateAnim]);
-
-  // const spin = rotateAnim.interpolate({
-  //   inputRange: [0, 1],
-  //   outputRange: ["0deg", "360deg"],
-  // });
   return (
     <>
       <StatusBar style="dark" />
-      {/* <View
-        style={{
-          height: "100%",
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Wheel />
-      </View> */}
       <GestureHandlerRootView>
         <ScrollView contentContainerStyle={styles.container}>
           <View
@@ -150,14 +143,18 @@ export default function Booking() {
                       position: "absolute",
                       right: "-65%",
                       top: "15%",
+                      transform: [{ rotate: `${rotation.value}deg` }],
                     },
                     positionAnimationstyle,
                   ]}
                 >
-                  <Wheel />
+                  <Wheel currentValue={selectedHours} />
                 </Animated.View>
               </GestureDetector>
             </GestureDetector>
+            <View style={{ position: "absolute", right: 45, top: "60%" }}>
+              <WheelTrianglePointer />
+            </View>
           </View>
 
           <View
