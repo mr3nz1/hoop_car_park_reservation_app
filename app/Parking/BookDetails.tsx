@@ -6,12 +6,14 @@ import TagWrapper from "../../components/UI/TagWrapper";
 import { LinearGradient } from "expo-linear-gradient";
 import Button from "../../components/UI/Button";
 import { Link, router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 interface BookDetailsType {}
 
 export default function BookDetails() {
   return (
     <>
+      <StatusBar style="dark" />
       <ScrollView style={styles.container}>
         <Column gap={20}>
           <ParkingImageShowcase />
@@ -126,7 +128,7 @@ export default function BookDetails() {
                 gap: 20,
               }}
             >
-              <TagWrapper style={{paddingHorizontal: 8}}>
+              <TagWrapper style={{ paddingHorizontal: 8 }}>
                 <Image source={require("../../assets/images/Activity.png")} />
               </TagWrapper>
               <CustomText size={1.5}>Include Insurance</CustomText>

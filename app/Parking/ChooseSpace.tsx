@@ -6,6 +6,7 @@ import { DraxProvider, DraxView } from "react-native-drax";
 import Space from "../../components/ChooseSpace/Space";
 import Button from "../../components/UI/Button";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 export default function ChooseSpace() {
   const [currentTag, setCurrentTag] = useState(1);
@@ -13,6 +14,7 @@ export default function ChooseSpace() {
 
   return (
     <>
+      <StatusBar style="dark" />
       <Column gap={30} style={styles.container}>
         <ScrollView
           horizontal={true}
@@ -77,69 +79,16 @@ export default function ChooseSpace() {
           </Pressable>
         </ScrollView>
 
-        {/* <ScrollView showsVerticalScrollIndicator={false}>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <Column
-              gap={15}
-              style={{
-                padding: 15,
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: 15,
-                }}
-              >
-                {spaceCount.map((currentIndex) => {
-                  return <Space key={currentIndex} />;
-                })}
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: 15,
-                }}
-              >
-                {spaceCount.map((currentIndex) => {
-                  return <Space key={currentIndex} />;
-                })}
-              </View>
-
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: 15,
-                }}
-              >
-                {spaceCount.map((currentIndex) => {
-                  return <Space key={currentIndex} />;
-                })}
-              </View>
-
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: 15,
-                }}
-              >
-                {spaceCount.map((currentIndex) => {
-                  return <Space key={currentIndex} />;
-                })}
-              </View>
-            </Column>
-          </ScrollView>
-        </ScrollView> */}
-
-        <Image source={require("../../assets/images/chooseParking.png")} />
+        <ScrollView style={{ flexGrow: 1, padding: 20 }}>
+          <View style={{ flexDirection: "row", gap: 30 }}>
+            {/* <Space /> */}
+            {/* <View
+              style={{ height: 180, width: 1, backgroundColor: "red" }}
+            ></View>
+          <Space /> */}
+            <Image source={require("../../assets/images/chooseParking.png")} />
+          </View>
+        </ScrollView>
 
         <View style={{ paddingHorizontal: 30, marginTop: "auto" }}>
           <Button
@@ -162,6 +111,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#F4F4F4",
     paddingTop: 10,
+    paddingBottom: 20
   },
   tagsContainer: {
     justifyContent: "flex-start",

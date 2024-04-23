@@ -5,10 +5,12 @@ import MapView from "react-native-maps";
 import CustomText from "../../components/UI/CustomText";
 import Column from "../../components/UI/Column";
 import TagWrapper from "../../components/UI/TagWrapper";
+import { StatusBar } from "expo-status-bar";
 
 export default function ShowMaps() {
   return (
     <>
+    <StatusBar style="dark" />
       <ScrollView contentContainerStyle={styles.container}>
         <View
           style={{

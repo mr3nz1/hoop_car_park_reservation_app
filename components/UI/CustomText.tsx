@@ -36,10 +36,15 @@ export default function CustomText({
       <Text
         style={[
           {
-            fontFamily: fontWeight ? fontWeights[fontWeight] : "Avenir-Medium",
-            fontSize: fontSizes[size ? size : 1],
+            ...{
+              fontFamily: fontWeight
+                ? fontWeights[fontWeight]
+                : "Avenir-Medium",
+              fontSize: fontSizes[size ? size : 1],
+              color: "#2D2D2D",
+            },
           },
-          style,
+          { ...style },
         ]}
       >
         {children}

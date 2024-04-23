@@ -1,10 +1,12 @@
 import { Image, StyleSheet, View } from "react-native";
 import CustomText from "../../components/UI/CustomText";
 import { TurnLeft } from "../../components/UI/Icons/Icons";
+import { StatusBar } from "expo-status-bar";
 
 export default function ParkingRoute() {
   return (
     <>
+      <StatusBar style="dark" />
       <View style={{}}>
         <Image
           style={{ width: "100%", height: "100%" }}

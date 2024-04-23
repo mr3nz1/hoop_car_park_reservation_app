@@ -5,12 +5,14 @@
     "scheme": "hoop_car_park_reservation_app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/hoop.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/splash_logo.ico",
-      "resizeMode": "",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/images/splash_screen.png",
+      "backgroundColor": "#ffffff",
+      "width": 200,
+      "height": 200,
+      "resizeMode": "cover"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {

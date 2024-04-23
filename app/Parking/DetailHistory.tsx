@@ -8,10 +8,12 @@ import Button from "../../components/UI/Button";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import ParkingDetails from "../../components/UI/ParkingDetails";
+import { StatusBar } from "expo-status-bar";
 
 export default function DetailHistory() {
   return (
     <>
+    <StatusBar style="dark" />
       <ScrollView style={styles.container}>
         <Column gap={40}>
           <ParkingImageShowcase showLocationBtn={true} />

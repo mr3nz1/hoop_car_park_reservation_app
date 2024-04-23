@@ -18,21 +18,24 @@ export default function ParkingDetails({
 }: ParkingDetailsType) {
   return (
     <>
-      <Column gap={10}>
+      <Column gap={10} style={{}}>
         <View>
           <CustomText style={styles.textCenter} size={3}>
             {name}
           </CustomText>
-          <CustomText
-            style={[
-              styles.textCenter,
-              {
-                color: "#7D7D7F",
-              },
-            ]}
-          >
-            {location}
-          </CustomText>
+          <View style={{ alignItems: "center" }}>
+            <CustomText
+              style={[
+                styles.textCenter,
+                {
+                  backgroundColor: "red",
+                  color: "#7D7D7F",
+                },
+              ]}
+            >
+              {location}
+            </CustomText>
+          </View>
         </View>
 
         <View

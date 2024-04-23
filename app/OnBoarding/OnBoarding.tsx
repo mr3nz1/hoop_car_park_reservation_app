@@ -14,6 +14,7 @@ import slides from "../../slides";
 import Paginator from "../../components/Onboarding/paginators";
 import { Link, router } from "expo-router";
 import CustomText from "../../components/UI/CustomText";
+import { StatusBar } from "expo-status-bar";
 
 export default function OnBoarding(props: any) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,6 +29,7 @@ export default function OnBoarding(props: any) {
 
   return (
     <>
+    <StatusBar style="dark" />
       <ScrollView contentContainerStyle={styles.container}>
         <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
           <Link href={"/Auth/[loginType]"} style={styles.skip}>

@@ -1,10 +1,12 @@
-import { Image, Pressable, View, ScrollView } from "react-native";
+import { Image, Pressable, View, ScrollView, Easing } from "react-native";
 import CustomText from "../../components/UI/CustomText";
 import { StyleSheet } from "react-native";
 import Column from "../../components/UI/Column";
 import { WheelTrianglePointer } from "../../components/UI/Icons/Icons";
 import Animated, {
+  useAnimatedReaction,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
@@ -16,30 +18,66 @@ import {
 } from "react-native-gesture-handler";
 import Button from "../../components/UI/Button";
 import { router } from "expo-router";
+import Wheel from "../../components/Booking/Wheel";
+import { useEffect, useRef, useState } from "react";
+import { StatusBar } from "expo-status-bar";
+import { useValueEffect } from "@shopify/react-native-skia";
 
 export default function Booking() {
-  const rotation = useSharedValue(50);
-  const xPosition = useSharedValue(110);
-  const yPosition = useSharedValue(-50);
+  const rotation = useSharedValue(0);
+  const [selectedHours, setSelectedHours] = useState(1);
+  const up = useSharedValue(1);
+  const down = useSharedValue(1);
+  let x = 0;
 
   const flingDownGesture = Gesture.Fling()
     .direction(Directions.DOWN)
     .onStart((e) => {
-      rotation.value = withTiming(0, { duration: 200 });
-      xPosition.value = withTiming(35, { duration: 200 });
-      yPosition.value = withTiming(210, { duration: 200 });
+      rotation.value = withTiming(rotation.value - 60, { duration: 200 });
+      down.value = withTiming(down.value + 1, { duration: 0 });
     });
+  // .onEnd(() => {
+  // });
+
+  const flingUpGesture = Gesture.Fling()
+    .direction(Directions.UP)
+    .onStart((e) => {
+      rotation.value = withTiming(rotation.value + 60, { duration: 200 });
+      up.value = withTiming(up.value + 1, { duration: 0 });
+      x = 2;
+    });
+  // .onEnd(() => {
+  //   setSelectedHours(20);
+  // });
+
+  useEffect(() => {
+    console.log();
+  }, [down, up, rotation, flingDownGesture, flingUpGesture]);
 
   const positionAnimationstyle = useAnimatedStyle(() => ({
-    transform: [
-      { rotate: `${rotation.value}deg` },
-      { translateX: xPosition.value },
-      { translateY: yPosition.value },
-    ],
+    transform: [{ rotate: `${rotation.value}deg` }],
   }));
+
+  useEffect(() => {
+    console.log("Flinged");
+  }, [selectedHours]);
+
+  const hours = [
+    { title: "1", label: "Hour" },
+    { title: "2", label: "Hours" },
+    { title: "3", label: "Hours" },
+    { title: "4", label: "Hours" },
+    { title: "5", label: "Hours" },
+    { title: "6", label: "Hours" },
+    { title: "7", label: "Hours" },
+    { title: "8", label: "Hours" },
+    { title: "9", label: "Hours" },
+    { title: "10", label: "Hours" },
+  ];
 
   return (
     <>
+      <StatusBar style="dark" />
       <GestureHandlerRootView>
         <ScrollView contentContainerStyle={styles.container}>
           <View
@@ -92,126 +130,40 @@ export default function Booking() {
               </ScrollView>
             </Column>
 
-            <GestureDetector gesture={flingDownGesture}>
-              <View style={styles.wheelContainer}>
-                <View
-                  style={{
-                    justifyContent: "flex-start",
-                    alignItems: "flex-start",
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: 500,
-                  }}
-                >
-                  <Animated.View
-                    style={[
-                      {
-                        alignItems: "center",
-                        gap: 0,
-                        // transform: [
-                        //   { rotate: "50deg" },
-                        //   { translateX: 110 },
-                        //   { translateY: -120 },
-                        // ],
-                        transformOrigin: "center",
-                      },
-                      positionAnimationstyle,
-                    ]}
-                  >
-                    <CustomText
-                      size={4}
-                      fontWeight="bold"
-                      style={{ color: "#ABABAB" }}
-                    >
-                      3
-                    </CustomText>
-                    <CustomText size={2} style={{ color: "#ABABAB" }}>
-                      Hours
-                    </CustomText>
-                  </Animated.View>
-
-                  <View
-                    style={{
-                      alignItems: "center",
-
-                      gap: 0,
-                      transform: [
-                        // { rotate: "50deg" },
-                        { translateX: 25 },
-                        { translateY: 120 },
-                      ],
-                    }}
-                  >
-                    <CustomText size={4} fontWeight="bold" style={{}}>
-                      4
-                    </CustomText>
-                    <CustomText size={2} style={{}}>
-                      Hours
-                    </CustomText>
-                  </View>
-
-                  <View
-                    style={{
-                      alignItems: "center",
-                      transform: [
-                        { rotate: "135deg" },
-                        { translateX: 70 },
-                        { translateY: -200 },
-                      ],
-                    }}
-                  >
-                    <View
-                      style={{
-                        alignItems: "center",
-                        transform: [{ rotate: "-180deg" }],
-                      }}
-                    >
-                      <CustomText
-                        size={4}
-                        fontWeight="bold"
-                        style={{ color: "#ABABAB" }}
-                      >
-                        5
-                      </CustomText>
-                      <CustomText size={2} style={{ color: "#ABABAB" }}>
-                        Hours
-                      </CustomText>
-                    </View>
-                  </View>
-                </View>
-                <View
-                  style={{
-                    backgroundColor: "#F4F4F4",
-                    height: 250,
-                    width: 250,
-                    borderRadius: 200,
-                    position: "absolute",
-                  }}
-                >
-                  <View
-                    style={{
+            <GestureDetector gesture={flingUpGesture}>
+              <GestureDetector gesture={flingDownGesture}>
+                <Animated.View
+                  style={[
+                    {
                       height: "100%",
                       width: "100%",
-                      position: "relative",
-                    }}
-                  >
-                    <View
-                      style={{ position: "absolute", top: "39%", left: -15 }}
-                    >
-                      <WheelTrianglePointer />
-                    </View>
-                  </View>
-                </View>
-              </View>
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: 500,
+                      position: "absolute",
+                      right: "-65%",
+                      top: "15%",
+                      transform: [{ rotate: `${rotation.value}deg` }],
+                    },
+                    positionAnimationstyle,
+                  ]}
+                >
+                  <Wheel currentValue={selectedHours} />
+                </Animated.View>
+              </GestureDetector>
             </GestureDetector>
+            <View style={{ position: "absolute", right: 45, top: "60%" }}>
+              <WheelTrianglePointer />
+            </View>
           </View>
+
           <View
             style={{
               width: "100%",
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-around",
-              marginTop: "auto"
+              marginTop: "auto",
             }}
           >
             <CustomText fontWeight="bold" size={3} style={{ flexGrow: 1 }}>
@@ -219,7 +171,7 @@ export default function Booking() {
             </CustomText>
             <Button
               onPress={() => {
-                router.push("/Parking/BookDetails")
+                router.push("/Parking/BookDetails");
               }}
               backgroundColor="#130F26"
               style={{ flexGrow: 1 }}
@@ -238,7 +190,7 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
     paddingHorizontal: 30,
     backgroundColor: "#F4F4F4",
-    height: "100%"
+    height: "100%",
   },
   addInsuranceScrollView: {
     justifyContent: "flex-start",
