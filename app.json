@@ -8,11 +8,11 @@
     "icon": "./assets/images/hoop.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/hoop1.png",
+      "image": "./assets/images/splash_screen.png",
       "backgroundColor": "#ffffff",
       "width": 200,
       "height": 200,
-      "resizeMode": "contain"
+      "resizeMode": "cover"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
