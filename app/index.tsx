@@ -1,9 +1,10 @@
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Animated, Image, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
-// import * as SplashScreen from "expo-router";
+import { UserContext } from "../store/user/UserContext";
+import { account } from "../appwrite/config";
 
 export default function SplashScreen() {
   const [fontsLoaded, fontError] = useFonts({
@@ -13,22 +14,11 @@ export default function SplashScreen() {
     "Avenir-Heavy": require("../assets/fonts/Avenir/Avenir-Heavy.ttf"),
   });
 
-  // const fade = useRef(new Animated.Value(0)).current;
-  // const scale = useRef(new Animated.Value(1)).current;
-
   useEffect(() => {
-    // Animated.timing(fade, { toValue: 1, useNativeDriver: true }).start();
-    // Animated.timing(scale, { toValue: 1.4, useNativeDriver: true }).start();
-
-    // Animated.timing(fade, { toValue: 1, useNativeDriver: true }).stop();
-    // Animated.timing(scale, { toValue: 1.4, useNativeDriver: true }).stop();
-
-    console.log(fontsLoaded, fontError);
     setTimeout(async () => {
       if (fontsLoaded || fontError) {
         try {
           router.push("/OnBoarding/OnBoarding");
-          // router.push("/Parking/Booking");
         } catch (err) {
           console.log(err);
         }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -8,15 +8,17 @@ import {
   Pressable,
 } from "react-native";
 import ParkingCard from "../../components/UI/ParkingCard";
-import cardData from "../../cards"; // Assuming the array is exported as 'cardData'
+import cardData from "../../cards";
 import Header from "../../components/UI/Header";
 import CustomText from "../../components/UI/CustomText";
 import Input from "../../components/UI/Input";
 import { Search } from "../../components/UI/Icons/Icons";
 import { Link, router } from "expo-router";
+import { UserContext } from "../../store/user/UserContext";
 
 export default function HomeScreen() {
   const [cards, setCards] = useState(cardData);
+  const state = useContext(UserContext);
 
   return (
     <ScrollView style={{ backgroundColor: "#F4F4FA", flex: 1 }}>
