@@ -10,6 +10,7 @@ import { useContext, useState } from "react";
 import { account } from "../../appwrite/config";
 import { UserContext } from "../../store/user/UserContext";
 import { ActivityIndicator } from "react-native-paper";
+import { AppwriteException } from "react-native-appwrite/src";
 
 export default function Login() {
   const { loginType } = useLocalSearchParams();
@@ -29,10 +30,13 @@ export default function Login() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function login() {
     try {
       await account.createEmailSession(loginInfo.email, loginInfo.password);
+
+      console.log("here");
 
       const { email, name } = await account.get();
 
@@ -40,10 +44,9 @@ export default function Login() {
 
       router.push("Parking/HomeScreen");
       setIsLoading(false);
-    } catch (err: { code: number; type: string; description: string }) {
+    } catch (err: unknown) {
       setIsLoading(false);
-      console.log(err.code);
-      Alert.alert("Error logging in");
+      setError((err as any).message);
     }
   }
 
@@ -98,6 +101,20 @@ export default function Login() {
                 </CustomText>
               </Link>
             </CustomText>
+
+            {error !== "" ? (
+              <View
+                style={{
+                  padding: 20,
+                  backgroundColor: "white",
+                  borderRadius: 8,
+                }}
+              >
+                <CustomText style={{ color: "#F43939" }}>{error}</CustomText>
+              </View>
+            ) : (
+              <></>
+            )}
             <Column gap={15} style={{ marginTop: "auto" }}>
               <Button onPress={handleSubmit} backgroundColor="#130F26">
                 {isLoading ? (

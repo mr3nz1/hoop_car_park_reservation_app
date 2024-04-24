@@ -18,7 +18,7 @@ import { UserContext } from "../../store/user/UserContext";
 
 export default function HomeScreen() {
   const [cards, setCards] = useState(cardData);
-  const state = useContext(UserContext);
+  const { name, email } = useContext(UserContext);
 
   return (
     <ScrollView style={{ backgroundColor: "#F4F4FA", flex: 1 }}>
@@ -35,7 +35,7 @@ export default function HomeScreen() {
             <View>
               <Link href="/Options/Profile">
                 <CustomText size={4} style={styles.greetings}>
-                  Hola, Diane 👋🏻
+                  Hola, {name} 👋🏻
                 </CustomText>
               </Link>
               <CustomText style={styles.description}>
