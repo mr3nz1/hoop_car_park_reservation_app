@@ -122,7 +122,9 @@ export default function HomeScreen() {
             />
             <CustomText>Car</CustomText>
           </Pressable>
-          <Pressable onPress={() => {}} style={styles.card}>
+          <Pressable onPress={() => {
+            router.push("/Parking/DetailCategory")
+          }} style={styles.card}>
             <Image source={require("../../../assets/images/bike.png")} />
             <CustomText>Bike</CustomText>
           </Pressable>
