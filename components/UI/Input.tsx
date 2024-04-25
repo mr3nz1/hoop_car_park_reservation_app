@@ -18,6 +18,7 @@ interface InputType {
   backgroundColor?: string;
   placeholderTextColor?: string;
   textInputStyle?: TextStyle;
+  onChangeText: (e: string) => void;
 }
 
 export default function Input({
@@ -29,6 +30,7 @@ export default function Input({
   backgroundColor,
   placeholderTextColor,
   textInputStyle,
+  onChangeText,
 }: InputType) {
   const styles = StyleSheet.create({
     container: {
@@ -60,6 +62,9 @@ export default function Input({
         cursorColor="#2D2D2D"
         secureTextEntry={hideContent}
         placeholderTextColor={placeholderTextColor}
+        onChangeText={(e) => {
+          onChangeText(e);
+        }}
       />
       {password && (
         <Image

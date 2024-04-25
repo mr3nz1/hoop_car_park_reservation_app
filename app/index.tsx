@@ -1,49 +1,64 @@
-import { router } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import { useEffect, useRef } from "react";
-import { Animated, Image, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
-// import * as SplashScreen from "expo-router";
+import { SplashScreen, router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { Image } from "react-native";
+import { View } from "react-native";
+import { StyleSheet } from "react-native";
+import * as SecureStore from "expo-secure-store";
+import { UserContext } from "../store/user/UserContext";
+import { account, client } from "../appwrite/config";
+import { Account } from "react-native-appwrite/src";
 
-export default function SplashScreen() {
+export default function Index() {
   const [fontsLoaded, fontError] = useFonts({
     "Avenir-Black": require("../assets/fonts/Avenir/Avenir-Black.ttf"),
     "Avenir-Light": require("../assets/fonts/Avenir/Avenir-Light.ttf"),
     "Avenir-Medium": require("../assets/fonts/Avenir/Avenir-Medium.ttf"),
     "Avenir-Heavy": require("../assets/fonts/Avenir/Avenir-Heavy.ttf"),
   });
-
-  // const fade = useRef(new Animated.Value(0)).current;
-  // const scale = useRef(new Animated.Value(1)).current;
+  const { setUser } = useContext(UserContext);
+  // const [isTokenValid, setIsTokenValid] = useState(true);
 
   useEffect(() => {
-    // Animated.timing(fade, { toValue: 1, useNativeDriver: true }).start();
-    // Animated.timing(scale, { toValue: 1.4, useNativeDriver: true }).start();
-
-    // Animated.timing(fade, { toValue: 1, useNativeDriver: true }).stop();
-    // Animated.timing(scale, { toValue: 1.4, useNativeDriver: true }).stop();
-
-    console.log(fontsLoaded, fontError);
-    setTimeout(async () => {
-      if (fontsLoaded || fontError) {
+    async function loadFonts() {
+      if (fontsLoaded) {
         try {
+          // if (jwt) {
+          //   const { email, name } = await account.get();
+          //   setUser({ email, name });
+          //   router.push("Parking/HomeScreen");
+          //   await SplashScreen.hideAsync();
+          // } else {
           router.push("/OnBoarding/OnBoarding");
-          // router.push("/Parking/Booking");
+          // }
         } catch (err) {
           console.log(err);
+          // setIsTokenValid(false);
         }
       }
-    }, 2000);
+    }
+    loadFonts();
   }, [fontsLoaded]);
+
+  // console.log(isTokenValid);
+
+  // useEffect(() => {
+  //   if (!isTokenValid) {
+  //     router.push("/OnBoarding/OnBoarding");
+  //   }
+  // }, [isTokenValid]);
+
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
+
+  useEffect(() => {}, []);
 
   return (
     <>
       <StatusBar hidden={true} />
       <View style={styles.container}>
-        {/* <Animated.Image
-          style={{ opacity: fade, transform: [{ scale: scale }] }}
-          source={require("../assets/images/splash_logo.png")}
-        /> */}
         <Image source={require("../assets/images/hoop.png")} />
       </View>
     </>
@@ -70,70 +85,3 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
 });
-
-// import { useEffect, useRef } from "react";
-// import { Animated, StyleSheet, View } from "react-native";
-
-// export default function Index() {
-//   const progress = useRef(new Animated.Value(0.5)).current;
-//   const scale = useRef(new Animated.Value(1)).current;
-
-//   useEffect(() => {
-//     Animated.loop(
-//       Animated.parallel([
-//         Animated.sequence([
-//           Animated.spring(progress, { toValue: 1, useNativeDriver: true }),
-//           Animated.spring(progress, {
-//             toValue: 0.5,
-//             useNativeDriver: true,
-//           }),
-//         ]),
-
-//         Animated.sequence([
-//           Animated.spring(scale, { toValue: 2, useNativeDriver: true }),
-//           Animated.spring(scale, { toValue: 1, useNativeDriver: true }),
-//         ]),
-//       ])
-//     ).start();
-//   }, []);
-
-//   return (
-//     <View style={styles.container}>
-//       <Animated.View
-//         style={[
-//           styles.square,
-//           {
-//             borderRadius: progress.interpolate({
-//               inputRange: [0, 1],
-//               outputRange: [100 / 4, 100 / 2],
-//             }),
-//             opacity: progress,
-//             transform: [
-//               { scale },
-//               {
-//                 rotate: progress.interpolate({
-//                   inputRange: [0.5, 1],
-//                   outputRange: [`${Math.PI}rad`, `${2 * Math.PI}rad`],
-//                 }),
-//               },
-//             ],
-//           },
-//         ]}
-//       />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-//   square: {
-//     width: 100,
-//     height: 100,
-//     backgroundColor: "rgba(0,0,256,0.5)",
-//   },
-// });

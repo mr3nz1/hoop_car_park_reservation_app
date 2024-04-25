@@ -5,12 +5,12 @@ import {
   Dimensions,
   FlatList,
 } from "react-native";
-import data from "../../data";
-import CustomText from "../../components/UI/CustomText";
+import data from "../../../data";
+import CustomText from "../../../components/UI/CustomText";
 import { useState } from "react";
-import Button from "../../components/UI/Button";
-import Column from "../../components/UI/Column";
-import Card from "../../components/Upgrade/Card";
+import Button from "../../../components/UI/Button";
+import Column from "../../../components/UI/Column";
+import Card from "../../../components/Upgrade/Card";
 import { router } from "expo-router";
 
 export default function Upgrade() {

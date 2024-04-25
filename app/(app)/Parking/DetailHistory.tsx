@@ -1,13 +1,13 @@
 import { Image, ScrollView, StyleSheet, View } from "react-native";
-import ParkingImageShowcase from "../../components/UI/ParkingImageShowcase";
+import ParkingImageShowcase from "../../../components/UI/ParkingImageShowcase";
 import { Colors } from "react-native/Libraries/NewAppScreen";
-import Column from "../../components/UI/Column";
-import CustomText from "../../components/UI/CustomText";
-import TagWrapper from "../../components/UI/TagWrapper";
-import Button from "../../components/UI/Button";
+import Column from "../../../components/UI/Column";
+import CustomText from "../../../components/UI/CustomText";
+import TagWrapper from "../../../components/UI/TagWrapper";
+import Button from "../../../components/UI/Button";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
-import ParkingDetails from "../../components/UI/ParkingDetails";
+import ParkingDetails from "../../../components/UI/ParkingDetails";
 import { StatusBar } from "expo-status-bar";
 
 export default function DetailHistory() {
