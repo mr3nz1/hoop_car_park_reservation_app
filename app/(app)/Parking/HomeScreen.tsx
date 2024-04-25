@@ -100,6 +100,9 @@ export default function HomeScreen() {
             backgroundColor="#2A344E"
             placeholder="Search"
             btnLeft={<Search />}
+            onChangeText={(text) => {
+              console.log("Text changed:", text);
+            }}
           />
         </View>
       </Header>
