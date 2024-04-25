@@ -1,4 +1,4 @@
-import { Account, Client } from "react-native-appwrite/src";
+import { Account, Client, Databases } from "react-native-appwrite/src";
 // import * as SecureStore from "expo-secure-store";
 
 // export const jwt = SecureStore.getItem("jwt");
@@ -14,3 +14,5 @@ client
 // }
 
 export let account: Account = new Account(client);
+
+export let databases = new Databases(client);

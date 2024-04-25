@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -15,10 +15,51 @@ import Input from "../../../components/UI/Input";
 import { Search } from "../../../components/UI/Icons/Icons";
 import { Link, router } from "expo-router";
 import { UserContext } from "../../../store/user/UserContext";
+import { databases } from "../../../appwrite/config";
+import { Query } from "react-native-appwrite/src";
+import { ActivityIndicator } from "react-native-paper";
 
 export default function HomeScreen() {
-  const [cards, setCards] = useState(cardData);
   const { name, email } = useContext(UserContext);
+  const [parkings, setParkings] = useState<
+    | {
+        id: string;
+        price: string;
+        timeAway: string;
+        name: string;
+        avenue: string;
+        imageUrl: string;
+      }[]
+    | any[]
+  >([]);
+
+  const loadParkings = useMemo(async () => {
+    const { documents } = await databases.listDocuments(
+      "6627e9abef0db39e0ebf",
+      "6627e9cd3cc6db2ea8e3",
+      [Query.limit(6)]
+    );
+    documents.forEach((current) => {
+      setParkings((prevValue) => {
+        return [
+          ...prevValue,
+          {
+            id: current.$id,
+            price: current.price,
+            avenue: current.avenue,
+            imageUrl: current.image_url,
+            name: current.name,
+          },
+        ];
+      });
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   loadParkings();
+  // }, []);
+
+  console.log(parkings);
 
   return (
     <ScrollView style={{ backgroundColor: "#F4F4FA", flex: 1 }}>
@@ -49,7 +90,9 @@ export default function HomeScreen() {
               }}
               style={styles.notificationIcon}
             >
-              <Image source={require("../../../assets/images/Notification.png")} />
+              <Image
+                source={require("../../../assets/images/Notification.png")}
+              />
             </Pressable>
           </View>
           <Input
@@ -57,6 +100,9 @@ export default function HomeScreen() {
             backgroundColor="#2A344E"
             placeholder="Search"
             btnLeft={<Search />}
+            onChangeText={(text) => {
+              console.log("Text changed:", text);
+            }}
           />
         </View>
       </Header>
@@ -71,7 +117,9 @@ export default function HomeScreen() {
             }}
             style={styles.card}
           >
-            <Image source={require("../../../assets/images/car_menu_icon.png")} />
+            <Image
+              source={require("../../../assets/images/car_menu_icon.png")}
+            />
             <CustomText>Car</CustomText>
           </Pressable>
           <Pressable onPress={() => {}} style={styles.card}>
@@ -91,20 +139,35 @@ export default function HomeScreen() {
 
       <View style={{ padding: 20, gap: 20, flex: 1 }}>
         <CustomText size={3}>Nearest Parking Spaces</CustomText>
-        {cards.map((card) => (
-          <ParkingCard
-            key={card.id}
-            children={<Image source={card.image} />}
-            head={card.title}
-            hello={card.greating}
-            hr={card.hr}
-            dollar={card.money}
-            time={card.time}
-            onprogress={() => {
-              router.push("/Parking/ParkingDetails");
-            }}
-          />
-        ))}
+        {parkings.length === 0 ? (
+          <ActivityIndicator color="black" size="large" />
+        ) : (
+          parkings.map((parking) => {
+            console.log(parking);
+            return (
+              <ParkingCard
+                key={parking.id}
+                children={
+                  <Image
+                    source={{
+                      uri: parking.imageUrl,
+                    }}
+                    height={120}
+                    width={100}
+                    style={{ borderRadius: 20 }}
+                  />
+                }
+                name={parking.name}
+                avenue={parking.avenue}
+                timeAway={"10 min"}
+                price={parking.price}
+                onprogress={() => {
+                  router.push("/Parking/ParkingDetails");
+                }}
+              />
+            );
+          })
+        )}
       </View>
     </ScrollView>
   );
