@@ -4,21 +4,19 @@ import CustomText from "./CustomText";
 import TagWrapper from "./TagWrapper";
 
 interface ParkingCardProps {
-  head: string;
-  hello: string;
-  dollar?: string;
-  hr: string;
-  time: string;
+  name: string;
+  avenue: string;
+  price?: string;
+  timeAway: string;
   onprogress?: () => void;
 }
 
 export default function ParkingCard({
   children,
-  head,
-  hello,
-  dollar,
-  hr,
-  time,
+  name,
+  avenue,
+  price,
+  timeAway,
   onprogress,
 }: React.PropsWithChildren<ParkingCardProps>) {
   const { width } = Dimensions.get("window");
@@ -30,13 +28,16 @@ export default function ParkingCard({
       <View style={styles.textContainer}>
         <View style={{ gap: 20 }}>
           <View>
-            <CustomText size={2}>{head}</CustomText>
-            <CustomText style={{ color: "#2D2D2D80" }}>{hello}</CustomText>
+            <CustomText size={2}>{name}</CustomText>
+            <CustomText style={{ color: "#2D2D2D80" }}>{avenue}</CustomText>
           </View>
           <View>
             <CustomText style={{ color: "#F43939" }}>
-              <CustomText size={2}>{`${dollar}`}</CustomText>
-              <CustomText size={0.5}>{hr}</CustomText>
+              <CustomText
+                size={2}
+                style={{ color: "#F43939", fontWeight: "bold" }}
+              >{`${price}`}</CustomText>
+              <CustomText style={{ color: "#F43939" }}>/hour</CustomText>
             </CustomText>
           </View>
         </View>
@@ -45,7 +46,7 @@ export default function ParkingCard({
         borderRadius={50}
         style={{ position: "absolute", top: 0, right: 0, margin: 10 }}
       >
-        <CustomText style={{ color: "#F43939" }}>{time}</CustomText>
+        <CustomText style={{ color: "#F43939" }}>{timeAway}</CustomText>
       </TagWrapper>
     </Pressable>
   );
