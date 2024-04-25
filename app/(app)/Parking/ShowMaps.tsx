@@ -1,10 +1,10 @@
 import { Image, StyleSheet, ScrollView, View } from "react-native";
-import Input from "../../components/UI/Input";
-import { Search } from "../../components/UI/Icons/Icons";
+import Input from "../../../components/UI/Input";
+import { Search } from "../../../components/UI/Icons/Icons";
 import MapView from "react-native-maps";
-import CustomText from "../../components/UI/CustomText";
-import Column from "../../components/UI/Column";
-import TagWrapper from "../../components/UI/TagWrapper";
+import CustomText from "../../../components/UI/CustomText";
+import Column from "../../../components/UI/Column";
+import TagWrapper from "../../../components/UI/TagWrapper";
 import { StatusBar } from "expo-status-bar";
 
 export default function ShowMaps() {
@@ -28,7 +28,7 @@ export default function ShowMaps() {
           }}
         >
           <Image
-            source={require("../../assets/images/Group 247 (1).png")}
+            source={require("../../../assets/images/Group 247 (1).png")}
             style={{ width: "100%", height: "100%" }}
           />
           <View
@@ -66,9 +66,9 @@ export default function ShowMaps() {
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{ gap: 20 }}
               >
-                <Image source={require("../../assets/images/parking.png")} />
-                <Image source={require("../../assets/images/road.png")} />
-                <Image source={require("../../assets/images/parking.png")} />
+                <Image source={require("../../../assets/images/parking.png")} />
+                <Image source={require("../../../assets/images/road.png")} />
+                <Image source={require("../../../assets/images/parking.png")} />
               </ScrollView>
             </Column>
           </View>

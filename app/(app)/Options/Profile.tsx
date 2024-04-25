@@ -1,7 +1,7 @@
 import { Image, Pressable, View, ScrollView, StyleSheet } from "react-native";
-import Column from "../../components/UI/Column";
-import CustomText from "../../components/UI/CustomText";
-import Header from "../../components/UI/Header";
+import Column from "../../../components/UI/Column";
+import CustomText from "../../../components/UI/CustomText";
+import Header from "../../../components/UI/Header";
 import {
   SettingsIcon,
   FAQIcon,
@@ -11,11 +11,15 @@ import {
   TermsAndConditionsIcon,
   UserIcon,
   HeadphonesIcon,
-} from "../../components/UI/Icons/Icons";
-import Button from "../../components/UI/Button";
+} from "../../../components/UI/Icons/Icons";
+import Button from "../../../components/UI/Button";
 import { router } from "expo-router";
+import { useContext } from "react";
+import { UserContext } from "../../../store/user/UserContext";
+import { account } from "../../../appwrite/config";
 
 export default function Profile() {
+  const { setUser, sessionId } = useContext(UserContext);
   return (
     <>
       <ScrollView contentContainerStyle={styles.container}>
@@ -35,7 +39,9 @@ export default function Profile() {
                 gap: 20,
               }}
             >
-              <Image source={require("../../assets/images/Ellipse 19.png")} />
+              <Image
+                source={require("../../../assets/images/Ellipse 19.png")}
+              />
               <Column gap={0.5}>
                 <CustomText style={{ color: "#8B8E98" }}>Welcome</CustomText>
                 <CustomText size={3} style={{ color: "white" }}>
@@ -43,9 +49,11 @@ export default function Profile() {
                 </CustomText>
               </Column>
               <Pressable
-              onPress={() => {
-                router.push("/Auth/Login")
-              }}
+                onPress={() => {
+                  setUser({ name: "", email: "", sessionId: "" });
+                  account.deleteSession(sessionId);
+                  router.push("/Auth/Login");
+                }}
                 style={{
                   backgroundColor: "#2A344E",
                   padding: 20,

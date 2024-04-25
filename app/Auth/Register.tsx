@@ -26,17 +26,30 @@ export default function Register({ usePhone = true }: RegisterType) {
     passwordAgain: "",
     phone: "",
   });
+  const { setUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function register(name: string, email: string, password: string) {
+  async function register(
+    name: string,
+    email: string,
+    password: string,
+    phone: string
+  ) {
     try {
+      console.log(email, password, phone)
       const res = await account.create(ID.unique(), email, password, name);
+      console.log("ran")
+      const { $id } = await account.createEmailSession(email, password);
+      await account.updatePhone(phone, password);
+      setUser({ email, name, sessionId: $id });
       setIsLoading(false);
-      router.push("/Auth/email");
+      router.push("/Parking/HomeScreen");
     } catch (e) {
       const err = e as AppwriteException;
       setError(err.message);
+      setIsLoading(false);
+      console.log(err);
     }
   }
 
@@ -62,7 +75,12 @@ export default function Register({ usePhone = true }: RegisterType) {
     }
 
     setIsLoading(true);
-    return register(userInfo.name, userInfo.email, userInfo.password);
+    return register(
+      userInfo.name,
+      userInfo.email,
+      userInfo.password,
+      userInfo.phone
+    );
   }
 
   return (

@@ -1,10 +1,10 @@
 import { Image, Pressable, ScrollView, StyleSheet, View } from "react-native";
-import CustomText from "../../components/UI/CustomText";
+import CustomText from "../../../components/UI/CustomText";
 import { useState } from "react";
-import Column from "../../components/UI/Column";
+import Column from "../../../components/UI/Column";
 import { DraxProvider, DraxView } from "react-native-drax";
-import Space from "../../components/ChooseSpace/Space";
-import Button from "../../components/UI/Button";
+import Space from "../../../components/ChooseSpace/Space";
+import Button from "../../../components/UI/Button";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 
@@ -86,7 +86,7 @@ export default function ChooseSpace() {
               style={{ height: 180, width: 1, backgroundColor: "red" }}
             ></View>
           <Space /> */}
-            <Image source={require("../../assets/images/chooseParking.png")} />
+            <Image source={require("../../../assets/images/chooseParking.png")} />
           </View>
         </ScrollView>
 

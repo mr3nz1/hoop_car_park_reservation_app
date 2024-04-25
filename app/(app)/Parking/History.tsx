@@ -1,17 +1,17 @@
 import React from "react";
-import CardsProps from "../../components/UI/ParkingCard";
-import cardData from "../../cards";
+import CardsProps from "../../../components/UI/ParkingCard";
+import cardData from "../../../cards";
 import { ScrollView, Image, Pressable } from "react-native";
-import CustomText from "../../components/UI/CustomText";
+import CustomText from "../../../components/UI/CustomText";
 import { useState } from "react";
 import { View, StyleSheet } from "react-native";
-import Input from "../../components/UI/Input";
+import Input from "../../../components/UI/Input";
 import {
   Filter,
   LocateIcon,
   Search,
   TagBg,
-} from "../../components/UI/Icons/Icons";
+} from "../../../components/UI/Icons/Icons";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 

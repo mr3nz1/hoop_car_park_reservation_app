@@ -1,9 +1,21 @@
-import { Stack } from "expo-router";
+import { SplashScreen, Stack, router } from "expo-router";
 import NavigationHeader from "../../components/UI/NavigationHeader";
 import { Pressable } from "react-native";
 import { Filter } from "../../components/UI/Icons/Icons";
+import UserProvider, { UserContext } from "../../store/user/UserContext";
+import { useFonts } from "expo-font";
+import { useCallback, useContext, useState } from "react";
 
-export default function AppStack() {
+export default function RootLayout() {
+  const { email, name, sessionId } = useContext(UserContext);
+  const isLoggedIn = email !== "" && name !== "" && sessionId !== "";
+
+  console.log("isLoggedIn", isLoggedIn);
+
+  if (!isLoggedIn) {
+    return router.replace("/Auth/email");
+  }
+
   return (
     <Stack
       screenOptions={{ statusBarStyle: "auto", statusBarTranslucent: true }}
@@ -192,11 +204,6 @@ export default function AppStack() {
             <NavigationHeader title="Upgrade" navigation={navigation} />
           ),
         }}
-      />
-
-      <Stack.Screen
-        name="OnBoarding/OnBoarding"
-        options={{ headerShown: false }}
       />
     </Stack>
   );

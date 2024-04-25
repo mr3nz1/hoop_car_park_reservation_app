@@ -1,8 +1,8 @@
 import { Image, Pressable, View, ScrollView, Easing } from "react-native";
-import CustomText from "../../components/UI/CustomText";
+import CustomText from "../../../components/UI/CustomText";
 import { StyleSheet } from "react-native";
-import Column from "../../components/UI/Column";
-import { WheelTrianglePointer } from "../../components/UI/Icons/Icons";
+import Column from "../../../components/UI/Column";
+import { WheelTrianglePointer } from "../../../components/UI/Icons/Icons";
 import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
@@ -16,9 +16,9 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
-import Button from "../../components/UI/Button";
+import Button from "../../../components/UI/Button";
 import { router } from "expo-router";
-import Wheel from "../../components/Booking/Wheel";
+import Wheel from "../../../components/Booking/Wheel";
 import { useEffect, useRef, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { useValueEffect } from "@shopify/react-native-skia";
@@ -109,23 +109,23 @@ export default function Booking() {
                 showsVerticalScrollIndicator={false}
               >
                 <Pressable style={styles.addInsuranceItemScrollView}>
-                  <Image source={require("../../assets/images/petrol.png")} />
+                  <Image source={require("../../../assets/images/petrol.png")} />
                 </Pressable>
                 <Pressable style={styles.addInsuranceItemScrollView}>
                   <Image
-                    source={require("../../assets/images/car_other.png")}
+                    source={require("../../../assets/images/car_other.png")}
                   />
                 </Pressable>
                 <Pressable style={styles.addInsuranceItemScrollView}>
                   <Image
-                    source={require("../../assets/images/screw_driver.png")}
+                    source={require("../../../assets/images/screw_driver.png")}
                   />
                 </Pressable>
                 <Pressable style={styles.addInsuranceItemScrollView}>
-                  <Image source={require("../../assets/images/petrol.png")} />
+                  <Image source={require("../../../assets/images/petrol.png")} />
                 </Pressable>
                 <Pressable style={styles.addInsuranceItemScrollView}>
-                  <Image source={require("../../assets/images/petrol.png")} />
+                  <Image source={require("../../../assets/images/petrol.png")} />
                 </Pressable>
               </ScrollView>
             </Column>

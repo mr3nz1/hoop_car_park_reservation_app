@@ -1,12 +1,14 @@
+import { useFonts } from "expo-font";
 import { SplashScreen, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useCallback, useContext, useEffect, useRef } from "react";
-import { Animated, Image, StyleSheet, Text, View } from "react-native";
-import { useFonts } from "expo-font";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { Image } from "react-native";
+import { View } from "react-native";
+import { StyleSheet } from "react-native";
+import * as SecureStore from "expo-secure-store";
 import { UserContext } from "../store/user/UserContext";
-import { account } from "../appwrite/config";
-
-SplashScreen.preventAutoHideAsync();
+import { account, client } from "../appwrite/config";
+import { Account } from "react-native-appwrite/src";
 
 export default function Index() {
   const [fontsLoaded, fontError] = useFonts({
@@ -15,22 +17,48 @@ export default function Index() {
     "Avenir-Medium": require("../assets/fonts/Avenir/Avenir-Medium.ttf"),
     "Avenir-Heavy": require("../assets/fonts/Avenir/Avenir-Heavy.ttf"),
   });
+  const { setUser } = useContext(UserContext);
+  // const [isTokenValid, setIsTokenValid] = useState(true);
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-      router.push("/OnBoarding/OnBoarding");
+  useEffect(() => {
+    async function loadFonts() {
+      if (fontsLoaded) {
+        try {
+          // if (jwt) {
+          //   const { email, name } = await account.get();
+          //   setUser({ email, name });
+          //   router.push("Parking/HomeScreen");
+          //   await SplashScreen.hideAsync();
+          // } else {
+          router.push("/OnBoarding/OnBoarding");
+          // }
+        } catch (err) {
+          console.log(err);
+          // setIsTokenValid(false);
+        }
+      }
     }
+    loadFonts();
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  // console.log(isTokenValid);
+
+  // useEffect(() => {
+  //   if (!isTokenValid) {
+  //     router.push("/OnBoarding/OnBoarding");
+  //   }
+  // }, [isTokenValid]);
+
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
+
+  useEffect(() => {}, []);
 
   return (
     <>
       <StatusBar hidden={true} />
-      <View style={styles.container} onLayout={onLayoutRootView}>
+      <View style={styles.container}>
         <Image source={require("../assets/images/hoop.png")} />
       </View>
     </>

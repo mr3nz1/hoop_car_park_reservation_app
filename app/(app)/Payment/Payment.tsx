@@ -1,10 +1,10 @@
 import { ScrollView, StyleSheet, View } from "react-native";
-import Column from "../../components/UI/Column";
-import ParkingImageShowcase from "../../components/UI/ParkingImageShowcase";
-import ParkingDetails from "../../components/UI/ParkingDetails";
-import Input from "../../components/UI/Input";
-import CustomText from "../../components/UI/CustomText";
-import Button from "../../components/UI/Button";
+import Column from "../../../components/UI/Column";
+import ParkingImageShowcase from "../../../components/UI/ParkingImageShowcase";
+import ParkingDetails from "../../../components/UI/ParkingDetails";
+import Input from "../../../components/UI/Input";
+import CustomText from "../../../components/UI/CustomText";
+import Button from "../../../components/UI/Button";
 import { Link } from "expo-router";
 
 export default function Payment() {

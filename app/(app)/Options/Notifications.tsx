@@ -1,6 +1,6 @@
-import NotificationItem from "../../components/Notifications/Item";
-import Column from "../../components/UI/Column";
-import CustomText from "../../components/UI/CustomText";
+import NotificationItem from "../../../components/Notifications/Item";
+import Column from "../../../components/UI/Column";
+import CustomText from "../../../components/UI/CustomText";
 import { ScrollView, Pressable, View, StyleSheet } from "react-native";
 
 export default function Notifications() {

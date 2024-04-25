@@ -1,11 +1,11 @@
 import { ScrollView, StyleSheet, Switch, View } from "react-native";
-import AccordionContainer from "../../components/UI/Accordion/AccordionContainer";
-import Column from "../../components/UI/Column";
-import CustomText from "../../components/UI/CustomText";
+import AccordionContainer from "../../../components/UI/Accordion/AccordionContainer";
+import Column from "../../../components/UI/Column";
+import CustomText from "../../../components/UI/CustomText";
 import { useState } from "react";
-import Button from "../../components/UI/Button";
+import Button from "../../../components/UI/Button";
 import { Link, router } from "expo-router";
-import { EmailIcon } from "../../components/UI/Icons/Icons";
+import { EmailIcon } from "../../../components/UI/Icons/Icons";
 
 export default function PaymentDetails() {
   const [isSwitchEnabled, setIsSwitchEnabled] = useState(false);

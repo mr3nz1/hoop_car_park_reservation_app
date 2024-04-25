@@ -13,6 +13,7 @@ export default function userReducer(
         ...state,
         name: action.payload.name,
         email: action.payload.email,
+        sessionId: action.payload.sessionId,
       };
 
     case "DELETE_USER":

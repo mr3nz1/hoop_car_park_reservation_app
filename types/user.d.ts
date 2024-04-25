@@ -1,11 +1,13 @@
 export interface UserInfoType {
   name: string;
   email: string;
+  sessionId: string;
 }
 
 export interface UserState {
   name: string;
   email: string;
+  sessionId: string;
   setUser: (userInfo: UserInfoType) => void;
   deleteUser: () => void;
 }

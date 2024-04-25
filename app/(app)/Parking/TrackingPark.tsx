@@ -1,15 +1,15 @@
 import { Image, Pressable, StyleSheet, View } from "react-native";
-import CustomText from "../../components/UI/CustomText";
-import TagWrapper from "../../components/UI/TagWrapper";
+import CustomText from "../../../components/UI/CustomText";
+import TagWrapper from "../../../components/UI/TagWrapper";
 import {
   Attention,
   DottedLine,
   Location,
   LocationAndLine,
   Time,
-} from "../../components/UI/Icons/Icons";
-import Column from "../../components/UI/Column";
-import Button from "../../components/UI/Button";
+} from "../../../components/UI/Icons/Icons";
+import Column from "../../../components/UI/Column";
+import Button from "../../../components/UI/Button";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "expo-router";
 import {
@@ -68,7 +68,7 @@ export default function TrackingPark() {
       <StatusBar style="dark" />
       <GestureHandlerRootView>
         <View style={styles.container}>
-          <Image source={require("../../assets/images/maps.png")} />
+          <Image source={require("../../../assets/images/maps.png")} />
 
           <GestureDetector gesture={flingGestureUp}>
             <GestureDetector gesture={flingGestureDown}>
@@ -167,7 +167,7 @@ export default function TrackingPark() {
                       }}
                     >
                       <Image
-                        source={require("../../assets/images/Info Circle (1).png")}
+                        source={require("../../../assets/images/Info Circle (1).png")}
                       />
                     </Pressable>
                     <Button

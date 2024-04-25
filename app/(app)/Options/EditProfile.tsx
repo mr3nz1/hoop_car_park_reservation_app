@@ -1,9 +1,9 @@
 import { Image, Pressable, ScrollView, StyleSheet, View } from "react-native";
-import { PenEdit } from "../../components/UI/Icons/Icons";
-import Column from "../../components/UI/Column";
-import CustomText from "../../components/UI/CustomText";
-import Input from "../../components/UI/Input";
-import Button from "../../components/UI/Button";
+import { PenEdit } from "../../../components/UI/Icons/Icons";
+import Column from "../../../components/UI/Column";
+import CustomText from "../../../components/UI/CustomText";
+import Input from "../../../components/UI/Input";
+import Button from "../../../components/UI/Button";
 import { router } from "expo-router";
 
 export default function EditProfile() {
@@ -24,7 +24,7 @@ export default function EditProfile() {
           }}
         >
           <View style={{ borderRadius: 100, position: "relative" }}>
-            <Image source={require("../../assets/images/Ellipse 19.png")} />
+            <Image source={require("../../../assets/images/Ellipse 19.png")} />
             <Pressable
               style={{
                 backgroundColor: "#F43939",

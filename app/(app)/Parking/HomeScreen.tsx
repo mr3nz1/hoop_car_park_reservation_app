@@ -7,14 +7,14 @@ import {
   Image,
   Pressable,
 } from "react-native";
-import ParkingCard from "../../components/UI/ParkingCard";
-import cardData from "../../cards";
-import Header from "../../components/UI/Header";
-import CustomText from "../../components/UI/CustomText";
-import Input from "../../components/UI/Input";
-import { Search } from "../../components/UI/Icons/Icons";
+import ParkingCard from "../../../components/UI/ParkingCard";
+import cardData from "../../../cards";
+import Header from "../../../components/UI/Header";
+import CustomText from "../../../components/UI/CustomText";
+import Input from "../../../components/UI/Input";
+import { Search } from "../../../components/UI/Icons/Icons";
 import { Link, router } from "expo-router";
-import { UserContext } from "../../store/user/UserContext";
+import { UserContext } from "../../../store/user/UserContext";
 
 export default function HomeScreen() {
   const [cards, setCards] = useState(cardData);
@@ -49,7 +49,7 @@ export default function HomeScreen() {
               }}
               style={styles.notificationIcon}
             >
-              <Image source={require("../../assets/images/Notification.png")} />
+              <Image source={require("../../../assets/images/Notification.png")} />
             </Pressable>
           </View>
           <Input
@@ -71,19 +71,19 @@ export default function HomeScreen() {
             }}
             style={styles.card}
           >
-            <Image source={require("../../assets/images/car_menu_icon.png")} />
+            <Image source={require("../../../assets/images/car_menu_icon.png")} />
             <CustomText>Car</CustomText>
           </Pressable>
           <Pressable onPress={() => {}} style={styles.card}>
-            <Image source={require("../../assets/images/bike.png")} />
+            <Image source={require("../../../assets/images/bike.png")} />
             <CustomText>Bike</CustomText>
           </Pressable>
           <View style={styles.card}>
-            <Image source={require("../../assets/images/bus.png")} />
+            <Image source={require("../../../assets/images/bus.png")} />
             <CustomText>Bus</CustomText>
           </View>
           <View style={styles.card}>
-            <Image source={require("../../assets/images/van.png")} />
+            <Image source={require("../../../assets/images/van.png")} />
             <CustomText>Van</CustomText>
           </View>
         </View>

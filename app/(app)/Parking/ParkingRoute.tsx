@@ -1,6 +1,6 @@
 import { Image, StyleSheet, View } from "react-native";
-import CustomText from "../../components/UI/CustomText";
-import { TurnLeft } from "../../components/UI/Icons/Icons";
+import CustomText from "../../../components/UI/CustomText";
+import { TurnLeft } from "../../../components/UI/Icons/Icons";
 import { StatusBar } from "expo-status-bar";
 
 export default function ParkingRoute() {
@@ -10,7 +10,7 @@ export default function ParkingRoute() {
       <View style={{}}>
         <Image
           style={{ width: "100%", height: "100%" }}
-          source={require("../../assets/images/parking_route.png")}
+          source={require("../../../assets/images/parking_route.png")}
         />
 
         <View style={styles.cardContainer}>

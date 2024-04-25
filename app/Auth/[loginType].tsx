@@ -11,6 +11,7 @@ import { account } from "../../appwrite/config";
 import { UserContext } from "../../store/user/UserContext";
 import { ActivityIndicator } from "react-native-paper";
 import { AppwriteException } from "react-native-appwrite/src";
+import * as SecureStore from "expo-secure-store";
 
 export default function Login() {
   const { loginType } = useLocalSearchParams();
@@ -36,11 +37,13 @@ export default function Login() {
     try {
       await account.createEmailSession(loginInfo.email, loginInfo.password);
 
-      console.log("here");
+      // console.log("Here")
+      const { email, name, $id } = await account.get();
 
-      const { email, name } = await account.get();
+      // const { jwt } = await account.createJWT();
+      // await SecureStore.setItemAsync("jwt", jwt);
 
-      setUser({ email, name });
+      setUser({ email, name, sessionId: $id });
 
       router.push("Parking/HomeScreen");
       setIsLoading(false);

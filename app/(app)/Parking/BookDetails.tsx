@@ -1,10 +1,10 @@
 import { Image, ScrollView, StyleSheet, View } from "react-native";
-import Column from "../../components/UI/Column";
-import ParkingImageShowcase from "../../components/UI/ParkingImageShowcase";
-import CustomText from "../../components/UI/CustomText";
-import TagWrapper from "../../components/UI/TagWrapper";
+import Column from "../../../components/UI/Column";
+import ParkingImageShowcase from "../../../components/UI/ParkingImageShowcase";
+import CustomText from "../../../components/UI/CustomText";
+import TagWrapper from "../../../components/UI/TagWrapper";
 import { LinearGradient } from "expo-linear-gradient";
-import Button from "../../components/UI/Button";
+import Button from "../../../components/UI/Button";
 import { Link, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 
@@ -46,7 +46,7 @@ export default function BookDetails() {
               <View
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
-                <Image source={require("../../assets/images/Location.png")} />
+                <Image source={require("../../../assets/images/Location.png")} />
                 <CustomText style={styles.red}>$10/h</CustomText>
               </View>
             </TagWrapper>
@@ -72,7 +72,7 @@ export default function BookDetails() {
               }}
             >
               <TagWrapper>
-                <Image source={require("../../assets/images/Location.png")} />
+                <Image source={require("../../../assets/images/Location.png")} />
               </TagWrapper>
 
               <Column gap={1}>
@@ -96,7 +96,7 @@ export default function BookDetails() {
             >
               <TagWrapper>
                 <Image
-                  source={require("../../assets/images/Time Circle.png")}
+                  source={require("../../../assets/images/Time Circle.png")}
                 />
               </TagWrapper>
 
@@ -129,7 +129,7 @@ export default function BookDetails() {
               }}
             >
               <TagWrapper style={{ paddingHorizontal: 8 }}>
-                <Image source={require("../../assets/images/Activity.png")} />
+                <Image source={require("../../../assets/images/Activity.png")} />
               </TagWrapper>
               <CustomText size={1.5}>Include Insurance</CustomText>
             </View>

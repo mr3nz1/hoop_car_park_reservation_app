@@ -6,14 +6,14 @@ import {
   View,
   FlatList,
 } from "react-native";
-import NavigationHeader from "../../components/UI/NavigationHeader";
+import NavigationHeader from "../../../components/UI/NavigationHeader";
 import { LinearGradient } from "expo-linear-gradient";
-import CustomText from "../../components/UI/CustomText";
+import CustomText from "../../../components/UI/CustomText";
 import { RadioButton } from "react-native-paper";
 import { useState } from "react";
-import Button from "../../components/UI/Button";
-import Column from "../../components/UI/Column";
-import Option from "../../components/PlanPayment/Option";
+import Button from "../../../components/UI/Button";
+import Column from "../../../components/UI/Column";
+import Option from "../../../components/PlanPayment/Option";
 
 export default function PlanPayment() {
   const [subscription, setsubscription] = useState("y");
@@ -33,7 +33,7 @@ export default function PlanPayment() {
           }}
         >
           <View style={{}}>
-            <Image source={require("../../assets/images/payment.png")} />
+            <Image source={require("../../../assets/images/payment.png")} />
           </View>
 
           <Column

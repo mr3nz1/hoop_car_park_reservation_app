@@ -1,18 +1,18 @@
 import { StatusBar } from "expo-status-bar";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
-import Column from "../../components/UI/Column";
-import CustomText from "../../components/UI/CustomText";
-import Input from "../../components/UI/Input";
-import Button from "../../components/UI/Button";
+import Column from "../../../components/UI/Column";
+import CustomText from "../../../components/UI/CustomText";
+import Input from "../../../components/UI/Input";
+import Button from "../../../components/UI/Button";
 import { Link, router } from "expo-router";
-import { EmailIcon, MessageIcon } from "../../components/UI/Icons/Icons";
+import { EmailIcon, MessageIcon } from "../../../components/UI/Icons/Icons";
 
 export default function PaymentSuccess() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Column style={styles.rowContainer} gap={20}>
         <Column gap={30} style={styles.rowContainer}>
-          <Image source={require("../../assets/images/payment_img_bg.png")} />
+          <Image source={require("../../../assets/images/payment_img_bg.png")} />
 
           <Column
             style={{ justifyContent: "center", alignItems: "center" }}

@@ -11,6 +11,7 @@ import userReducer from "./userReducer";
 interface UserContextType {
   name: string;
   email: string;
+  sessionId: string;
   setUser: (userInfo: UserInfoType) => void;
   deleteUser: () => void;
 }
@@ -18,6 +19,7 @@ interface UserContextType {
 export const UserContext = createContext<UserContextType>({
   name: "",
   email: "", // Corrected to an empty string
+  sessionId: "",
   setUser: (userInfo: UserInfoType) => {},
   deleteUser: () => {},
 });
@@ -25,6 +27,7 @@ export const UserContext = createContext<UserContextType>({
 const initialState: UserState = {
   name: "",
   email: "", // Corrected to an empty string
+  sessionId: "",
   setUser: (userInfo: UserInfoType) => {},
   deleteUser: () => {},
 };
