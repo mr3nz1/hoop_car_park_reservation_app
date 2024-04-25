@@ -37,12 +37,7 @@ export default function Login() {
     try {
       await account.createEmailSession(loginInfo.email, loginInfo.password);
 
-      // console.log("Here")
       const { email, name, $id } = await account.get();
-
-      // const { jwt } = await account.createJWT();
-      // await SecureStore.setItemAsync("jwt", jwt);
-
       setUser({ email, name, sessionId: $id });
 
       router.push("Parking/HomeScreen");
