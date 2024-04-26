@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import ParkingImageShowcase from "../../../components/UI/ParkingImageShowcase";
 import ParkingDetails from "../../../components/UI/ParkingDetails";
@@ -10,43 +10,41 @@ import { databases } from "../../../appwrite/config";
 import { Query } from "react-native-appwrite/src";
 import { StatusBar } from "expo-status-bar";
 
-interface Parking {
-  id: string;
-  price: string;
-  timeAway: string;
-  name: string;
-  avenue: string;
-  imageUrl: string;
-}
 
 export default function DetailHistory() {
-  const [parkings, setParkings] = useState<Parking[]>([]);
+  const [parkings, setParkings] = useState<
+  | {
+      id: string;
+      price: string;
+      timeAway: string;
+      name: string;
+      avenue: string;
+      imageUrl: string;
+    }[]
+  | any[]
+>([]);
 
-  useEffect(() => {
-    const fetchParkings = async () => {
-      try {
-        const { documents } = await databases.listDocuments(
-          "6627e9abef0db39e0ebf",
-          "6627e9cd3cc6db2ea8e3",
-          [Query.limit(6)]
-        );
-        const parkingData = documents.map((current) => ({
+const loadParkings = useMemo(async () =>{
+  const {documents} = await databases.listDocuments(
+    "6627e9abef0db39e0ebf",
+    "6627e9cd3cc6db2ea8e3",
+    [Query.limit(6)]
+  );
+  documents.forEach((current) => {
+    setParkings((prevValue) => {
+      return [
+        ...prevValue,
+        {
           id: current.$id,
           price: current.price,
           avenue: current.avenue,
           imageUrl: current.image_url,
           name: current.name,
-          timeAway: "7 mins",
-        }));
-        setParkings(parkingData);
-      } catch (error) {
-        console.error("Error loading parkings:", error);
-        // Handle error here, e.g., show a message to the user
-      }
-    };
-
-    fetchParkings();
-  }, []);
+        },
+      ];
+    });
+  });
+}, [])
 
   return (
     <>
@@ -59,7 +57,7 @@ export default function DetailHistory() {
             name={parking.name}
             location={parking.avenue}
             distanceAway="500 m away"
-            timeAway={parking.timeAway}
+            timeAway="7 mins" // You can customize this as needed
           />
         ))}
         <CustomText size={2} style={[styles.textCenter, styles.gray]}>
