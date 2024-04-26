@@ -28,6 +28,7 @@ export default function Login() {
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
+    phone: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -35,10 +36,19 @@ export default function Login() {
 
   async function login() {
     try {
-      await account.createEmailSession(loginInfo.email, loginInfo.password);
-
-      const { email, name, $id } = await account.get();
-      setUser({ email, name, sessionId: $id });
+      if (loginInfo.email !== "") {
+        await account.createEmailSession(loginInfo.email, loginInfo.password);
+        const { email, name, $id } = await account.get();
+        setUser({ email, name, sessionId: $id, authType: "" });
+      } else {
+        console.log(loginInfo.phone, loginInfo.password);
+        await account.createPhoneSession(
+          "662a20c22afe657c8041",
+          loginInfo.phone
+        );
+        const { email, name, $id } = await account.get();
+        setUser({ email, name, sessionId: $id, authType: "" });
+      }
 
       router.push("Parking/HomeScreen");
       setIsLoading(false);
@@ -66,7 +76,15 @@ export default function Login() {
         <View style={styles.formContainer}>
           <Column gap={20} style={{ height: "100%" }}>
             {usePhone ? (
-              <Input onChangeText={(e) => {}} placeholder={"+62"} />
+              <Input
+                onChangeText={(e) => {
+                  setLoginInfo((prevLoginInfo) => ({
+                    ...prevLoginInfo,
+                    phone: e,
+                  }));
+                }}
+                placeholder={"+62"}
+              />
             ) : (
               <Input
                 onChangeText={(e) => {

@@ -12,6 +12,7 @@ interface UserContextType {
   name: string;
   email: string;
   sessionId: string;
+  authType: string;
   setUser: (userInfo: UserInfoType) => void;
   deleteUser: () => void;
 }
@@ -20,6 +21,7 @@ export const UserContext = createContext<UserContextType>({
   name: "",
   email: "", // Corrected to an empty string
   sessionId: "",
+  authType: "",
   setUser: (userInfo: UserInfoType) => {},
   deleteUser: () => {},
 });
@@ -28,6 +30,7 @@ const initialState: UserState = {
   name: "",
   email: "", // Corrected to an empty string
   sessionId: "",
+  authType: "",
   setUser: (userInfo: UserInfoType) => {},
   deleteUser: () => {},
 };

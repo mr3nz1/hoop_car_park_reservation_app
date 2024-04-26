@@ -6,32 +6,83 @@ import CustomText from "../../../components/UI/CustomText";
 import TagWrapper from "../../../components/UI/TagWrapper";
 import Button from "../../../components/UI/Button";
 import { LinearGradient } from "expo-linear-gradient";
-import { Link } from "expo-router";
+import { Link, useLocalSearchParams, useRouter } from "expo-router";
 import ParkingDetails from "../../../components/UI/ParkingDetails";
 import { StatusBar } from "expo-status-bar";
+import { useMemo, useState } from "react";
+import { databases } from "../../../appwrite/config";
+import { Query } from "react-native-appwrite/src";
+import { ActivityIndicator } from "react-native-paper";
 
 export default function ParkingDetail() {
+  const { id } = useLocalSearchParams<{ id: string }>();
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [parking, setParking] = useState<
+    | {
+        id: string;
+        price: string;
+        timeAway: string;
+        name: string;
+        avenue: string;
+        imageUrl: string;
+        description: string
+      }
+    | any
+  >({});
+
+  const loadParking = useMemo(async () => {
+    const { documents } = await databases.listDocuments(
+      "6627e9abef0db39e0ebf",
+      "6627e9cd3cc6db2ea8e3",
+      [Query.equal("$id", [id!])]
+    );
+
+    setParking({
+      id: documents[0].$id,
+      price: documents[0].price,
+      avenue: documents[0].avenue,
+      imageUrl: documents[0].image_url,
+      name: documents[0].name,
+      description: documents[0].description
+    });
+
+    setIsLoading(false);
+  }, []);
+
+  console.log(parking);
+
   return (
     <>
       <StatusBar style="dark" translucent={true} />
       <ScrollView style={styles.container}>
         <Column gap={40}>
-          <ParkingImageShowcase showLocationBtn={true} />
-
-          <ParkingDetails
-            name="Graha Mall"
-            location="123 Dhaka Street"
-            distanceAway="500 m away"
-            timeAway="7 mins"
+          <ParkingImageShowcase
+            imageUrl={parking.imageUrl}
+            showLocationBtn={true}
           />
+
+          {isLoading ? (
+            <ActivityIndicator color="black" />
+          ) : (
+            <ParkingDetails
+              name={parking.name}
+              location={parking.avenue}
+              distanceAway={"500 m away"}
+              timeAway="7 mins"
+            />
+          )}
 
           <Column gap={2} style={{ paddingHorizontal: 30, paddingBottom: 100 }}>
             <CustomText size={2}>Information</CustomText>
-            <CustomText size={1.5} style={styles.gray}>
-              24/7 parking facility with cctv camera, professional security
-              guard, chair disble, floor parking list facilities. You will get
-              hassle parking facilities with 35% discount on first parking...
-            </CustomText>
+            {isLoading ? (
+              <ActivityIndicator color="black" />
+            ) : (
+              <CustomText size={1.5} style={styles.gray}>
+                {parking.description}
+              </CustomText>
+            )}
           </Column>
         </Column>
       </ScrollView>

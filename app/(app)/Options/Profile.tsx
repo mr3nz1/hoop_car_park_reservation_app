@@ -49,10 +49,10 @@ export default function Profile() {
                 </CustomText>
               </Column>
               <Pressable
-                onPress={() => {
+                onPress={async () => {
                   setUser({ name: "", email: "", sessionId: "" });
-                  account.deleteSession(sessionId);
-                  router.push("/Auth/Login");
+                  await account.deleteSession(sessionId);
+                  router.push("/OnBoarding/OnBoarding");
                 }}
                 style={{
                   backgroundColor: "#2A344E",

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -18,9 +18,12 @@ import { UserContext } from "../../../store/user/UserContext";
 import { databases } from "../../../appwrite/config";
 import { Query } from "react-native-appwrite/src";
 import { ActivityIndicator } from "react-native-paper";
+import { text } from "@fortawesome/fontawesome-svg-core";
+import SkeletonContent from "react-native-skeleton-content";
 
 export default function HomeScreen() {
-  const { name, email } = useContext(UserContext);
+  const { name } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
   const [parkings, setParkings] = useState<
     | {
         id: string;
@@ -28,31 +31,32 @@ export default function HomeScreen() {
         timeAway: string;
         name: string;
         avenue: string;
-        imageUrl: string;
+        image_url: string;
       }[]
     | any[]
   >([]);
+  const [searchText, setSearchText] = useState("");
 
   const loadParkings = useMemo(async () => {
     const { documents } = await databases.listDocuments(
       "6627e9abef0db39e0ebf",
       "6627e9cd3cc6db2ea8e3",
-      [Query.limit(6)]
+      [
+        Query.limit(6),
+        Query.select([
+          "name",
+          "avenue",
+          "description",
+          "image_url",
+          "$id",
+          "price",
+        ]),
+      ]
     );
-    documents.forEach((current) => {
-      setParkings((prevValue) => {
-        return [
-          ...prevValue,
-          {
-            id: current.$id,
-            price: current.price,
-            avenue: current.avenue,
-            imageUrl: current.image_url,
-            name: current.name,
-          },
-        ];
-      });
-    });
+
+    setParkings([]);
+    setParkings(documents);
+    setIsLoading(false);
   }, []);
 
   // useEffect(() => {
@@ -96,10 +100,22 @@ export default function HomeScreen() {
             </Pressable>
           </View>
           <Input
+            textColor="#B2B6BF"
             placeholderTextColor="#B2B6BF"
             backgroundColor="#2A344E"
             placeholder="Search"
             btnLeft={<Search />}
+            onChangeText={(e) => {
+              setSearchText(e);
+            }}
+            onSubmitEditing={() => {
+              router.push({
+                pathname: "/Parking/(explore)/[Explore]",
+                params: {
+                  searchText,
+                },
+              });
+            }}
           />
         </View>
       </Header>
@@ -110,7 +126,7 @@ export default function HomeScreen() {
         <View style={styles.cardsContainer}>
           <Pressable
             onPress={() => {
-              router.push("/Parking/Explore");
+              router.push("/Parking/[Explore]");
             }}
             style={styles.card}
           >
@@ -136,18 +152,21 @@ export default function HomeScreen() {
 
       <View style={{ padding: 20, gap: 20, flex: 1 }}>
         <CustomText size={3}>Nearest Parking Spaces</CustomText>
-        {parkings.length === 0 ? (
-          <ActivityIndicator color="black" size="large" />
+        {isLoading ? (
+          <SkeletonContent
+            containerStyle={{ flex: 1, width: 300 }}
+            animationDirection="horizontalLeft"
+            isLoading={true}
+          />
         ) : (
           parkings.map((parking) => {
-            console.log(parking);
             return (
               <ParkingCard
                 key={parking.id}
                 children={
                   <Image
                     source={{
-                      uri: parking.imageUrl,
+                      uri: parking.image_url,
                     }}
                     height={120}
                     width={100}
@@ -158,8 +177,11 @@ export default function HomeScreen() {
                 avenue={parking.avenue}
                 timeAway={"10 min"}
                 price={parking.price}
-                onprogress={() => {
-                  router.push("/Parking/ParkingDetails");
+                onPress={() => {
+                  router.push({
+                    pathname: "/Parking/[ParkingDetails]",
+                    params: { id: parking.id },
+                  });
                 }}
               />
             );
