@@ -19,7 +19,7 @@ import { UserContext } from "../../../store/user/UserContext";
 import { account } from "../../../appwrite/config";
 
 export default function Profile() {
-  const { setUser, sessionId } = useContext(UserContext);
+  const { name, setUser, sessionId } = useContext(UserContext);
   return (
     <>
       <ScrollView contentContainerStyle={styles.container}>
@@ -45,7 +45,7 @@ export default function Profile() {
               <Column gap={0.5}>
                 <CustomText style={{ color: "#8B8E98" }}>Welcome</CustomText>
                 <CustomText size={3} style={{ color: "white" }}>
-                  Diane
+                  {String(name).split(" ")[0]}
                 </CustomText>
               </Column>
               <Pressable

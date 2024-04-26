@@ -27,7 +27,7 @@ export default function ParkingDetail() {
         name: string;
         avenue: string;
         imageUrl: string;
-        description: string
+        description: string;
       }
     | any
   >({});
@@ -45,7 +45,7 @@ export default function ParkingDetail() {
       avenue: documents[0].avenue,
       imageUrl: documents[0].image_url,
       name: documents[0].name,
-      description: documents[0].description
+      description: documents[0].description,
     });
 
     setIsLoading(false);
@@ -57,35 +57,35 @@ export default function ParkingDetail() {
     <>
       <StatusBar style="dark" translucent={true} />
       <ScrollView style={styles.container}>
-        <Column gap={40}>
-          <ParkingImageShowcase
-            imageUrl={parking.imageUrl}
-            showLocationBtn={true}
-          />
+        {isLoading ? (
+          <ActivityIndicator color="black" />
+        ) : (
+          <Column gap={40}>
+            <ParkingImageShowcase
+              imageUrl={parking.imageUrl}
+              showLocationBtn={true}
+            />
 
-          {isLoading ? (
-            <ActivityIndicator color="black" />
-          ) : (
             <ParkingDetails
               name={parking.name}
               location={parking.avenue}
               distanceAway={"500 m away"}
               timeAway="7 mins"
             />
-          )}
 
-          <Column gap={2} style={{ paddingHorizontal: 30, paddingBottom: 100 }}>
-            <CustomText size={2}>Information</CustomText>
-            {isLoading ? (
-              <ActivityIndicator color="black" />
-            ) : (
+            <Column
+              gap={2}
+              style={{ paddingHorizontal: 30, paddingBottom: 100 }}
+            >
+              <CustomText size={2}>Information</CustomText>
               <CustomText size={1.5} style={styles.gray}>
                 {parking.description}
               </CustomText>
-            )}
+            </Column>
           </Column>
-        </Column>
+        )}
       </ScrollView>
+
       <LinearGradient
         style={{
           width: "100%",

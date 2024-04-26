@@ -156,7 +156,7 @@ export default function Explore() {
               parkings.map((parking) => {
                 return (
                   <ParkingCard
-                    key={parking.id}
+                    key={parking.$id}
                     children={
                       <Image
                         source={{

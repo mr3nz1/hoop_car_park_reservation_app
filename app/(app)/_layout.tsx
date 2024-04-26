@@ -106,7 +106,7 @@ export default function RootLayout() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Parking/(explore)/[Explore]"
+        name="Parking/Explore/[Explore]"
         options={{
           header: ({ navigation }) => {
             return <NavigationHeader title="Explore" navigation={navigation} />;
