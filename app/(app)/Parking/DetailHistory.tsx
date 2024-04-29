@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import ParkingImageShowcase from "../../../components/UI/ParkingImageShowcase";
 import ParkingDetails from "../../../components/UI/ParkingDetails";
@@ -7,57 +7,62 @@ import Button from "../../../components/UI/Button";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import { databases } from "../../../appwrite/config";
-import { Query } from "react-native-appwrite/src";
 import { StatusBar } from "expo-status-bar";
-
 
 export default function DetailHistory() {
   const [parkings, setParkings] = useState<
-  | {
-      id: string;
-      price: string;
-      timeAway: string;
-      name: string;
-      avenue: string;
-      imageUrl: string;
-    }[]
-  | any[]
->([]);
+    | {
+        id: string;
+        price: string;
+        timeAway: string;
+        name: string;
+        avenue: string;
+        imageUrl: string;
+      }[]
+    | any[]
+  >([]);
 
-const loadParkings = useMemo(async () =>{
-  const {documents} = await databases.listDocuments(
-    "6627e9abef0db39e0ebf",
-    "6627e9cd3cc6db2ea8e3",
-    [Query.limit(6)]
-  );
-  documents.forEach((current) => {
-    setParkings((prevValue) => {
-      return [
-        ...prevValue,
-        {
-          id: current.$id,
-          price: current.price,
-          avenue: current.avenue,
-          imageUrl: current.image_url,
-          name: current.name,
-        },
-      ];
-    });
-  });
-}, [])
+  useEffect(() => {
+    const loadParkings = async () => {
+      try {
+        const documentIds = ["documentId1", "documentId2", "documentId3"];
+        const loadedParkings = await Promise.all(
+          documentIds.map(async id => {
+            const { document } = await databases.getDocument(
+              "6627e9abef0db39e0ebf",
+              "6627e9cd3cc6db2ea8e3",
+              id
+            );
+            return {
+              id: document.$id,
+              price: document.price,
+              avenue: document.avenue,
+              imageUrl: document.image_url,
+              name: document.name
+            };
+          })
+        );
+        setParkings(loadedParkings);
+      } catch (error) {
+        console.error("Error loading parkings:", error);
+      }
+    };
+
+    loadParkings();
+  }, []);
 
   return (
     <>
       <StatusBar style="dark" />
       <ScrollView style={styles.container}>
         <ParkingImageShowcase showLocationBtn={true} />
-        {parkings.map((parking) => (
+        {parkings.map(parking => (
           <ParkingDetails
             key={parking.id}
             name={parking.name}
             location={parking.avenue}
             distanceAway="500 m away"
-            timeAway="7 mins" // You can customize this as needed
+            timeAway="7 mins" 
           />
         ))}
         <CustomText size={2} style={[styles.textCenter, styles.gray]}>
