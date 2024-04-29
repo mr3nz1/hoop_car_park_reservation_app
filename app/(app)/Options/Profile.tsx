@@ -16,7 +16,7 @@ import Button from "../../../components/UI/Button";
 import { router } from "expo-router";
 import { useContext } from "react";
 import { UserContext } from "../../../store/user/UserContext";
-import { account } from "../../../appwrite/config";
+import { account, client } from "../../../appwrite/config";
 
 export default function Profile() {
   const { name, setUser, sessionId } = useContext(UserContext);
@@ -50,8 +50,9 @@ export default function Profile() {
               </Column>
               <Pressable
                 onPress={async () => {
-                  setUser({ name: "", email: "", sessionId: "" });
-                  await account.deleteSession(sessionId);
+                  setUser({ name: "", email: "", sessionId: "", authType: "" });
+                  const { $id } = await account.get();
+                  await account.deleteSession($id);
                   router.push("/OnBoarding/OnBoarding");
                 }}
                 style={{

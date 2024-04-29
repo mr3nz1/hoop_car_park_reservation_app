@@ -6,12 +6,13 @@ import { Link, router, useLocalSearchParams } from "expo-router";
 import Column from "../../components/UI/Column";
 import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { account } from "../../appwrite/config";
 import { UserContext } from "../../store/user/UserContext";
 import { ActivityIndicator } from "react-native-paper";
 import { AppwriteException } from "react-native-appwrite/src";
 import * as SecureStore from "expo-secure-store";
+import { err } from "react-native-svg";
 
 export default function Login() {
   const { loginType } = useLocalSearchParams();
@@ -23,7 +24,7 @@ export default function Login() {
     usePhone = false;
   }
 
-  const { setUser } = useContext(UserContext!);
+  const { email, name, setUser } = useContext(UserContext!);
 
   const [loginInfo, setLoginInfo] = useState({
     email: "",
@@ -40,17 +41,18 @@ export default function Login() {
         await account.createEmailSession(loginInfo.email, loginInfo.password);
         const { email, name, $id } = await account.get();
         setUser({ email, name, sessionId: $id, authType: "" });
+        router.push("Parking/HomeScreen");
       } else {
         console.log(loginInfo.phone, loginInfo.password);
         await account.createPhoneSession(
-          "662a20c22afe657c8041",
+          "662bbc79f3bd0b5f43d3",
           loginInfo.phone
         );
         const { email, name, $id } = await account.get();
         setUser({ email, name, sessionId: $id, authType: "" });
+        router.push("Parking/HomeScreen");
       }
 
-      router.push("Parking/HomeScreen");
       setIsLoading(false);
     } catch (err: unknown) {
       setIsLoading(false);
