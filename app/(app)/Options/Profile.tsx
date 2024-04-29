@@ -142,7 +142,7 @@ export default function Profile() {
               </CustomText>
             </Button>
             <CustomText
-              size={0.5}
+              size={1}
               style={{ textAlign: "center", color: "#A4A4A8" }}
             >
               Parking v.1

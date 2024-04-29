@@ -40,6 +40,7 @@ export default function Index() {
           }
         } catch (err) {
           console.log(err);
+          // setIsTokenValid(false);
         }
       }
     }

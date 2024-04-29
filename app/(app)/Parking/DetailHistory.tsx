@@ -13,10 +13,13 @@ import { StatusBar } from "expo-status-bar";
 export default function DetailHistory() {
   return (
     <>
-    <StatusBar style="dark" />
+      <StatusBar style="dark" />
       <ScrollView style={styles.container}>
         <Column gap={40}>
-          <ParkingImageShowcase showLocationBtn={true} />
+          <ParkingImageShowcase
+            imageUrl={require("../../../assets/images/detail_image.png")}
+            showLocationBtn={true}
+          />
 
           <ParkingDetails
             name="Graha Mall"
