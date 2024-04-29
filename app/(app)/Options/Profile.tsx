@@ -16,10 +16,10 @@ import Button from "../../../components/UI/Button";
 import { router } from "expo-router";
 import { useContext } from "react";
 import { UserContext } from "../../../store/user/UserContext";
-import { account } from "../../../appwrite/config";
+import { account, client } from "../../../appwrite/config";
 
 export default function Profile() {
-  const { setUser, sessionId } = useContext(UserContext);
+  const { name, setUser, sessionId } = useContext(UserContext);
   return (
     <>
       <ScrollView contentContainerStyle={styles.container}>
@@ -45,14 +45,15 @@ export default function Profile() {
               <Column gap={0.5}>
                 <CustomText style={{ color: "#8B8E98" }}>Welcome</CustomText>
                 <CustomText size={3} style={{ color: "white" }}>
-                  Diane
+                  {String(name).split(" ")[0]}
                 </CustomText>
               </Column>
               <Pressable
-                onPress={() => {
-                  setUser({ name: "", email: "", sessionId: "" });
-                  account.deleteSession(sessionId);
-                  router.push("/Auth/Login");
+                onPress={async () => {
+                  setUser({ name: "", email: "", sessionId: "", authType: "" });
+                  const { $id } = await account.get();
+                  await account.deleteSession($id);
+                  router.push("/OnBoarding/OnBoarding");
                 }}
                 style={{
                   backgroundColor: "#2A344E",
@@ -141,7 +142,7 @@ export default function Profile() {
               </CustomText>
             </Button>
             <CustomText
-              size={0.5}
+              size={1}
               style={{ textAlign: "center", color: "#A4A4A8" }}
             >
               Parking v.1

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useMemo } from "react";
 import CardsProps from "../../../components/UI/ParkingCard";
 import cardData from "../../../cards";
 import { ScrollView, Image, Pressable } from "react-native";
 import CustomText from "../../../components/UI/CustomText";
-import { useState , useMemo} from "react";
+import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import Input from "../../../components/UI/Input";
 import { LocateIcon, Search, TagBg } from "../../../components/UI/Icons/Icons";
@@ -106,7 +106,7 @@ const loadParkings = useMemo(async () => {
                 avenue={parking.avenue}
                 timeAway={"10 min"}
                 price={parking.price}
-                onprogress={() => {
+                onPress={() => {
                   router.push("/Parking/ParkingDetails");
                 }}
               />
@@ -135,7 +135,7 @@ const loadParkings = useMemo(async () => {
                 avenue={parking.avenue}
                 timeAway={"10 min"}
                 price={parking.price}
-                onprogress={() => {
+                onPress={() => {
                   router.push("/Parking/ParkingDetails");
                 }}
               />

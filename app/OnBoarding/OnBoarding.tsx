@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import {
   Dimensions,
   StyleSheet,
@@ -15,6 +15,7 @@ import Paginator from "../../components/Onboarding/paginators";
 import { Link, router } from "expo-router";
 import CustomText from "../../components/UI/CustomText";
 import { StatusBar } from "expo-status-bar";
+import { UserContext } from "../../store/user/UserContext";
 
 export default function OnBoarding(props: any) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,7 +30,7 @@ export default function OnBoarding(props: any) {
 
   return (
     <>
-    <StatusBar style="dark" />
+      <StatusBar style="dark" />
       <ScrollView contentContainerStyle={styles.container}>
         <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
           <Link href={"/Auth/email"} style={styles.skip}>

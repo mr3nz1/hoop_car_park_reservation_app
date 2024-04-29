@@ -20,41 +20,41 @@ import { Query } from "react-native-appwrite/src";
 export default function History() {
   const [cards, setCards] = useState(cardData);
   const [parkings, setParkings] = useState<
-  | {
-      id: string;
-      price: string;
-      timeAway: string;
-      name: string;
-      avenue: string;
-      imageUrl: string;
-    }[]
-  | any[]
->([]);
+    | {
+        id: string;
+        price: string;
+        timeAway: string;
+        name: string;
+        avenue: string;
+        imageUrl: string;
+      }[]
+    | any[]
+  >([]);
 
-const loadParkings = useMemo(async () =>{
-  const {documents} = await databases.listDocuments(
-    "6627e9abef0db39e0ebf",
-    "6627e9cd3cc6db2ea8e3",
-    [Query.limit(6)]
-  );
-  documents.forEach((current) => {
-    setParkings((prevValue) => {
-      return [
-        ...prevValue,
-        {
-          id: current.$id,
-          price: current.price,
-          avenue: current.avenue,
-          imageUrl: current.image_url,
-          name: current.name,
-        },
-      ];
+  const loadParkings = useMemo(async () => {
+    const { documents } = await databases.listDocuments(
+      "6627e9abef0db39e0ebf",
+      "6627e9cd3cc6db2ea8e3",
+      [Query.limit(6)]
+    );
+    documents.forEach((current) => {
+      setParkings((prevValue) => {
+        return [
+          ...prevValue,
+          {
+            id: current.$id,
+            price: current.price,
+            avenue: current.avenue,
+            imageUrl: current.image_url,
+            name: current.name,
+          },
+        ];
+      });
     });
-  });
-}, [])
+  }, []);
   return (
     <>
-    <StatusBar style="dark" />
+      <StatusBar style="dark" />
       <ScrollView contentContainerStyle={[styles.container]}>
         <View
           style={{
@@ -70,10 +70,9 @@ const loadParkings = useMemo(async () =>{
               btnLeft={<Search color="#929298" />}
               backgroundColor="#EAEAF3"
               textInputStyle={{ color: "#929298" }}
-
-            onChangeText={(text) => {
-              // console.log("Text changed:", text);
-            }}
+              onChangeText={(text) => {
+                // console.log("Text changed:", text);
+              }}
             />
           </View>
           <Pressable
@@ -100,23 +99,23 @@ const loadParkings = useMemo(async () =>{
                 }}
               >
                 <CardsProps
-                 key={parking.id}
-                 children={
-                   <Image
-                     source={{
-                       uri: parking.imageUrl,
-                     }}
-                     height={120}
-                     width={100}
-                     style={{ borderRadius: 20 }}
-                   />
-                 }
-                 name={parking.name}
-                 avenue={parking.avenue}
-                 timeAway={"10 min"}
-                 price={parking.price}
-                 onprogress={() => {
-                   router.push("/Parking/ParkingDetails");
+                  key={parking.id}
+                  children={
+                    <Image
+                      source={{
+                        uri: parking.imageUrl,
+                      }}
+                      height={120}
+                      width={100}
+                      style={{ borderRadius: 20 }}
+                    />
+                  }
+                  name={parking.name}
+                  avenue={parking.avenue}
+                  timeAway={"10 min"}
+                  price={parking.price}
+                  onPress={() => {
+                    router.push("/Parking/ParkingDetails");
                   }}
                 />
               </Pressable>
@@ -127,30 +126,30 @@ const loadParkings = useMemo(async () =>{
         <View style={{ gap: 15 }}>
           <CustomText size={2}>This Week</CustomText>
           <View style={{ gap: 15 }}>
-          {parkings.map((parking) => (
+            {parkings.map((parking) => (
               <Pressable
                 onPress={() => {
                   router.push("/Parking/DetailHistory");
                 }}
               >
                 <CardsProps
-                 key={parking.id}
-                 children={
-                   <Image
-                     source={{
-                       uri: parking.imageUrl,
-                     }}
-                     height={120}
-                     width={100}
-                     style={{ borderRadius: 20 }}
-                   />
-                 }
-                 name={parking.name}
-                 avenue={parking.avenue}
-                 timeAway={"10 min"}
-                 price={parking.price}
-                 onprogress={() => {
-                   router.push("/Parking/DetailHistory");
+                  key={parking.id}
+                  children={
+                    <Image
+                      source={{
+                        uri: parking.imageUrl,
+                      }}
+                      height={120}
+                      width={100}
+                      style={{ borderRadius: 20 }}
+                    />
+                  }
+                  name={parking.name}
+                  avenue={parking.avenue}
+                  timeAway={"10 min"}
+                  price={parking.price}
+                  onPress={() => {
+                    router.push("/Parking/DetailHistory");
                   }}
                 />
               </Pressable>

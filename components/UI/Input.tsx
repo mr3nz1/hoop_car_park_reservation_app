@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import {
   Image,
+  NativeUIEvent,
   StyleSheet,
   Text,
   TextInput,
@@ -19,6 +20,9 @@ interface InputType {
   placeholderTextColor?: string;
   textInputStyle?: TextStyle;
   onChangeText: (e: string) => void;
+  onSubmitEditing?: () => void;
+  config?: object;
+  textColor?: string
 }
 
 export default function Input({
@@ -31,6 +35,9 @@ export default function Input({
   placeholderTextColor,
   textInputStyle,
   onChangeText,
+  onSubmitEditing,
+  config,
+  textColor
 }: InputType) {
   const styles = StyleSheet.create({
     container: {
@@ -48,6 +55,7 @@ export default function Input({
       fontSize: 17,
       fontFamily: "Avenir-Medium",
       marginLeft: btnLeft ? 10 : 0,
+      color: textColor ?? "black"
     },
     icon: {
       // position: "absolute",
@@ -65,6 +73,12 @@ export default function Input({
         onChangeText={(e) => {
           onChangeText(e);
         }}
+        onSubmitEditing={() => {
+          if (onSubmitEditing) {
+            onSubmitEditing();
+          }
+        }}
+        {...config}
       />
       {password && (
         <Image

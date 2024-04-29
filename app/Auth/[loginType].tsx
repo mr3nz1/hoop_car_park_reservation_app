@@ -6,12 +6,13 @@ import { Link, router, useLocalSearchParams } from "expo-router";
 import Column from "../../components/UI/Column";
 import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { account } from "../../appwrite/config";
 import { UserContext } from "../../store/user/UserContext";
 import { ActivityIndicator } from "react-native-paper";
 import { AppwriteException } from "react-native-appwrite/src";
 import * as SecureStore from "expo-secure-store";
+import { err } from "react-native-svg";
 
 export default function Login() {
   const { loginType } = useLocalSearchParams();
@@ -23,11 +24,12 @@ export default function Login() {
     usePhone = false;
   }
 
-  const { setUser } = useContext(UserContext!);
+  const { email, name, setUser } = useContext(UserContext!);
 
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
+    phone: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -35,12 +37,22 @@ export default function Login() {
 
   async function login() {
     try {
-      await account.createEmailSession(loginInfo.email, loginInfo.password);
+      if (loginInfo.email !== "") {
+        await account.createEmailSession(loginInfo.email, loginInfo.password);
+        const { email, name, $id } = await account.get();
+        setUser({ email, name, sessionId: $id, authType: "" });
+        router.push("Parking/HomeScreen");
+      } else {
+        console.log(loginInfo.phone, loginInfo.password);
+        await account.createPhoneSession(
+          "662bbc79f3bd0b5f43d3",
+          loginInfo.phone
+        );
+        const { email, name, $id } = await account.get();
+        setUser({ email, name, sessionId: $id, authType: "" });
+        router.push("Parking/HomeScreen");
+      }
 
-      const { email, name, $id } = await account.get();
-      setUser({ email, name, sessionId: $id });
-
-      router.push("Parking/HomeScreen");
       setIsLoading(false);
     } catch (err: unknown) {
       setIsLoading(false);
@@ -66,7 +78,15 @@ export default function Login() {
         <View style={styles.formContainer}>
           <Column gap={20} style={{ height: "100%" }}>
             {usePhone ? (
-              <Input onChangeText={(e) => {}} placeholder={"+62"} />
+              <Input
+                onChangeText={(e) => {
+                  setLoginInfo((prevLoginInfo) => ({
+                    ...prevLoginInfo,
+                    phone: e,
+                  }));
+                }}
+                placeholder={"+62"}
+              />
             ) : (
               <Input
                 onChangeText={(e) => {

@@ -24,14 +24,20 @@ export default function Index() {
     async function loadFonts() {
       if (fontsLoaded) {
         try {
-          // if (jwt) {
-          //   const { email, name } = await account.get();
-          //   setUser({ email, name });
-          //   router.push("Parking/HomeScreen");
-          //   await SplashScreen.hideAsync();
-          // } else {
-          router.push("/OnBoarding/OnBoarding");
-          // }
+          const { email, name, $id } = await account.get();
+
+          if ($id) {
+            setUser({
+              email,
+              name,
+              sessionId: $id,
+              authType: "",
+            });
+
+            router.push("Parking/HomeScreen");
+          } else {
+            router.push("/OnBoarding/OnBoarding");
+          }
         } catch (err) {
           console.log(err);
           // setIsTokenValid(false);

@@ -13,6 +13,7 @@ import { UserContext } from "../../store/user/UserContext";
 import { AppwriteException, ID } from "react-native-appwrite/src";
 import { account } from "../../appwrite/config";
 import { ActivityIndicator } from "react-native-paper";
+import { supabase } from "../../supabase/config";
 
 interface RegisterType {
   usePhone?: boolean;
@@ -37,12 +38,12 @@ export default function Register({ usePhone = true }: RegisterType) {
     phone: string
   ) {
     try {
-      console.log(email, password, phone)
+      console.log(email, password, phone);
       const res = await account.create(ID.unique(), email, password, name);
-      console.log("ran")
+      console.log("ran");
       const { $id } = await account.createEmailSession(email, password);
       await account.updatePhone(phone, password);
-      setUser({ email, name, sessionId: $id });
+      setUser({ email, name, sessionId: $id, authType: "" });
       setIsLoading(false);
       router.push("/Parking/HomeScreen");
     } catch (e) {

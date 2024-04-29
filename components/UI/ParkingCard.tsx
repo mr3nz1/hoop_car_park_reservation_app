@@ -8,7 +8,7 @@ interface ParkingCardProps {
   avenue: string;
   price?: string;
   timeAway: string;
-  onprogress?: () => void;
+  onPress?: () => void;
 }
 
 export default function ParkingCard({
@@ -17,12 +17,12 @@ export default function ParkingCard({
   avenue,
   price,
   timeAway,
-  onprogress,
+  onPress,
 }: React.PropsWithChildren<ParkingCardProps>) {
   const { width } = Dimensions.get("window");
 
   return (
-    <Pressable onPress={onprogress} style={styles.container}>
+    <Pressable onPress={onPress} style={styles.container}>
       <View>{children}</View>
 
       <View style={styles.textContainer}>

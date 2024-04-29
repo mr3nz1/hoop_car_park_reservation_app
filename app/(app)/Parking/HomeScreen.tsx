@@ -20,7 +20,8 @@ import { Query } from "react-native-appwrite/src";
 import { ActivityIndicator } from "react-native-paper";
 
 export default function HomeScreen() {
-  const { name, email } = useContext(UserContext);
+  const { name } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
   const [parkings, setParkings] = useState<
     | {
         id: string;
@@ -52,14 +53,12 @@ export default function HomeScreen() {
           },
         ];
       });
+
+      setIsLoading(false);
     });
   }, []);
 
-  // useEffect(() => {
-  //   loadParkings();
-  // }, []);
-
-  console.log(parkings);
+  const [searchText, setSearchText] = useState("");
 
   return (
     <ScrollView style={{ backgroundColor: "#F4F4FA", flex: 1 }}>
@@ -76,7 +75,7 @@ export default function HomeScreen() {
             <View>
               <Link href="/Options/Profile">
                 <CustomText size={4} style={styles.greetings}>
-                  Hola, {name} 👋🏻
+                  Hola, {String(name).split(" ")[0]} 👋🏻
                 </CustomText>
               </Link>
               <CustomText style={styles.description}>
@@ -96,12 +95,21 @@ export default function HomeScreen() {
             </Pressable>
           </View>
           <Input
+            onChangeText={(e) => {
+              setSearchText(e);
+            }}
+            textColor="#B2B6BF"
             placeholderTextColor="#B2B6BF"
             backgroundColor="#2A344E"
             placeholder="Search"
             btnLeft={<Search />}
-            onChangeText={(text) => {
-              console.log("Text changed:", text);
+            onSubmitEditing={() => {
+              router.push({
+                pathname: `/Parking/Explore/[Explore]`,
+                params: {
+                  searchText,
+                },
+              });
             }}
           />
         </View>
@@ -113,7 +121,7 @@ export default function HomeScreen() {
         <View style={styles.cardsContainer}>
           <Pressable
             onPress={() => {
-              router.push("/Parking/Explore");
+              router.push("/Parking/Explore/Explore");
             }}
             style={styles.card}
           >
@@ -122,9 +130,7 @@ export default function HomeScreen() {
             />
             <CustomText>Car</CustomText>
           </Pressable>
-          <Pressable onPress={() => {
-            router.push("/Parking/History")
-          }} style={styles.card}>
+          <Pressable onPress={() => {}} style={styles.card}>
             <Image source={require("../../../assets/images/bike.png")} />
             <CustomText>Bike</CustomText>
           </Pressable>
@@ -141,11 +147,12 @@ export default function HomeScreen() {
 
       <View style={{ padding: 20, gap: 20, flex: 1 }}>
         <CustomText size={3}>Nearest Parking Spaces</CustomText>
-        {parkings.length === 0 ? (
-          <ActivityIndicator color="black" size="large" />
+        {isLoading ? (
+          <View style={{ height: 200, width: "100%" }}>
+            <ActivityIndicator color="black" size="large" />
+          </View>
         ) : (
           parkings.map((parking) => {
-            console.log(parking);
             return (
               <ParkingCard
                 key={parking.id}
@@ -163,8 +170,11 @@ export default function HomeScreen() {
                 avenue={parking.avenue}
                 timeAway={"10 min"}
                 price={parking.price}
-                onprogress={() => {
-                  router.push("/Parking/ParkingDetails");
+                onPress={() => {
+                  router.push({
+                    pathname: "/Parking/[ParkingDetails]",
+                    params: { id: parking.id },
+                  });
                 }}
               />
             );

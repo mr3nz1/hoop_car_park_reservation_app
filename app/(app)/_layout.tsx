@@ -10,10 +10,8 @@ export default function RootLayout() {
   const { email, name, sessionId } = useContext(UserContext);
   const isLoggedIn = email !== "" && name !== "" && sessionId !== "";
 
-  console.log("isLoggedIn", isLoggedIn);
-
   if (!isLoggedIn) {
-    return router.replace("/Auth/email");
+    return router.push("/OnBoarding/OnBoarding");
   }
 
   return (
@@ -21,7 +19,7 @@ export default function RootLayout() {
       screenOptions={{ statusBarStyle: "auto", statusBarTranslucent: true }}
     >
       <Stack.Screen
-        name="Parking/ParkingDetails"
+        name="Parking/[ParkingDetails]"
         options={{
           header: ({ navigation }) => {
             return <NavigationHeader title="Details" navigation={navigation} />;
@@ -108,7 +106,7 @@ export default function RootLayout() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Parking/Explore"
+        name="Parking/Explore/[Explore]"
         options={{
           header: ({ navigation }) => {
             return <NavigationHeader title="Explore" navigation={navigation} />;

@@ -3,11 +3,13 @@ import { Image, Pressable, StyleSheet, View } from "react-native";
 interface ParkingImageShowcase {
   showLocationBtn?: boolean;
   variant?: boolean;
+  imageUrl: string;
 }
 
 export default function ParkingImageShowcase({
   showLocationBtn,
   variant,
+  imageUrl,
 }: ParkingImageShowcase) {
   const styles = StyleSheet.create({
     container: {
@@ -21,7 +23,9 @@ export default function ParkingImageShowcase({
           borderRadius: 20,
           marginHorizontal: 40,
         }
-      : {},
+      : {
+          borderRadius: 20,
+        },
     button: {
       backgroundColor: "#F43939",
       padding: 10,
@@ -36,7 +40,9 @@ export default function ParkingImageShowcase({
       <View style={styles.container}>
         <Image
           style={styles.image}
-          source={require("../../assets/images/detail_image.png")}
+          source={{ uri: imageUrl }}
+          width={"100%"}
+          height={200}
         />
         {showLocationBtn && (
           <Pressable style={styles.button}>

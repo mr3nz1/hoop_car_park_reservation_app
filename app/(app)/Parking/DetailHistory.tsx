@@ -1,76 +1,53 @@
-import React, { useState, useMemo } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import ParkingImageShowcase from "../../../components/UI/ParkingImageShowcase";
-import ParkingDetails from "../../../components/UI/ParkingDetails";
+import { Colors } from "react-native/Libraries/NewAppScreen";
+import Column from "../../../components/UI/Column";
 import CustomText from "../../../components/UI/CustomText";
+import TagWrapper from "../../../components/UI/TagWrapper";
 import Button from "../../../components/UI/Button";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
-import { databases } from "../../../appwrite/config";
-import { Query } from "react-native-appwrite/src";
+import ParkingDetails from "../../../components/UI/ParkingDetails";
 import { StatusBar } from "expo-status-bar";
 
-
 export default function DetailHistory() {
-  const [parkings, setParkings] = useState<
-  | {
-      id: string;
-      price: string;
-      timeAway: string;
-      name: string;
-      avenue: string;
-      imageUrl: string;
-    }[]
-  | any[]
->([]);
-
-const loadParkings = useMemo(async () =>{
-  const {documents} = await databases.listDocuments(
-    "6627e9abef0db39e0ebf",
-    "6627e9cd3cc6db2ea8e3",
-    [Query.limit(6)]
-  );
-  documents.forEach((current) => {
-    setParkings((prevValue) => {
-      return [
-        ...prevValue,
-        {
-          id: current.$id,
-          price: current.price,
-          avenue: current.avenue,
-          imageUrl: current.image_url,
-          name: current.name,
-        },
-      ];
-    });
-  });
-}, [])
-
   return (
     <>
       <StatusBar style="dark" />
       <ScrollView style={styles.container}>
-        <ParkingImageShowcase showLocationBtn={true} />
-        {parkings.map((parking) => (
-          <ParkingDetails
-            key={parking.id}
-            name={parking.name}
-            location={parking.avenue}
-            distanceAway="500 m away"
-            timeAway="7 mins" // You can customize this as needed
+        <Column gap={40}>
+          <ParkingImageShowcase
+            imageUrl={require("../../../assets/images/detail_image.png")}
+            showLocationBtn={true}
           />
-        ))}
-        <CustomText size={2} style={[styles.textCenter, styles.gray]}>
-          Information
-        </CustomText>
-        <CustomText size={1.5} style={[styles.textCenter, styles.gray]}>
-          24/7 parking facility with CCTV camera, professional security guard,
-          chair disable, floor parking list facilities. You will get hassle
-          parking facilities with 35% discount on first parking...
-        </CustomText>
+
+          <ParkingDetails
+            name="Graha Mall"
+            location="123 Dhaka Street"
+            distanceAway="500 m away"
+            timeAway="7 mins"
+          />
+
+          <Column gap={2} style={{ paddingHorizontal: 30, paddingBottom: 100 }}>
+            <CustomText size={2}>Information</CustomText>
+            <CustomText size={1.5} style={styles.gray}>
+              24/7 parking facility with cctv camera, professional security
+              guard, chair disble, floor parking list facilities. You will get
+              hassle parking facilities with 35% discount on first parking...
+            </CustomText>
+          </Column>
+        </Column>
       </ScrollView>
       <LinearGradient
-        style={styles.buttonContainer}
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingTop: 30,
+          paddingBottom: 20,
+          position: "absolute",
+          bottom: 0,
+        }}
         colors={["transparent", "#F4F4FA"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
@@ -91,17 +68,9 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   gray: { color: "#919193" },
+  red: { color: "#F43939" },
   textCenter: {
     textAlign: "center",
     paddingHorizontal: 20,
-  },
-  buttonContainer: {
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 30,
-    paddingBottom: 20,
-    position: "absolute",
-    bottom: 0,
   },
 });
