@@ -58,7 +58,11 @@ export default function HomeScreen() {
     });
   }, []);
 
-  const [searchText, setSearchText] = useState("");
+  // useEffect(() => {
+  //   loadParkings();
+  // }, []);
+
+  console.log(parkings);
 
   return (
     <ScrollView style={{ backgroundColor: "#F4F4FA", flex: 1 }}>
@@ -95,22 +99,10 @@ export default function HomeScreen() {
             </Pressable>
           </View>
           <Input
-            onChangeText={(e) => {
-              setSearchText(e);
-            }}
-            textColor="#B2B6BF"
             placeholderTextColor="#B2B6BF"
             backgroundColor="#2A344E"
             placeholder="Search"
             btnLeft={<Search />}
-            onSubmitEditing={() => {
-              router.push({
-                pathname: `/Parking/Explore/[Explore]`,
-                params: {
-                  searchText,
-                },
-              });
-            }}
           />
         </View>
       </Header>
